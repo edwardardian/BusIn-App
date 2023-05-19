@@ -1,3 +1,22 @@
 <resources>
-    <string name="app_name">Bus Reservation App</string>
+    <string name="app_name">BusIn</string>
+    <string-array name="Departure">
+        <item>-- Departure --</item>
+        <item>Bekasi</item>
+        <item>Bogor</item>
+        <item>Cilegon</item>
+        <item>Jakarta</item>
+        <item>Tnagerang</item>
+    </string-array>
+
+    <string-array name="Arrival">
+        <item>-- Arrival --</item>
+        <item>Bekasi</item>
+        <item>Bogor</item>
+        <item>Cilegon</item>
+        <item>Jakarta</item>
+        <item>Tnagerang</item>
+    </string-array>
+
+
 </resources>
