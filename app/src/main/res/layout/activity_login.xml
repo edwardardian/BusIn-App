@@ -77,11 +77,24 @@
                 android:textColor="@color/white"
                 android:textSize="15sp" />
 
+            <Button
+                android:id="@+id/btnGoogleLogin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/selector_btn_google"
+                android:text="Sing up With Google"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                app:backgroundTint="@color/blue"
+                app:icon="@drawable/ic_google"
+                app:iconTint="@color/white"/>
+
             <TextView
                 android:id="@+id/tvRegister"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="15dp"
+                android:layout_marginTop="10dp"
                 android:textColor="@color/black"
                 android:layout_gravity="center"
                 android:text="Not Registered? Sing Up Here"/>
