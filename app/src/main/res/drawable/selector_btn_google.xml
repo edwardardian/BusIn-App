@@ -6,7 +6,6 @@
         <shape android:shape="rectangle">
             <solid android:color="@color/white"/>
             <stroke
-                android:color="@color/gray_e5"
                 android:width="1dp"/>
             <corners android:radius="6dp"/>
         </shape>
@@ -17,7 +16,6 @@
         <shape android:shape="rectangle">
             <solid android:color="@color/white"/>
             <stroke
-                android:color="@color/gray_e5"
                 android:width="1dp"/>
             <corners android:radius="6dp"/>
         </shape>
@@ -26,9 +24,7 @@
     <item android:state_pressed="true"
         android:state_focused="false">
         <shape android:shape="rectangle">
-            <solid android:color="@color/primary_pressed"/>
             <stroke
-                android:color="@color/gray_e5"
                 android:width="1dp"/>
             <corners android:radius="6dp"/>
         </shape>
