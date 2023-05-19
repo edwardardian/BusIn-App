@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="."
+    tools:context=".LoginActivity"
     android:gravity="center"
     android:padding="15dp">
 
@@ -17,12 +17,23 @@
             android:layout_height="match_parent"
             android:gravity="center"
             android:orientation="vertical">
+
             <ImageView
                 android:layout_width="200dp"
                 android:layout_height="200dp"
-                android:layout_marginBottom="30dp"
+                android:layout_marginBottom="10dp"
                 android:layout_gravity="center"
-                android:src="@drawable/bus_logo"/>
+                android:src="@drawable/logo"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Login "
+                android:gravity="center"
+                android:textSize="19dp"
+                android:textColor="@color/black"
+                android:layout_marginBottom="10dp"/>
+
 
             <ProgressBar
                 android:id="@+id/progress"
@@ -77,11 +88,24 @@
                 android:textColor="@color/white"
                 android:textSize="15sp" />
 
+            <Button
+                android:id="@+id/btnGoogleLogin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/selector_btn_google"
+                android:text="Sing up With Google"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                app:backgroundTint="@color/blue"
+                app:icon="@drawable/ic_google"
+                app:iconTint="@color/white"/>
+
             <TextView
                 android:id="@+id/tvRegister"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="15dp"
+                android:textSize="16dp"
+                android:layout_marginTop="10dp"
                 android:textColor="@color/black"
                 android:layout_gravity="center"
                 android:text="Not Registered? Sing Up Here"/>

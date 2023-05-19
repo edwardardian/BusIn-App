@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="."
+    tools:context=".RegisterActivity"
     android:gravity="center"
     android:padding="15dp">
 
@@ -19,11 +19,20 @@
             android:orientation="vertical">
 
             <ImageView
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_marginBottom="30dp"
+                android:layout_width="174dp"
+                android:layout_height="160dp"
                 android:layout_gravity="center"
-                android:src="@drawable/bus_logo"/>
+                android:layout_marginBottom="10dp"
+                android:src="@drawable/logo" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Create an Account"
+                android:gravity="center"
+                android:textSize="19dp"
+                android:textColor="@color/black"
+                android:layout_marginBottom="10dp"/>
 
             <ProgressBar
                 android:id="@+id/progress"
