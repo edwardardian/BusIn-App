@@ -43,7 +43,7 @@ public class HomePageActivity extends AppCompatActivity {
     }
 
     private void updateLabel(){
-        String myFormat="dd/MM/yyyy";
+        String myFormat = "dd/MM/yyyy";
         SimpleDateFormat dateFormat = new SimpleDateFormat(myFormat, Locale.UK);
         datePicker.setText(dateFormat.format(myCalendar.getTime()));
     }
