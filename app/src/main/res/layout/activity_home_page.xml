@@ -84,23 +84,23 @@
                             <LinearLayout
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginEnd="20dp"
+                                android:layout_marginEnd="15dp"
                                 android:orientation="vertical">
 
                                 <ImageView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:layout_marginTop="24dp"
                                     android:contentDescription="Departure"
+                                    android:src="@drawable/baseline_my_location_24"
                                     app:tint="@color/blue" />
 
 
                                 <ImageView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:layout_marginTop="47dp"
+                                    android:layout_marginTop="65dp"
                                     android:contentDescription="Arrival"
-                                    android:src="@drawable/baseline_my_location_24"
+                                    android:src="@drawable/ic_baseline_location_on_24"
                                     app:tint="@color/blue" />
                             </LinearLayout>
 
@@ -168,7 +168,7 @@
                             <ImageView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginEnd="20dp"
+                                android:layout_marginEnd="10dp"
                                 android:layout_gravity="bottom"
                                 android:contentDescription="Passenger"
                                 android:src="@drawable/baseline_groups_24" />
@@ -198,7 +198,7 @@
                                     tools:ignore="TextContrastCheck" />
 
                                 <View
-                                    android:layout_width="match_parent"
+                                    android:layout_width="wrap_content"
                                     android:layout_height="1dp"
                                     android:layout_marginTop="2dp"
                                     android:background="@color/blue" />
@@ -207,7 +207,7 @@
                             <ImageView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginEnd="20dp"
+                                android:layout_marginEnd="10dp"
                                 android:layout_gravity="bottom"
                                 android:contentDescription="Arrival"
                                 android:src="@drawable/baseline_calendar_month_24" />
@@ -236,7 +236,7 @@
                                     tools:ignore="TextContrastCheck" />
 
                                 <View
-                                    android:layout_width="match_parent"
+                                    android:layout_width="wrap_content"
                                     android:layout_height="1dp"
                                     android:layout_marginTop="2dp"
                                     android:background="@color/blue" />
