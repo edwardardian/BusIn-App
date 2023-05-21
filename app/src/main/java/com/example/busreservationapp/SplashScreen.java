@@ -6,6 +6,11 @@ import android.os.Handler;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
+import java.sql.Time;
+
 public class SplashScreen extends AppCompatActivity {
     static int TIMEOUT_MILLIS = 1500;
     @Override
@@ -16,8 +21,14 @@ public class SplashScreen extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent i = new Intent(SplashScreen.this, HomePageActivity.class);
-                startActivity(i);
+                FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+                if(firebaseUser != null && !firebaseUser.isAnonymous()) {
+                    Intent homePageIntent = new Intent(SplashScreen.this, HomePageActivity.class);
+                    startActivity(homePageIntent);
+                } else {
+                    Intent loginIntent = new Intent(SplashScreen.this, UserLoginActivity.class);
+                    startActivity(loginIntent);
+                }
                 finish();
             }
         }, TIMEOUT_MILLIS);

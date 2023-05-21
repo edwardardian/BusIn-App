@@ -1,6 +1,7 @@
 package com.example.busreservationapp;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -56,8 +57,13 @@ public class UserLoginActivity extends AppCompatActivity {
 
         db = FirebaseFirestore.getInstance();
 
-        btnGoogleLogin.setOnClickListener(v -> {
-            googleSignIn();
+        mAuth = FirebaseAuth.getInstance();
+
+        btnGoogleLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                googleSignIn();
+            }
         });
 
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -65,7 +71,6 @@ public class UserLoginActivity extends AppCompatActivity {
                 .requestEmail()
                 .build();
 
-        mAuth = FirebaseAuth.getInstance();
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
     }
 
@@ -117,30 +122,14 @@ public class UserLoginActivity extends AppCompatActivity {
     }
 
     private void updateUI(FirebaseUser firebaseUser) {
-        GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(getApplicationContext());
-        db.collection("users").document(firebaseUser.getUid())
-                .get()
-                .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-                    @Override
-                    public void onSuccess(DocumentSnapshot documentSnapshot) {
-                        if (documentSnapshot.exists()) {
-                            checkIfUserRegistered(firebaseUser);
-                            startActivity(new Intent(UserLoginActivity.this, HomePageActivity.class));
-                            finish();
-                        } else {
-                            startActivity(new Intent(UserLoginActivity.this, UserRegisterActivity.class));
-                            finish();
-                        }
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(UserLoginActivity.this, "Failed to fetch user data!", Toast.LENGTH_SHORT).show();
-                        updateUI(null);
-                    }
-                });
+        if (firebaseUser != null) {
+            checkIfUserRegistered(firebaseUser);
+        } else {
+            startActivity(new Intent(UserLoginActivity.this, UserRegisterActivity.class));
+            finish();
+        }
     }
+
 
     private void checkIfUserRegistered(FirebaseUser firebaseUser) {
         GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(getApplicationContext());
@@ -161,7 +150,7 @@ public class UserLoginActivity extends AppCompatActivity {
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(UserLoginActivity.this, "Failed to fetch user data!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(UserLoginActivity.this, "Failed to receive user data!", Toast.LENGTH_SHORT).show();
                         updateUI(null);
                     }
                 });

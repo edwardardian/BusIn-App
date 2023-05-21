@@ -5,13 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/white"
+    android:gravity="center"
     tools:context=".SplashScreen">
 
     <ImageView
         android:layout_width="242dp"
         android:layout_height="293dp"
         android:layout_gravity="center"
-        android:layout_marginTop="220dp"
         android:src="@drawable/logo" />
 
 </LinearLayout>
