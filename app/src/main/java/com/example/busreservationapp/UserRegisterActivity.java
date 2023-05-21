@@ -1,5 +1,6 @@
 package com.example.busreservationapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -10,8 +11,12 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 public class UserRegisterActivity extends AppCompatActivity {
@@ -43,32 +48,44 @@ public class UserRegisterActivity extends AppCompatActivity {
     }
 
 
-    private void register(){
+    private void register() {
+        GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(getApplicationContext());
+        String userName = account.getDisplayName();
+        String userEmail = account.getEmail();
         String phoneNumber = etPhoneNumber.getText().toString().trim();
-        if(phoneNumber.isEmpty()){
+
+        if (phoneNumber.isEmpty()) {
             etPhoneNumber.setError("Phone Number is required!");
             etPhoneNumber.requestFocus();
             return;
         }
 
-        User user = new User(null, null, phoneNumber);
+        User user = new User(userName, userEmail, phoneNumber);
 
-        db.collection("users")
-                .document()
-                .set(user)
-                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void aVoid) {
-                        progressBarRegister.setVisibility(View.GONE);
-                        Toast.makeText(UserRegisterActivity.this, "Phone number added successfully!", Toast.LENGTH_SHORT).show();
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        progressBarRegister.setVisibility(View.GONE);
-                        Toast.makeText(UserRegisterActivity.this, "Phone number failed to add!", Toast.LENGTH_SHORT).show();
-                    }
-                });
+        FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        if (firebaseUser != null) {
+            String userId = firebaseUser.getUid();
+
+            db.collection("users")
+                    .document(userId)
+                    .set(user)
+                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void aVoid) {
+                            progressBarRegister.setVisibility(View.GONE);
+                            Toast.makeText(UserRegisterActivity.this, "Phone number added successfully!", Toast.LENGTH_SHORT).show();
+                            startActivity(new Intent(UserRegisterActivity.this, HomePageActivity.class));
+                            finish();
+                        }
+                    })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            progressBarRegister.setVisibility(View.GONE);
+                            Toast.makeText(UserRegisterActivity.this, "Phone number failed to add!", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+        }
     }
 }
+

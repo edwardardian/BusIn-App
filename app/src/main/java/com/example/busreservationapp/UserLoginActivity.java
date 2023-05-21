@@ -24,6 +24,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.HashMap;
@@ -83,11 +84,11 @@ public class UserLoginActivity extends AppCompatActivity {
                 GoogleSignInAccount account = task.getResult(ApiException.class);
                 account.getId();
                 progressBar.setVisibility(View.GONE);
-                Toast.makeText(UserLoginActivity.this, "Google sign in success!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(UserLoginActivity.this, "Login sucess!", Toast.LENGTH_SHORT).show();
                 firebaseAuthWithGoogle(account.getIdToken());
             } catch (ApiException e) {
                 progressBar.setVisibility(View.GONE);
-                Toast.makeText(UserLoginActivity.this, "Google sign in failed!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(UserLoginActivity.this, "Login failed!", Toast.LENGTH_SHORT).show();
             }
         }
     }
@@ -100,7 +101,6 @@ public class UserLoginActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             progressBar.setVisibility(View.GONE);
-                            Toast.makeText(UserLoginActivity.this, "Login success!", Toast.LENGTH_SHORT).show();
                             FirebaseUser firebaseUser = mAuth.getCurrentUser();
                             if (firebaseUser != null) {
                                 updateUI(firebaseUser);
@@ -110,7 +110,6 @@ public class UserLoginActivity extends AppCompatActivity {
                             }
                         } else {
                             progressBar.setVisibility(View.GONE);
-                            Toast.makeText(UserLoginActivity.this, "Google sign in failed!", Toast.LENGTH_SHORT).show();
                             updateUI(null);
                         }
                     }
@@ -119,30 +118,53 @@ public class UserLoginActivity extends AppCompatActivity {
 
     private void updateUI(FirebaseUser firebaseUser) {
         GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(getApplicationContext());
-        if (firebaseUser != null) {
-            String userName = account.getDisplayName();
-            String userEmail = account.getEmail();
-
-            User user = new User(userName, userEmail, null);
-
-            db.collection("users").document(firebaseUser.getUid())
-                    .set(user)
-                    .addOnSuccessListener(new OnSuccessListener<Void>() {
-                        @Override
-                        public void onSuccess(Void aVoid) {
+        db.collection("users").document(firebaseUser.getUid())
+                .get()
+                .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                    @Override
+                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+                        if (documentSnapshot.exists()) {
+                            checkIfUserRegistered(firebaseUser);
                             startActivity(new Intent(UserLoginActivity.this, HomePageActivity.class));
                             finish();
-                        }
-                    })
-                    .addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception e) {
+                        } else {
                             startActivity(new Intent(UserLoginActivity.this, UserRegisterActivity.class));
                             finish();
                         }
-                    });
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(UserLoginActivity.this, "Failed to fetch user data!", Toast.LENGTH_SHORT).show();
+                        updateUI(null);
+                    }
+                });
+    }
 
-        }
+    private void checkIfUserRegistered(FirebaseUser firebaseUser) {
+        GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(getApplicationContext());
+        db.collection("users").document(firebaseUser.getUid())
+                .get()
+                .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                    @Override
+                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+                        if (documentSnapshot.exists()) {
+                            startActivity(new Intent(UserLoginActivity.this, HomePageActivity.class));
+                            finish();
+                        } else {
+                            startActivity(new Intent(UserLoginActivity.this, UserRegisterActivity.class));
+                            finish();
+                        }
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(UserLoginActivity.this, "Failed to fetch user data!", Toast.LENGTH_SHORT).show();
+                        updateUI(null);
+                    }
+                });
     }
 }
 
