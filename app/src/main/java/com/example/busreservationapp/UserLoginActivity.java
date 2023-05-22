@@ -89,7 +89,7 @@ public class UserLoginActivity extends AppCompatActivity {
                 GoogleSignInAccount account = task.getResult(ApiException.class);
                 account.getId();
                 progressBar.setVisibility(View.GONE);
-                Toast.makeText(UserLoginActivity.this, "Login sucess!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(UserLoginActivity.this, "Login success!", Toast.LENGTH_SHORT).show();
                 firebaseAuthWithGoogle(account.getIdToken());
             } catch (ApiException e) {
                 progressBar.setVisibility(View.GONE);

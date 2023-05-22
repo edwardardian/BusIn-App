@@ -1,4 +1,6 @@
 <resources>
     <string name="app_name">BusIn</string>
     <string name="web_client_id">600320988218-7tjici9sm8ouf4oecfh5vrdvlnck5jc4.apps.googleusercontent.com</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
