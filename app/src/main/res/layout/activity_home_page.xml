@@ -134,7 +134,8 @@
                                         android:id="@+id/tvDeparture"
                                         android:layout_width="match_parent"
                                         android:layout_height="30dp"
-                                        android:outlineAmbientShadowColor="@color/blue" />
+                                        android:outlineAmbientShadowColor="@color/blue"
+                                        android:entries="@array/Asal"/>
 
                                     <View
                                         android:layout_width="match_parent"
@@ -158,7 +159,8 @@
                                     <Spinner
                                         android:id="@+id/tvArrival"
                                         android:layout_width="match_parent"
-                                        android:layout_height="30dp" />
+                                        android:layout_height="30dp"
+                                        android:entries="@array/Tujuan"/>
                                 </LinearLayout>
 
                             </LinearLayout>
