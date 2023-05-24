@@ -1,26 +1,34 @@
 package com.example.busreservationapp;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class HomePageActivity extends AppCompatActivity {
-    private String TAG = HomePageActivity.class.getSimpleName();
+public class UserActivity extends AppCompatActivity {
+    private String TAG = UserActivity.class.getSimpleName();
 
+    private FrameLayout container;
     private BottomNavigationView nav;
+
+    private final FragmentUser fragmentUser = new FragmentUser();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home_page);
+        setContentView(R.layout.activity_user);
 
         initView();
+
+        loadFragment(fragmentUser);
 
         nav.setOnNavigationItemSelectedListener(
                 new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -28,11 +36,11 @@ public class HomePageActivity extends AppCompatActivity {
                     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                         switch (item.getItemId()){
                             case R.id.search_navigation:
-                                startActivity(new Intent(HomePageActivity.this, HomePageActivity.class));
+                                startActivity(new Intent(UserActivity.this, HomePageActivity.class));
                                 finish();
                                 return true;
                             case R.id.profile_navigation :
-                                startActivity(new Intent(HomePageActivity.this, UserActivity.class));
+                                startActivity(new Intent(UserActivity.this, UserActivity.class));
                                 finish();
                                 return true;
                         }
@@ -43,6 +51,14 @@ public class HomePageActivity extends AppCompatActivity {
     }
 
     private void initView(){
+        container = findViewById(R.id.container);
         nav = findViewById(R.id.nav);
+    }
+
+    private void loadFragment(Fragment fragment){
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.container, fragment);
+        fragmentTransaction.commit();
     }
 }
