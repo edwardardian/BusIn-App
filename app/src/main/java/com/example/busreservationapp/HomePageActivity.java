@@ -11,6 +11,9 @@ import android.widget.FrameLayout;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -21,9 +24,10 @@ import java.util.Locale;
 public class HomePageActivity extends AppCompatActivity {
     private String TAG = HomePageActivity.class.getSimpleName();
 
+    private FrameLayout container;
     private BottomNavigationView nav;
-    final Calendar myCalendar = Calendar.getInstance();
-    EditText datePicker;
+
+    private final FragmentHomePage fragmentHomePage = new FragmentHomePage();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,12 +36,14 @@ public class HomePageActivity extends AppCompatActivity {
 
         initView();
 
+        loadFragment(fragmentHomePage);
+
         nav.setOnNavigationItemSelectedListener(
                 new BottomNavigationView.OnNavigationItemSelectedListener() {
                     @Override
                     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                         switch (item.getItemId()){
-                            case R.id.search_navigation:
+                            case R.id.ticket_navigation:
                                 startActivity(new Intent(HomePageActivity.this, HomePageActivity.class));
                                 finish();
                                 return true;
@@ -50,36 +56,18 @@ public class HomePageActivity extends AppCompatActivity {
                     }
                 }
         );
-
-        DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
-            @Override
-            public void onDateSet(DatePicker view, int year, int month, int day) {
-                myCalendar.set(Calendar.YEAR, year);
-                myCalendar.set(Calendar.MONTH, month);
-                myCalendar.set(Calendar.DAY_OF_MONTH, day);
-                updateLabel();
-            }
-        };
-        datePicker.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                new DatePickerDialog(HomePageActivity.this, date,
-                        myCalendar.get(Calendar.YEAR), myCalendar.get(Calendar.MONTH), myCalendar.get(Calendar.DAY_OF_MONTH))
-                        .show();
-            }
-        });
-    }
-
-    private void updateLabel(){
-        String myFormat="dd/MM/yyyy";
-        SimpleDateFormat dateFormat = new SimpleDateFormat(myFormat, Locale.UK);
-        datePicker.setText(dateFormat.format(myCalendar.getTime()));
     }
 
     private void initView(){
+        container = findViewById(R.id.container);
         nav = findViewById(R.id.nav);
-        datePicker = findViewById(R.id.date);
     }
 
+    private void loadFragment(Fragment fragment){
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.container, fragment);
+        fragmentTransaction.commit();
+    }
 
 }

@@ -35,7 +35,7 @@ public class UserActivity extends AppCompatActivity {
                     @Override
                     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                         switch (item.getItemId()){
-                            case R.id.search_navigation :
+                            case R.id.ticket_navigation:
                                 startActivity(new Intent(UserActivity.this, HomePageActivity.class));
                                 finish();
                                 return true;
