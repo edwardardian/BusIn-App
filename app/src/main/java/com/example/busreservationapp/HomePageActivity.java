@@ -47,6 +47,10 @@ public class HomePageActivity extends AppCompatActivity {
                                 startActivity(new Intent(HomePageActivity.this, HomePageActivity.class));
                                 finish();
                                 return true;
+                            /*case R.id.history_navigation :
+                                startActivity(new Intent(UserActivity.this, UserProfileActivity.class));
+                                finish();
+                                return true;*/
                             case R.id.profile_navigation :
                                 startActivity(new Intent(HomePageActivity.this, UserActivity.class));
                                 finish();
