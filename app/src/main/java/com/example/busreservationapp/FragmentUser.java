@@ -49,6 +49,10 @@ public class FragmentUser extends Fragment {
     }
 
     private void initView(View view) {
+        tvUserName = view.findViewById(R.id.tvUserName);
+        tvUserEmail = view.findViewById(R.id.tvUserEmail);
+        tvUserPhoneNumber = view.findViewById(R.id.tvUserPhoneNumber);
+
         logout = view.findViewById(R.id.btnLogout);
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         userId = firebaseUser.getUid();

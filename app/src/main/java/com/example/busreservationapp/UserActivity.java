@@ -44,7 +44,7 @@ public class UserActivity extends AppCompatActivity {
                                 finish();
                                 return true;*/
                             case R.id.profile_navigation :
-                                startActivity(new Intent(UserActivity.this, UserActivity.class));
+                                startActivity(new Intent(UserActivity.this, FragmentUser.class));
                                 finish();
                                 return true;
                         }
