@@ -6,7 +6,7 @@
         android:icon="@drawable/img_ticket"/>
 
     <item
-        android:id="@+id/search_navigation"
+        android:id="@+id/history_navigation"
         android:title="History"
         android:icon="@drawable/ic_baseline_history_24"/>
 
