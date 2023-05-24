@@ -35,16 +35,16 @@ public class UserActivity extends AppCompatActivity {
                     @Override
                     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                         switch (item.getItemId()){
-                            /*case R.id.search_navigation :
-                                *//*startActivity(new Intent(UserActivity.this, UserActivity.class));*//*
+                            case R.id.search_navigation :
+                                startActivity(new Intent(UserActivity.this, HomePageActivity.class));
                                 finish();
                                 return true;
-                            case R.id.ticket_navigation :
-                                *//*startActivity(new Intent(UserActivity.this, UserProfileActivity.class));*//*
+                           /* case R.id.ticket_navigation :
+                                startActivity(new Intent(UserActivity.this, UserProfileActivity.class));
                                 finish();
                                 return true;*/
                             case R.id.profile_navigation :
-                                startActivity(new Intent(UserActivity.this, FragmentUser.class));
+                                startActivity(new Intent(UserActivity.this, UserActivity.class));
                                 finish();
                                 return true;
                         }
