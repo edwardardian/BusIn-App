@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,6 +22,7 @@ import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.ListenerRegistration;
+import com.squareup.picasso.Picasso;
 
 public class FragmentUser extends Fragment {
     private String TAG = FragmentUser.class.getSimpleName();
@@ -28,6 +30,8 @@ public class FragmentUser extends Fragment {
     private Button logout;
 
     private TextView tvUserName, tvUserEmail, tvUserPhoneNumber;
+
+    private ImageView logo;
 
     private FirebaseUser firebaseUser;
 
@@ -52,6 +56,7 @@ public class FragmentUser extends Fragment {
         tvUserName = view.findViewById(R.id.tvUserName);
         tvUserEmail = view.findViewById(R.id.tvUserEmail);
         tvUserPhoneNumber = view.findViewById(R.id.tvUserPhoneNumber);
+        logo = view.findViewById(R.id.logo);
 
         logout = view.findViewById(R.id.btnLogout);
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
@@ -65,6 +70,8 @@ public class FragmentUser extends Fragment {
             startActivity(new Intent(getActivity(), UserLoginActivity.class));
             getActivity().finish();
         } else {
+            userId = firebaseUser.getUid();
+
             userListener = firebaseFirestore.collection("users")
                     .document(firebaseUser.getUid())
                     .addSnapshotListener(new EventListener<DocumentSnapshot>() {
@@ -79,10 +86,15 @@ public class FragmentUser extends Fragment {
                                 String userName = documentSnapshot.getString("name");
                                 String userEmail = documentSnapshot.getString("email");
                                 String userPhoneNumber = documentSnapshot.getString("phoneNumber");
+                                String photo = documentSnapshot.getString("photo");
 
                                 tvUserName.setText(userName);
                                 tvUserEmail.setText(userEmail);
                                 tvUserPhoneNumber.setText(userPhoneNumber);
+
+                                if (photo != null && !photo.isEmpty()) {
+                                    Picasso.get().load(photo).into(logo);
+                                }
                             }
                         }
                     });
@@ -90,7 +102,9 @@ public class FragmentUser extends Fragment {
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                firebaseAuth.signOut();
+                if (firebaseAuth != null) {
+                    firebaseAuth.signOut();
+                }
                 startActivity(new Intent(getActivity(), UserLoginActivity.class));
                 getActivity().finish();
             }
