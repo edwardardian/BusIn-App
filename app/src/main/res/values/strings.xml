@@ -4,19 +4,15 @@
 
     <string-array name="Asal">
         <item>Select Departure</item>
-        <item>Bandung</item>
-        <item>Semarang</item>
+        <item>Malang</item>
         <item>Surabaya</item>
         <item>Jakarta</item>
-        <item>Malang</item>
     </string-array>
 
     <string-array name="Tujuan">
         <item>Select Departure</item>
-        <item>Bandung</item>
-        <item>Semarang</item>
+        <item>Malang</item>
         <item>Surabaya</item>
         <item>Jakarta</item>
-        <item>Malang</item>
     </string-array>
 </resources>
