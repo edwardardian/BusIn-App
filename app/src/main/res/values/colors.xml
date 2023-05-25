@@ -11,4 +11,5 @@
     <color name="blue_secondary">#009FBE</color>
     <color name="red">#FF0000</color>
     <color name="bright_gray">#EBE8EE</color>
+    <color name="dark_gray">#B1B1B1</color>
 </resources>
