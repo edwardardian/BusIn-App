@@ -76,7 +76,7 @@
                     android:layout_marginBottom="5dp"
                     android:background="@color/white"
                     android:elevation="8dp"
-                    app:cardCornerRadius="6dp">
+                    app:cardCornerRadius="10dp">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -110,6 +110,7 @@
                                     android:contentDescription="Arrival"
                                     android:src="@drawable/ic_baseline_location_on_24"
                                     app:tint="@color/blue" />
+
                             </LinearLayout>
 
                             <LinearLayout
@@ -195,7 +196,7 @@
                                 <TextView
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:text="Passengers" />
+                                    android:text="Passenger/s" />
 
                                 <EditText
                                     android:id="@+id/etPassengers"
@@ -205,7 +206,6 @@
                                     android:inputType="number"
                                     android:textColor="@color/black"
                                     android:textSize="16sp"
-                                    android:textStyle="bold"
                                     tools:ignore="TextContrastCheck" />
 
                                 <View
@@ -242,12 +242,12 @@
                                     android:layout_height="wrap_content"
                                     android:clickable="false"
                                     android:cursorVisible="false"
-                                    android:focusable="false"
                                     android:focusableInTouchMode="false"
+                                    android:focusable="false"
+                                    android:editable="false"
                                     android:hint="Select Date"
                                     android:textColor="@color/black"
                                     android:textSize="16sp"
-                                    android:textStyle="bold"
                                     tools:ignore="TextContrastCheck" />
 
                                 <View

@@ -10,9 +10,10 @@
     </string-array>
 
     <string-array name="Tujuan">
-        <item>Select Departure</item>
+        <item>Select Ariival</item>
         <item>Malang</item>
         <item>Surabaya</item>
         <item>Jakarta</item>
     </string-array>
+
 </resources>

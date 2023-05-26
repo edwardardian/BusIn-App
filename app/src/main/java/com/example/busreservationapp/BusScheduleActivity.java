@@ -39,12 +39,12 @@ import java.util.List;
 import java.util.Locale;
 
 public class BusScheduleActivity extends AppCompatActivity {
-    private Spinner departureSpinner;
-    private Spinner arrivalSpinner;
-
-    private EditText datePicker;
-
-    private TextView seats;
+    private String TAG = BusScheduleActivity.class.getSimpleName();
+    private TextView departureSpinner, arrivalSpinner, datePicker, seats;
+    private RecyclerView.LayoutManager layoutManager;
+    private RecyclerView.Adapter adapter;
+    private ArrayList<Trip> listTrip;
+    private BusScheduleAdapter busScheduleAdapter;
 
     private FirebaseFirestore db;
 
@@ -61,46 +61,23 @@ public class BusScheduleActivity extends AppCompatActivity {
         seats = findViewById(R.id.seats);
         recyclerView = findViewById(R.id.rvTrip);
 
+        layoutManager = new LinearLayoutManager(BusScheduleActivity.this);
+
         db = FirebaseFirestore.getInstance();
 
         Intent intent = getIntent();
         String departure = intent.getStringExtra("departure");
         String arrival = intent.getStringExtra("arrival");
         String date = intent.getStringExtra("date");
-        String passengers = getIntent().getStringExtra("passengers");
+        String passengers = intent.getStringExtra("passengers");
 
-        seats.setText("Seat " + passengers);
+        recyclerView.setLayoutManager(layoutManager);
 
-        Spinner spinnerDeparture = findViewById(R.id.spinnerDeparture);
-        ArrayAdapter<CharSequence> departureAdapter = ArrayAdapter.createFromResource(this, R.array.Asal, android.R.layout.simple_spinner_item);
-        departureAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinnerDeparture.setAdapter(departureAdapter);
+        departureSpinner.setText(departure);
+        arrivalSpinner.setText(arrival);
+        datePicker.setText(date);
+        seats.setText(passengers);
 
-        if (departure != null) {
-            int departurePosition = departureAdapter.getPosition(departure);
-            spinnerDeparture.setSelection(departurePosition);
-        }
-
-        Spinner spinnerArrival = findViewById(R.id.spinnerArrival);
-        ArrayAdapter<CharSequence> arrivalAdapter = ArrayAdapter.createFromResource(this, R.array.Tujuan, android.R.layout.simple_spinner_item);
-        arrivalAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinnerArrival.setAdapter(arrivalAdapter);
-
-        if (arrival != null) {
-            int arrivalPosition = arrivalAdapter.getPosition(arrival);
-            spinnerArrival.setSelection(arrivalPosition);
-        }
-
-        if (date != null) {
-            SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.UK);
-            try {
-                Calendar selectedDate = Calendar.getInstance();
-                selectedDate.setTime(dateFormat.parse(date));
-                datePicker.setText(dateFormat.format(selectedDate.getTime()));
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
-        }
         getData();
     }
 
@@ -130,8 +107,8 @@ public class BusScheduleActivity extends AppCompatActivity {
 
                         busSchedules.add(trip);
                     }
-
-                    BusScheduleAdapter adapter = new BusScheduleAdapter(busSchedules);
+                    listTrip = new ArrayList<>();
+                    adapter = new BusScheduleAdapter(listTrip, getBaseContext());
                     recyclerView.setAdapter(adapter);
                 } else {
                     Log.d(TAG, "Error getting bus schedules: ", task.getException());

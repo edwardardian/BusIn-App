@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -74,14 +75,51 @@ public class FragmentHomePage extends Fragment {
             public void onClick(View view) {
                 String selectedDeparture = spinnerDeparture.getSelectedItem().toString();
                 String selectedArrival = spinnerArrival.getSelectedItem().toString();
-                String passengers = etPassengers.getText().toString();
+                Integer passengers = Integer.parseInt(etPassengers.getText().toString());
+                String date = datePicker.getText().toString();
 
+                if (selectedDeparture.equals("Select Departure")) {
+                    Toast.makeText(getActivity(), "Depature is required!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if (selectedArrival.equals("Select Arrival")) {
+                    Toast.makeText(getActivity(), "Arrival is required!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if (selectedDeparture.equals("Malang") && selectedArrival.equals("Malang")) {
+                    Toast.makeText(getActivity(), "Departure and Arrival can't be the same!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if (selectedDeparture.equals("Surabaya") && selectedArrival.equals("Surabaya")) {
+                    Toast.makeText(getActivity(), "Departure and Arrival can't be the same!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if (selectedDeparture.equals("Jakarta") && selectedArrival.equals("Jakarta")) {
+                    Toast.makeText(getActivity(), "Departure and Arrival can't be the same!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if (passengers.equals(null)) {
+                    Toast.makeText(getActivity(), "Passengers is required!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if (passengers.equals(0)) {
+                    Toast.makeText(getActivity(), "Minimum 1 passenger!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if (passengers.intValue() >= 41) {
+                    Toast.makeText(getActivity(), "Maximum 40 passengers/bus!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if (date.isEmpty()) {
+                    Toast.makeText(getActivity(), "Date is required!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
 
                 Intent intent = new Intent(getActivity(), BusScheduleActivity.class);
-                intent.putExtra("departure", selectedDeparture);
-                intent.putExtra("arrival", selectedArrival);
+                intent.putExtra("departure", selectedDeparture.toString());
+                intent.putExtra("arrival", selectedArrival.toString());
                 intent.putExtra("date", datePicker.getText().toString());
-                intent.putExtra("passengers", passengers);
+                intent.putExtra("passengers", passengers.toString());
                 startActivity(intent);
             }
         });
