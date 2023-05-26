@@ -3,11 +3,14 @@ package com.example.busreservationapp;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.telecom.Call;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.FrameLayout;
+import android.widget.Spinner;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -27,12 +30,30 @@ public class HomePageActivity extends AppCompatActivity {
     private FrameLayout container;
     private BottomNavigationView nav;
 
+    private SimpleDateFormat dateFormat;
+
+    private Calendar calendar;
+
+    private City departureCity, arrivalCity;
+
+    private int valuePassenger, lastValuePassenger;
+
+    private long timeInMillis;
+
+    private Spinner tvDeparture, tvArrival;
+
+    private EditText etPassengers, date;
+
+    private Button btnSearchBus;
+
     private final FragmentHomePage fragmentHomePage = new FragmentHomePage();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
+
+        btnSearchBus = findViewById(R.id.btnSearchBus);
 
         initView();
 

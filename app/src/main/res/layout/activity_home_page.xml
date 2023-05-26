@@ -288,4 +288,10 @@
         app:itemIconTint="@color/blue"
         app:menu="@menu/bottom_nav_menu" />
 
+    <FrameLayout
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/nav"/>
+
 </RelativeLayout>

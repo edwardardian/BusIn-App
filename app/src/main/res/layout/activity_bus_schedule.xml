@@ -25,22 +25,13 @@
                 android:text="Departure"
                 android:textSize="16dp" />
 
-            <TextView
-                android:id="@+id/departure"
-                android:layout_below="@id/tvDeparture"
-                android:layout_width="wrap_content"
+            <Spinner
+                android:id="@+id/spinnerDeparture"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textStyle="bold"
-                android:textSize="16dp"
-                android:text="Bandung"/>
-
-            <ImageView
-                android:id="@+id/image1"
-                android:layout_below="@id/tvDeparture"
-                android:layout_alignParentRight="true"
-                android:src="@drawable/baseline_arrow_drop_down_24"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:entries="@array/Asal"
+                android:layout_marginTop="25dp"
+                android:outlineAmbientShadowColor="@color/blue" />
 
         </RelativeLayout>
     </androidx.cardview.widget.CardView>
@@ -51,6 +42,7 @@
         android:layout_width="160dp"
         android:layout_height="70dp"
         app:cardCornerRadius="12dp">
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -63,22 +55,13 @@
                 android:text="Arrival"
                 android:textSize="16dp" />
 
-            <TextView
-                android:id="@+id/arrival"
-                android:layout_below="@id/tvArrival"
-                android:layout_width="wrap_content"
+            <Spinner
+                android:id="@+id/spinnerArrival"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textStyle="bold"
-                android:textSize="16dp"
-                android:text="Jakarta"/>
-
-            <ImageView
-                android:id="@+id/image2"
-                android:layout_below="@id/tvArrival"
-                android:layout_alignParentRight="true"
-                android:src="@drawable/baseline_arrow_drop_down_24"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:entries="@array/Asal"
+                android:layout_marginTop="25dp"
+                android:outlineAmbientShadowColor="@color/blue" />
 
         </RelativeLayout>
     </androidx.cardview.widget.CardView>
@@ -95,7 +78,7 @@
             android:layout_height="match_parent"
             android:padding="10dp">
 
-            <TextView
+            <EditText
                 android:id="@+id/date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -109,16 +92,17 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/card4"
-        android:layout_toRightOf="@id/card3"
-        android:layout_below="@id/card1"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_width="100dp"
+        android:layout_width="160dp"
         android:layout_height="wrap_content"
+        android:layout_below="@id/card1"
+        android:layout_marginTop="20dp"
+        android:layout_alignParentRight="true"
         app:cardCornerRadius="12dp">
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:gravity="center"
             android:padding="10dp">
 
             <TextView
@@ -143,6 +127,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:listitem="@layout/item_ticket_layout" />
