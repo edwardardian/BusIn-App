@@ -17,6 +17,8 @@ public class BusScheduleAdapter extends RecyclerView.Adapter<BusScheduleAdapter.
     private ArrayList<Trip> listTrip;
     private Context context;
 
+    private RecyclerView rvTrip;
+
     public BusScheduleAdapter(ArrayList<Trip> listTrip, Context context){
         this.listTrip = listTrip;
         this.context = context;
@@ -27,10 +29,10 @@ public class BusScheduleAdapter extends RecyclerView.Adapter<BusScheduleAdapter.
     public BusScheduleAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_ticket_layout, parent, false);
         BusScheduleAdapter.ViewHolder viewHolder = new BusScheduleAdapter.ViewHolder(v);
-        return viewHolder;
+        return new ViewHolder(v);
     }
 
-    @SuppressLint("RecyclerView")
+
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
         Trip trip = listTrip.get(position);

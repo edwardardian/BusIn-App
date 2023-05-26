@@ -106,9 +106,17 @@ public class BusScheduleActivity extends AppCompatActivity {
                         Trip trip = new Trip(departureCity, arrivalCity, departureHour, arrivalHour, departureTerminal, arrivalTerminal, busName, price, time);
 
                         busSchedules.add(trip);
+                        listTrip = new ArrayList<>();
+                        listTrip.addAll(busSchedules);
+
+                        adapter = new BusScheduleAdapter(listTrip, getBaseContext());
+                        recyclerView.setAdapter(adapter);
+                        adapter.notifyDataSetChanged();
+
                     }
                     listTrip = new ArrayList<>();
-                    adapter = new BusScheduleAdapter(listTrip, getBaseContext());
+                    busScheduleAdapter = new BusScheduleAdapter(listTrip, getBaseContext());
+                    recyclerView.setAdapter(busScheduleAdapter);
                     recyclerView.setAdapter(adapter);
                 } else {
                     Log.d(TAG, "Error getting bus schedules: ", task.getException());

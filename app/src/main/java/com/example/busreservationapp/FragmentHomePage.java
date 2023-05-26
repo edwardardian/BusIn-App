@@ -75,7 +75,8 @@ public class FragmentHomePage extends Fragment {
             public void onClick(View view) {
                 String selectedDeparture = spinnerDeparture.getSelectedItem().toString();
                 String selectedArrival = spinnerArrival.getSelectedItem().toString();
-                Integer passengers = Integer.parseInt(etPassengers.getText().toString());
+                String stringPassengers= etPassengers.getText().toString();
+                Integer passengers;
                 String date = datePicker.getText().toString();
 
                 if (selectedDeparture.equals("Select Departure")) {
@@ -98,12 +99,14 @@ public class FragmentHomePage extends Fragment {
                     Toast.makeText(getActivity(), "Departure and Arrival can't be the same!", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                if (passengers.equals(null)) {
+                if (stringPassengers.isEmpty()) {
                     Toast.makeText(getActivity(), "Passengers is required!", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                if (passengers.equals(0)) {
-                    Toast.makeText(getActivity(), "Minimum 1 passenger!", Toast.LENGTH_SHORT).show();
+                try {
+                    passengers = Integer.valueOf(stringPassengers);
+                } catch (NumberFormatException e) {
+                    Toast.makeText(getActivity(), "Invalid number of passengers!", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 if (passengers.intValue() >= 41) {
