@@ -1,9 +1,12 @@
 package com.example.busreservationapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.CheckedTextView;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -11,11 +14,12 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 public class SeatChooserMenuActivity extends AppCompatActivity implements View.OnClickListener {
     private FirebaseFirestore db;
-    private int totalClick = 0;
 
     private CheckedTextView[] seats = new CheckedTextView[40];
     private int[] seatAvailability = new int[40];
     private String[] seatCodes = new String[40];
+
+    private Button btnBookNow;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +27,9 @@ public class SeatChooserMenuActivity extends AppCompatActivity implements View.O
         setContentView(R.layout.activity_seat_chooser_menu);
 
         db = FirebaseFirestore.getInstance();
+        btnBookNow = findViewById(R.id.btnBookNow);
+
+        btnBookNow.setOnClickListener(this);
 
         initializeSeats();
 
@@ -78,19 +85,40 @@ public class SeatChooserMenuActivity extends AppCompatActivity implements View.O
 
     @Override
     public void onClick(View view) {
-        int seatIndex = findSeatIndex(view.getId());
-
-        if (seatAvailability[seatIndex] == 0) {
-            seats[seatIndex].setBackgroundResource(R.drawable.seat_booked);
-            seatAvailability[seatIndex] = 1;
-            seatCodes[seatIndex] = generateSeatCode(seatIndex);
+        if (view.getId() == R.id.btnBookNow) {
+            bookNow();
         } else {
-            seats[seatIndex].setBackgroundResource(R.drawable.seat_available);
-            seatAvailability[seatIndex] = 0;
-            seatCodes[seatIndex] = "";
+            int seatIndex = findSeatIndex(view.getId());
+
+            if (seatAvailability[seatIndex] == 0) {
+                seats[seatIndex].setBackgroundResource(R.drawable.seat_booked);
+                seatAvailability[seatIndex] = 1;
+                seatCodes[seatIndex] = generateSeatCode(seatIndex);
+            } else {
+                seats[seatIndex].setBackgroundResource(R.drawable.seat_available);
+                seatAvailability[seatIndex] = 0;
+                seatCodes[seatIndex] = "";
+            }
+
+            updateSeatChooserView();
         }
-        
-        updateSeatChooserView();
+    }
+
+
+    private void bookNow() {
+        boolean isSeatSelected = false;
+        for(int a = 0; a < seatAvailability.length; a++) {
+            if (seatAvailability[a] == 1 ) {
+                isSeatSelected = true;
+                break;
+            }
+        }
+        if(isSeatSelected) {
+            Intent intent = new Intent(SeatChooserMenuActivity.this, PaymentDetailActivity.class);
+            startActivity(intent);
+        } else {
+            Toast.makeText(this, "Please select a seat first!", Toast.LENGTH_SHORT).show();
+        }
     }
 
     private void updateSeatChooserView() {
