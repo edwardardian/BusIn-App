@@ -41,7 +41,6 @@ public class BusDetailActivity extends AppCompatActivity {
         busPhoto = findViewById(R.id.imgBus);
         btnBookNow = findViewById(R.id.btnBookNow);
 
-        // Get the data from the intent
         Intent intent = getIntent();
         String tvDepartureCity = intent.getStringExtra("departureCity");
         String tvArriveCity = intent.getStringExtra("arrivalCity");
@@ -53,9 +52,6 @@ public class BusDetailActivity extends AppCompatActivity {
         String tvPrice = intent.getStringExtra("price");
         String tvTripTime = intent.getStringExtra("time");
 
-
-
-        // Set the data in the views
         departure_detail.setText(tvDepartureCity);
         arrival_detail.setText(tvArriveCity);
         departure_time_detail.setText(tvDepartureHour);
