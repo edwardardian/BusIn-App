@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,6 +20,7 @@ public class BusDetailActivity extends AppCompatActivity {
     private TextView bus_station_detail_arr;
     private TextView ticketPrice;
     private TextView trip_time_detail;
+    private ImageView busPhoto;
     private Button btnBookNow;
 
     @SuppressLint("MissingInflatedId")
@@ -36,6 +38,7 @@ public class BusDetailActivity extends AppCompatActivity {
         bus_station_detail_arr = findViewById(R.id.bus_station_detail_arr);
         ticketPrice = findViewById(R.id.ticketPrice);
         trip_time_detail = findViewById(R.id.trip_time_detail);
+        busPhoto = findViewById(R.id.imgBus);
         btnBookNow = findViewById(R.id.btnBookNow);
 
         // Get the data from the intent
@@ -49,6 +52,7 @@ public class BusDetailActivity extends AppCompatActivity {
         String tvBusName = intent.getStringExtra("busName");
         String tvPrice = intent.getStringExtra("price");
         String tvTripTime = intent.getStringExtra("time");
+
 
 
         // Set the data in the views

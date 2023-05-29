@@ -51,6 +51,16 @@ public class BusScheduleAdapter extends RecyclerView.Adapter<BusScheduleAdapter.
             public void onClick(View view) {
                 Intent intent = new Intent(context, BusDetailActivity.class);
                 intent.putExtra("busId", trip.getBusId());
+                intent.putExtra("departureCity", trip.getAsal());
+                intent.putExtra("busName", trip.getBusName());
+                intent.putExtra("arrivalCity", trip.getTujuan());
+                intent.putExtra("departureTerminal", trip.getDepartTerminal());
+                intent.putExtra("arrivalTerminal", trip.getArrivalTerminal());
+                intent.putExtra("departureHour", trip.getTimeDeparture());
+                intent.putExtra("arrivalHour", trip.getTimeArrival());
+                intent.putExtra("time", trip.getWaktu());
+                intent.putExtra("price", trip.getHarga());
+
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 context.startActivity(intent);
 
@@ -88,5 +98,9 @@ public class BusScheduleAdapter extends RecyclerView.Adapter<BusScheduleAdapter.
             tvPrice = itemView.findViewById(R.id.tvPrice);
             btnBookNow = itemView.findViewById(R.id.btnBookNow);
         }
+
+
     }
 }
+
+

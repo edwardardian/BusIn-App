@@ -13,6 +13,7 @@ import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -52,6 +53,8 @@ public class BusScheduleActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
 
     private ProgressBar progressBar;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -118,6 +121,9 @@ public class BusScheduleActivity extends AppCompatActivity {
                             recyclerView.setAdapter(adapter);
                             adapter.notifyDataSetChanged();
                             progressBar.setVisibility(View.GONE);
+
+
+                            
                         }
                     } else {
                         Log.d(TAG, "Error getting bus schedules: ", task.getException());
