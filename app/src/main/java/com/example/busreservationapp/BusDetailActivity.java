@@ -62,6 +62,5 @@ public class BusDetailActivity extends AppCompatActivity {
         ticketPrice.setText(tvPrice);
         trip_time_detail.setText(tvTripTime);
 
-
     }
 }
