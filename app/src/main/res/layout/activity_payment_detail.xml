@@ -267,7 +267,7 @@
                 android:text="P 9123 NN" />
 
             <TextView
-                android:id="@+id/titleEstimasi"
+                android:id="@+id/tvEstimatedTime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/tvUserBusName"
@@ -277,7 +277,7 @@
                 android:text="Estimated Time" />
 
             <TextView
-                android:id="@+id/estimasiTime"
+                android:id="@+id/tvUserEstimatedTime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/tvSchedule"
@@ -323,7 +323,7 @@
                 android:padding="14dp">
 
                 <TextView
-                    android:id="@+id/tvTiket"
+                    android:id="@+id/tvTicket"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="14dp"
@@ -331,7 +331,7 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/tiket"
+                    android:id="@+id/tvUserTicket"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
@@ -342,7 +342,7 @@
                     android:id="@+id/tvCode"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/tvTiket"
+                    android:layout_below="@+id/tvTicket"
                     android:layout_marginStart="14dp"
                     android:layout_marginTop="12dp"
                     android:text="Unique Kode"
@@ -352,7 +352,7 @@
                     android:id="@+id/code"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/tiket"
+                    android:layout_below="@id/tvUserTicket"
                     android:layout_alignParentRight="true"
                     android:layout_marginTop="12dp"
                     android:layout_marginEnd="14dp"
@@ -369,7 +369,7 @@
                 android:padding="14dp">
 
                 <TextView
-                    android:id="@+id/titleTotal"
+                    android:id="@+id/tvPriceTotal"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="14dp"
@@ -379,7 +379,7 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/total"
+                    android:id="@+id/tvUserPriceTotal"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"

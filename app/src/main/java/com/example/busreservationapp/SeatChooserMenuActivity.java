@@ -21,6 +21,8 @@ public class SeatChooserMenuActivity extends AppCompatActivity implements View.O
 
     private Button btnBookNow;
 
+    public static final String EXTRA_SELECTED_SEATS = "extra_selected_seats";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -104,22 +106,30 @@ public class SeatChooserMenuActivity extends AppCompatActivity implements View.O
         }
     }
 
-
     private void bookNow() {
         boolean isSeatSelected = false;
-        for(int a = 0; a < seatAvailability.length; a++) {
-            if (seatAvailability[a] == 1 ) {
+        for (int a = 0; a < seatAvailability.length; a++) {
+            if (seatAvailability[a] == 1) {
                 isSeatSelected = true;
                 break;
             }
         }
-        if(isSeatSelected) {
-            Intent intent = new Intent(SeatChooserMenuActivity.this, PaymentDetailActivity.class);
+        if (isSeatSelected) {
+            String[] selectedSeats = new String[seatCodes.length];
+            for (int i = 0; i < seatCodes.length; i++) {
+                selectedSeats[i] = seatCodes[i] != null ? seatCodes[i] : "";
+            }
+
+            Intent intent = new Intent(SeatChooserMenuActivity.this, BusDetailActivity.class);
+            intent.putExtra(EXTRA_SELECTED_SEATS, selectedSeats);
+
             startActivity(intent);
         } else {
             Toast.makeText(this, "Please select a seat first!", Toast.LENGTH_SHORT).show();
         }
     }
+
+
 
     private void updateSeatChooserView() {
         for (int i = 0; i < seats.length; i++) {

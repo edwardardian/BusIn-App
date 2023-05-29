@@ -23,7 +23,6 @@ public class BusDetailActivity extends AppCompatActivity {
     private ImageView busPhoto;
     private Button btnBookNow;
 
-    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
