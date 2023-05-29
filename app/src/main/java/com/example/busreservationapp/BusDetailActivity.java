@@ -21,7 +21,6 @@ public class BusDetailActivity extends AppCompatActivity {
     private TextView trip_time_detail;
     private Button btnBookNow;
 
-    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
