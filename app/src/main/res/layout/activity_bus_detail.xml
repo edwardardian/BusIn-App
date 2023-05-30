@@ -6,12 +6,40 @@
     android:layout_height="match_parent"
     tools:context=".BusScheduleActivity">
 
-
-    <ScrollView
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appbar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="50dp">
+        android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/toolbar"
+            android:background="@color/white"
+            android:minHeight="?attr/actionBarSize"
+            android:theme="@style/Widget.AppCompat.ActionBar">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="70dp"
+                android:src="@drawable/logo"/>
+
+        </androidx.appcompat.widget.Toolbar>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/appbar"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -64,7 +92,6 @@
                 android:textColor="@color/blue_secondary"
                 />
 
-
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -74,7 +101,6 @@
                 android:layout_marginEnd="9dp"
                 android:text="4/5"
                 android:textColor="@color/blue_secondary" />
-
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -216,7 +242,6 @@
                     android:textColor="@color/black"
                     android:textSize="15sp" />
 
-
             </RelativeLayout>
 
             <TextView
@@ -353,12 +378,13 @@
                     android:text="CHOOSE"
                     android:textColor="@color/white" />
 
-
             </RelativeLayout>
 
         </RelativeLayout>
 
-    </ScrollView>
+    </androidx.core.widget.NestedScrollView>
+
+    </RelativeLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -387,6 +413,7 @@
             android:backgroundTint="@color/blue"
             android:text="BOOK NOW"
             android:textColor="@color/white" />
+
     </LinearLayout>
 
 </RelativeLayout>
