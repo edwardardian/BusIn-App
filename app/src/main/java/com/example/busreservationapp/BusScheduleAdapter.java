@@ -65,7 +65,6 @@ public class BusScheduleAdapter extends RecyclerView.Adapter<BusScheduleAdapter.
 
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 context.startActivity(intent);
-
             }
         });
     }

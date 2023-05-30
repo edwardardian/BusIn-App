@@ -44,7 +44,7 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="900dp"
+            android:layout_height="800dp"
             android:background="@color/bright_gray">
 
             <ImageView
@@ -67,6 +67,7 @@
                 android:layout_marginTop="253dp"
                 android:layout_marginEnd="200dp"
                 android:text="Primajasa"
+                android:textStyle="bold"
                 android:textColor="@color/black"
                 android:textSize="25sp"/>
 
@@ -122,8 +123,8 @@
                     android:layout_marginTop="11dp"
                     android:layout_marginBottom="150dp"
                     android:text="Bandung"
-                    android:textSize="15sp"
-                    android:textColor="@color/blue_secondary" />
+                    android:textColor="@color/blue_secondary"
+                    android:textSize="15sp" />
 
                 <TextView
                     android:id="@+id/bus_station_detail_dep"
@@ -188,8 +189,8 @@
                     android:layout_marginEnd="8dp"
                     android:layout_marginBottom="150dp"
                     android:text="Jakarta"
-                    android:textSize="15sp"
-                    android:textColor="@color/blue_secondary" />
+                    android:textColor="@color/blue_secondary"
+                    android:textSize="15sp" />
 
                 <TextView
                     android:id="@+id/bus_station_detail_arr"
@@ -252,7 +253,8 @@
                 android:layout_alignParentTop="true"
                 android:layout_marginStart="15dp"
                 android:layout_marginTop="540dp"
-                android:text="Facility: "
+                android:text="Facility : "
+                android:textStyle="bold"
                 android:textColor="@color/black"
                 android:textSize="20sp" />
 
@@ -345,8 +347,7 @@
                 android:layout_alignParentTop="true"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="650dp"
-                android:layout_marginRight="10dp"
-                >
+                android:layout_marginRight="10dp">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -355,6 +356,7 @@
                     android:layout_marginTop="10dp"
                     android:text="CHOOSE SEATS"
                     android:textColor="@color/black"
+                    android:textStyle="bold"
                     android:textSize="16sp" />
 
                 <TextView
@@ -362,7 +364,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="15dp"
-                    android:layout_marginTop="40dp"
+                    android:layout_marginTop="35dp"
                     android:textColor="@color/black"
                     android:textSize="15sp"
                     tools:text="0" />

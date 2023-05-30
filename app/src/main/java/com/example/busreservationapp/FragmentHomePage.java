@@ -1,6 +1,7 @@
 package com.example.busreservationapp;
 
 import android.app.DatePickerDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -15,6 +16,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
 import java.text.SimpleDateFormat;
@@ -39,7 +41,7 @@ public class FragmentHomePage extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.activity_fragment_home_page, container, false);
+        View view = inflater.inflate(R.layout.fragment_home_page, container, false);
         initView(view);
         return view;
     }
@@ -118,12 +120,27 @@ public class FragmentHomePage extends Fragment {
                     return;
                 }
 
-                Intent intent = new Intent(getActivity(), BusScheduleActivity.class);
-                intent.putExtra("departure", selectedDeparture.toString());
-                intent.putExtra("arrival", selectedArrival.toString());
-                intent.putExtra("date", datePicker.getText().toString());
-                intent.putExtra("passengers", passengers.toString());
-                startActivity(intent);
+                AlertDialog.Builder alert = new AlertDialog.Builder(getActivity());
+                alert.setTitle("Confirmation");
+                alert.setMessage("Are you sure you have entered the correct data?");
+                alert.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Intent intent = new Intent(getActivity(), BusScheduleActivity.class);
+                        intent.putExtra("departure", selectedDeparture.toString());
+                        intent.putExtra("arrival", selectedArrival.toString());
+                        intent.putExtra("date", datePicker.getText().toString());
+                        intent.putExtra("passengers", passengers.toString());
+                        startActivity(intent);
+                    }
+                });
+                alert.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+                alert.show();
             }
         });
 
