@@ -26,7 +26,6 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="9dp"
                 android:layout_marginBottom="10dp"
-                android:scaleType="center"
                 android:src="@drawable/img_home_page" />
 
             <TextView
@@ -379,16 +378,15 @@
             android:textColor="@color/blue_secondary"
             android:textSize="25sp" />
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/bookNow"
+        <Button
+            android:id="@+id/btnBookNow"
             android:layout_width="160dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="10dp"
             android:background="@drawable/cust_card"
             android:backgroundTint="@color/blue"
             android:text="BOOK NOW"
-            android:textColor="@color/white"
-            />
+            android:textColor="@color/white" />
     </LinearLayout>
 
 </RelativeLayout>

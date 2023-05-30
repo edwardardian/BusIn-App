@@ -1,13 +1,22 @@
 package com.example.busreservationapp;
-import android.annotation.SuppressLint;
+
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QuerySnapshot;
+import com.squareup.picasso.Picasso;
 
 public class BusDetailActivity extends AppCompatActivity {
 
@@ -21,14 +30,14 @@ public class BusDetailActivity extends AppCompatActivity {
     private TextView ticketPrice;
     private TextView trip_time_detail;
     private ImageView busPhoto;
-    private Button btnBookNow;
+    private FirebaseFirestore db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bus_detail);
 
-        nameBusDetail =  findViewById(R.id.nameBusDetail);
+        nameBusDetail = findViewById(R.id.nameBusDetail);
         departure_detail = findViewById(R.id.departure_detail);
         arrival_detail = findViewById(R.id.arrival_detail);
         departure_time_detail = findViewById(R.id.departure_time_detail);
@@ -38,7 +47,8 @@ public class BusDetailActivity extends AppCompatActivity {
         ticketPrice = findViewById(R.id.ticketPrice);
         trip_time_detail = findViewById(R.id.trip_time_detail);
         busPhoto = findViewById(R.id.imgBus);
-        btnBookNow = findViewById(R.id.btnBookNow);
+
+        db = FirebaseFirestore.getInstance();
 
         Intent intent = getIntent();
         String tvDepartureCity = intent.getStringExtra("departureCity");
@@ -61,5 +71,28 @@ public class BusDetailActivity extends AppCompatActivity {
         ticketPrice.setText(tvPrice);
         trip_time_detail.setText(tvTripTime);
 
+        getBusPhoto(tvBusName);
+    }
+
+    private void getBusPhoto(String busName) {
+        CollectionReference busCollection = db.collection("bus");
+        Query query = busCollection.whereEqualTo("busName", busName);
+
+        query.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if (task.isSuccessful()) {
+                    QuerySnapshot querySnapshot = task.getResult();
+                    if (querySnapshot != null && !querySnapshot.isEmpty()) {
+                        DocumentSnapshot document = querySnapshot.getDocuments().get(0);
+                        String busPhotoUrl = document.getString("busPhoto");
+                        Picasso.get().load(busPhotoUrl).into(busPhoto);
+                    }
+                } else {
+                    Toast.makeText(BusDetailActivity.this, "Failed to get bus photo!", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
     }
 }
+
