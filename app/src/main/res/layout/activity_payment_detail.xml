@@ -104,9 +104,7 @@
                 android:layout_height="34dp"
                 android:layout_below="@+id/tvName" />
 
-
         </RelativeLayout>
-
 
     </androidx.cardview.widget.CardView>
 
@@ -253,8 +251,7 @@
                 android:layout_marginStart="140dp"
                 android:layout_marginTop="14dp"
                 android:layout_toRightOf="@id/tvBusName"
-                android:text="Bus ID"
-                />
+                android:text="Bus ID" />
 
             <TextView
                 android:id="@+id/tvUserBusId"
@@ -356,7 +353,7 @@
                     android:layout_alignParentRight="true"
                     android:layout_marginTop="12dp"
                     android:layout_marginEnd="14dp"
-                    android:text="01"/>
+                    android:text="01" />
 
 
             </RelativeLayout>
@@ -404,7 +401,5 @@
         android:layout_marginTop="20dp"
         android:backgroundTint="@color/blue"
         android:text="CONTINUE TO PAYMENT" />
-
-
 
 </RelativeLayout>

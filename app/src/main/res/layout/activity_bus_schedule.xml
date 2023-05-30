@@ -34,13 +34,6 @@
                 android:textColor="@color/black"
                 android:textStyle="bold"
                 android:layout_marginTop="25dp" />
-            <!--<Spinner
-                android:id="@+id/spinnerDeparture"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:entries="@array/Asal"
-                android:layout_marginTop="25dp"
-                android:outlineAmbientShadowColor="@color/blue" />-->
 
         </RelativeLayout>
 
@@ -73,18 +66,6 @@
                 android:textColor="@color/black"
                 android:textStyle="bold"
                 android:layout_marginTop="25dp" />
-
-            <!--<Spinner
-                android:id="@+id/spinnerArrival"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:entries="@array/Asal"
-                android:layout_marginTop="25dp"
-                android:clickable="false"
-                android:cursorVisible="false"
-                android:focusableInTouchMode="false"
-                android:focusable="false"
-                android:outlineAmbientShadowColor="@color/blue" />-->
 
         </RelativeLayout>
 
@@ -119,18 +100,6 @@
                 android:textStyle="bold"
                 android:layout_marginTop="25dp" />
 
-            <!--<EditText
-                android:id="@+id/date"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Mon, 22 May 2023"
-                android:clickable="false"
-                android:cursorVisible="false"
-                android:focusableInTouchMode="false"
-                android:editable="false"
-                android:focusable="false"
-                android:textSize="16dp" />-->
-
         </RelativeLayout>
 
     </androidx.cardview.widget.CardView>
@@ -164,14 +133,6 @@
                 android:textColor="@color/black"
                 android:textStyle="bold"
                 android:layout_marginTop="25dp" />
-
-           <!-- <TextView
-                android:id="@+id/seats"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Seat : 0 "
-                android:textSize="16dp"
-                android:textColor="@color/black"/>-->
 
         </RelativeLayout>
 
