@@ -121,9 +121,6 @@ public class BusScheduleActivity extends AppCompatActivity {
                             recyclerView.setAdapter(adapter);
                             adapter.notifyDataSetChanged();
                             progressBar.setVisibility(View.GONE);
-
-
-                            
                         }
                     } else {
                         Log.d(TAG, "Error getting bus schedules: ", task.getException());
