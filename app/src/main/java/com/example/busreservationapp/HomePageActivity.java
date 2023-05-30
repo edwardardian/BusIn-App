@@ -49,8 +49,6 @@ public class HomePageActivity extends AppCompatActivity {
                     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                         switch (item.getItemId()){
                             case R.id.ticket_navigation:
-                                startActivity(new Intent(HomePageActivity.this, HomePageActivity.class));
-                                finish();
                                 return true;
                             /*case R.id.history_navigation :
                                 startActivity(new Intent(UserActivity.this, UserProfileActivity.class));

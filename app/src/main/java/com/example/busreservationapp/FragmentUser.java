@@ -1,10 +1,12 @@
 package com.example.busreservationapp;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -101,7 +103,19 @@ public class FragmentUser extends Fragment {
         }
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onClick(View v) {
+                onLogout(v);
+            }
+        });
+    }
+
+    public void onLogout(View view){
+        AlertDialog.Builder alert = new AlertDialog.Builder(getActivity());
+        alert.setTitle("Logout");
+        alert.setMessage("Are you sure you want to logout?");
+        alert.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
                 if (firebaseAuth != null) {
                     firebaseAuth.signOut();
                 }
@@ -109,6 +123,13 @@ public class FragmentUser extends Fragment {
                 getActivity().finish();
             }
         });
+        alert.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+        alert.show();
     }
 
     @Override
