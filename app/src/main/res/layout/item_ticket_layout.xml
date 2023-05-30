@@ -148,7 +148,7 @@
             android:id="@+id/btnBookNow"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="book now"
+            android:text="book"
             android:backgroundTint="@color/blue"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/tvPrice" />
