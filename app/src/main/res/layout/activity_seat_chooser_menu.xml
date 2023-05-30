@@ -20,7 +20,7 @@
             app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
             app:layout_constraintTop_toTopOf="parent">
 
-            <androidx.core.widget.NestedScrollView
+            <ScrollView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 tools:ignore="SpeakableTextPresentCheck">
@@ -754,7 +754,7 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="5"
-                            android:layout_marginRight="4dp"
+                            android:layout_marginRight="5dp"
                             android:gravity="center">
 
                             <CheckedTextView
@@ -769,6 +769,7 @@
                                 android:id="@+id/ivSeatD10"
                                 android:layout_width="36dp"
                                 android:layout_height="36dp"
+                                android:layout_marginStart="4dp"
                                 android:background="@drawable/seat_booked"
                                 android:checked="false" />
 
@@ -778,7 +779,7 @@
 
                 </LinearLayout>
 
-            </androidx.core.widget.NestedScrollView>
+            </ScrollView>
 
         </RelativeLayout>
 

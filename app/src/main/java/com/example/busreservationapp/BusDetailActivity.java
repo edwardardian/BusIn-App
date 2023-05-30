@@ -2,6 +2,8 @@ package com.example.busreservationapp;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -30,6 +32,7 @@ public class BusDetailActivity extends AppCompatActivity {
     private TextView ticketPrice;
     private TextView trip_time_detail;
     private ImageView busPhoto;
+    private Button chooseSeats;
     private FirebaseFirestore db;
 
     @Override
@@ -47,6 +50,7 @@ public class BusDetailActivity extends AppCompatActivity {
         ticketPrice = findViewById(R.id.ticketPrice);
         trip_time_detail = findViewById(R.id.trip_time_detail);
         busPhoto = findViewById(R.id.imgBus);
+        chooseSeats = findViewById(R.id.btnSeatChooser);
 
         db = FirebaseFirestore.getInstance();
 
@@ -72,6 +76,14 @@ public class BusDetailActivity extends AppCompatActivity {
         trip_time_detail.setText(tvTripTime);
 
         getBusPhoto(tvBusName);
+
+        chooseSeats.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(BusDetailActivity.this, SeatChooserMenuActivity.class));
+                return;
+            }
+        });
     }
 
     private void getBusPhoto(String busName) {
