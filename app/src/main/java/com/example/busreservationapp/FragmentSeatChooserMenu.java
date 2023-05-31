@@ -136,9 +136,6 @@ public class FragmentSeatChooserMenu extends Fragment implements View.OnClickLis
                 selectedSeats[i] = seatCodes[i] != null ? seatCodes[i] : "";
             }
 
-            // Simpan data ke Firestore
-            saveSeatCodesToFirestore(selectedSeats);
-
             Intent intent = new Intent(getActivity(), BusDetailActivity.class);
             intent.putExtra(EXTRA_SELECTED_SEATS, selectedSeats);
             startActivity(intent);
@@ -184,49 +181,4 @@ public class FragmentSeatChooserMenu extends Fragment implements View.OnClickLis
 
         return "Row " + row + ", Seat " + column;
     }
-
-    private void saveSeatCodesToFirestore(String[] seatCodes) {
-        db = FirebaseFirestore.getInstance();
-
-        // Dapatkan busName dari Intent (misalnya, jika disimpan sebagai ekstra "busName")
-        String busName = getActivity().getIntent().getStringExtra("busName");
-
-        // Buat objek data untuk disimpan di Firestore
-        Map<String, Object> data = new HashMap<>();
-        data.put("seatCodes", seatCodes);
-
-        // Simpan data ke Firestore dengan menggabungkan busName ke dalam koleksi "bookings"
-        CollectionReference bookingsCollection = db.collection("bookings");
-        Query query = bookingsCollection.whereEqualTo("busName", busName);
-
-        query.get().addOnCompleteListener(task -> {
-            if (task.isSuccessful()) {
-                List<DocumentSnapshot> documents = task.getResult().getDocuments();
-                if (documents.isEmpty()) {
-                    // Tidak ada dokumen dengan busName yang sesuai, buat dokumen baru
-                    bookingsCollection.document().set(data)
-                            .addOnSuccessListener(aVoid -> {
-                                Log.d(TAG, "Data seatCodes berhasil disimpan di Firestore dengan busName: " + busName);
-                            })
-                            .addOnFailureListener(e -> {
-                                Log.w(TAG, "Gagal menyimpan data seatCodes ke Firestore.", e);
-                            });
-                } else {
-                    // Dokumen dengan busName yang sesuai sudah ada, perbarui data
-                    DocumentSnapshot document = documents.get(0);
-                    document.getReference().update(data)
-                            .addOnSuccessListener(aVoid -> {
-                                Log.d(TAG, "Data seatCodes berhasil diperbarui di Firestore dengan busName: " + busName);
-                            })
-                            .addOnFailureListener(e -> {
-                                Log.w(TAG, "Gagal memperbarui data seatCodes di Firestore.", e);
-                            });
-                }
-            } else {
-                Log.w(TAG, "Gagal mengambil data dari Firestore.", task.getException());
-            }
-        });
-    }
-
-
 }
