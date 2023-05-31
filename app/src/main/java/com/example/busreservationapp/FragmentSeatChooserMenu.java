@@ -7,16 +7,22 @@ import androidx.fragment.app.Fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.*;
 import android.widget.CheckedTextView;
 
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class FragmentSeatChooserMenu extends Fragment implements View.OnClickListener {
     private String TAG = FragmentSeatChooserMenu.class.getSimpleName();
@@ -28,6 +34,7 @@ public class FragmentSeatChooserMenu extends Fragment implements View.OnClickLis
     private String[] seatCodes = new String[40];
 
     private Button btnBookNow;
+    private String[] selectedSeats;
 
     public static final String EXTRA_SELECTED_SEATS = "extra_selected_seats";
 
@@ -129,15 +136,16 @@ public class FragmentSeatChooserMenu extends Fragment implements View.OnClickLis
                 selectedSeats[i] = seatCodes[i] != null ? seatCodes[i] : "";
             }
 
+            // Simpan data ke Firestore
+            saveSeatCodesToFirestore(selectedSeats);
+
             Intent intent = new Intent(getActivity(), BusDetailActivity.class);
             intent.putExtra(EXTRA_SELECTED_SEATS, selectedSeats);
-
             startActivity(intent);
         } else {
-            Toast.makeText(getActivity(), "Please select a seat first!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), "Harap pilih kursi terlebih dahulu!", Toast.LENGTH_SHORT).show();
         }
     }
-
     public String[] getSelectedSeats() {
         List<String> selectedSeatsList = new ArrayList<>();
 
@@ -176,4 +184,49 @@ public class FragmentSeatChooserMenu extends Fragment implements View.OnClickLis
 
         return "Row " + row + ", Seat " + column;
     }
+
+    private void saveSeatCodesToFirestore(String[] seatCodes) {
+        db = FirebaseFirestore.getInstance();
+
+        // Dapatkan busName dari Intent (misalnya, jika disimpan sebagai ekstra "busName")
+        String busName = getActivity().getIntent().getStringExtra("busName");
+
+        // Buat objek data untuk disimpan di Firestore
+        Map<String, Object> data = new HashMap<>();
+        data.put("seatCodes", seatCodes);
+
+        // Simpan data ke Firestore dengan menggabungkan busName ke dalam koleksi "bookings"
+        CollectionReference bookingsCollection = db.collection("bookings");
+        Query query = bookingsCollection.whereEqualTo("busName", busName);
+
+        query.get().addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                List<DocumentSnapshot> documents = task.getResult().getDocuments();
+                if (documents.isEmpty()) {
+                    // Tidak ada dokumen dengan busName yang sesuai, buat dokumen baru
+                    bookingsCollection.document().set(data)
+                            .addOnSuccessListener(aVoid -> {
+                                Log.d(TAG, "Data seatCodes berhasil disimpan di Firestore dengan busName: " + busName);
+                            })
+                            .addOnFailureListener(e -> {
+                                Log.w(TAG, "Gagal menyimpan data seatCodes ke Firestore.", e);
+                            });
+                } else {
+                    // Dokumen dengan busName yang sesuai sudah ada, perbarui data
+                    DocumentSnapshot document = documents.get(0);
+                    document.getReference().update(data)
+                            .addOnSuccessListener(aVoid -> {
+                                Log.d(TAG, "Data seatCodes berhasil diperbarui di Firestore dengan busName: " + busName);
+                            })
+                            .addOnFailureListener(e -> {
+                                Log.w(TAG, "Gagal memperbarui data seatCodes di Firestore.", e);
+                            });
+                }
+            } else {
+                Log.w(TAG, "Gagal mengambil data dari Firestore.", task.getException());
+            }
+        });
+    }
+
+
 }

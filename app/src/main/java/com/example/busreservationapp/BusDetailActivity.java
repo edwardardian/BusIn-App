@@ -17,7 +17,7 @@ import java.util.ArrayList;
 
 public class BusDetailActivity extends AppCompatActivity {
     private String TAG = BusDetailActivity.class.getSimpleName();
-    private ArrayList<String> selectedSeats;
+    private String[] selectedSeats;
     private FrameLayout container;
     private LinearLayout linearLayout;
 
@@ -31,7 +31,7 @@ public class BusDetailActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         if (intent != null) {
-            selectedSeats = intent.getStringArrayListExtra(FragmentSeatChooserMenu.EXTRA_SELECTED_SEATS);
+            selectedSeats = getIntent().getStringArrayExtra(FragmentSeatChooserMenu.EXTRA_SELECTED_SEATS);
         }
 
         initView();

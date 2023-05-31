@@ -21,6 +21,8 @@ import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.squareup.picasso.Picasso;
 
+import org.w3c.dom.Text;
+
 public class FragmentBusDetail extends Fragment {
     private String TAG = FragmentBusDetail.class.getSimpleName();
 
@@ -33,10 +35,14 @@ public class FragmentBusDetail extends Fragment {
     private TextView bus_station_detail_arr;
     private TextView ticketPrice;
     private TextView trip_time_detail;
+    private TextView passengers_detail;
     private ImageView busPhoto;
     private Button chooseSeats;
     private Button btnBookNow;
     private FirebaseFirestore db;
+
+    private DocumentSnapshot selectedBus;
+
 
 
     @Nullable
@@ -57,6 +63,7 @@ public class FragmentBusDetail extends Fragment {
         bus_station_detail_arr = view.findViewById(R.id.bus_station_detail_arr);
         ticketPrice = view.findViewById(R.id.ticketPrice);
         trip_time_detail = view.findViewById(R.id.trip_time_detail);
+        passengers_detail = view.findViewById(R.id.passengers_detail);
         busPhoto = view.findViewById(R.id.imgBus);
         chooseSeats = view.findViewById(R.id.btnSeatChooser);
         btnBookNow = view.findViewById(R.id.btnBookNow);
@@ -89,10 +96,20 @@ public class FragmentBusDetail extends Fragment {
         chooseSeats.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getActivity(), SeatChooserMenuActivity.class));
-                return;
+                Intent intent = new Intent(getActivity(), SeatChooserMenuActivity.class);
+                intent.putExtra("departureCity", departure_detail.getText().toString());
+                intent.putExtra("arrivalCity", arrival_detail.getText().toString());
+                intent.putExtra("departureHour", departure_time_detail.getText().toString());
+                intent.putExtra("arrivalHour", arrival_time_detail.getText().toString());
+                intent.putExtra("departureTerminal", bus_station_detail_dep.getText().toString());
+                intent.putExtra("arrivalTerminal", bus_station_detail_arr.getText().toString());
+                intent.putExtra("busName", nameBusDetail.getText().toString());
+                intent.putExtra("price", ticketPrice.getText().toString());
+                intent.putExtra("time", trip_time_detail.getText().toString());
+                startActivity(intent);
             }
         });
+
     }
 
     private void getBusPhoto(String busName) {
@@ -105,8 +122,8 @@ public class FragmentBusDetail extends Fragment {
                 if (task.isSuccessful()) {
                     QuerySnapshot querySnapshot = task.getResult();
                     if (querySnapshot != null && !querySnapshot.isEmpty()) {
-                        DocumentSnapshot document = querySnapshot.getDocuments().get(0);
-                        String busPhotoUrl = document.getString("busPhoto");
+                        selectedBus = querySnapshot.getDocuments().get(0);
+                        String busPhotoUrl = selectedBus.getString("busPhoto");
                         Picasso.get().load(busPhotoUrl).into(busPhoto);
                     }
                 } else {
@@ -114,6 +131,6 @@ public class FragmentBusDetail extends Fragment {
                 }
             }
         });
-
     }
+
 }
