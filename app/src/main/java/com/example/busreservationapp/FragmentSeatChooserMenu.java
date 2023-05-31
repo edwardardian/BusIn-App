@@ -15,6 +15,9 @@ import android.widget.CheckedTextView;
 
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class FragmentSeatChooserMenu extends Fragment implements View.OnClickListener {
     private String TAG = FragmentSeatChooserMenu.class.getSimpleName();
 
@@ -33,14 +36,12 @@ public class FragmentSeatChooserMenu extends Fragment implements View.OnClickLis
     public View onCreateView(@NonNull LayoutInflater layoutInflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = layoutInflater.inflate(R.layout.fragment_seat_chooser_menu, container, false);
         initView (view);
+
         return view;
     }
 
     public void initView(View view){
         db = FirebaseFirestore.getInstance();
-        btnBookNow = view.findViewById(R.id.btnBookNow);
-
-        btnBookNow.setOnClickListener(this);
 
         initializeSeats(view);
 
@@ -136,6 +137,19 @@ public class FragmentSeatChooserMenu extends Fragment implements View.OnClickLis
             Toast.makeText(getActivity(), "Please select a seat first!", Toast.LENGTH_SHORT).show();
         }
     }
+
+    public String[] getSelectedSeats() {
+        List<String> selectedSeatsList = new ArrayList<>();
+
+        for (int i = 0; i < seatAvailability.length; i++) {
+            if (seatAvailability[i] == 1) {
+                selectedSeatsList.add(seatCodes[i]);
+            }
+        }
+
+        return selectedSeatsList.toArray(new String[selectedSeatsList.size()]);
+    }
+
 
     private void updateSeatChooserView() {
         for (int i = 0; i < seats.length; i++) {

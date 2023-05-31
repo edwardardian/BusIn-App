@@ -35,6 +35,7 @@ public class FragmentBusDetail extends Fragment {
     private TextView trip_time_detail;
     private ImageView busPhoto;
     private Button chooseSeats;
+    private Button btnBookNow;
     private FirebaseFirestore db;
 
 
@@ -58,6 +59,7 @@ public class FragmentBusDetail extends Fragment {
         trip_time_detail = view.findViewById(R.id.trip_time_detail);
         busPhoto = view.findViewById(R.id.imgBus);
         chooseSeats = view.findViewById(R.id.btnSeatChooser);
+        btnBookNow = view.findViewById(R.id.btnBookNow);
 
         db = FirebaseFirestore.getInstance();
 

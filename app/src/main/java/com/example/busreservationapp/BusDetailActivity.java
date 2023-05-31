@@ -2,41 +2,37 @@ package com.example.busreservationapp;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-import android.widget.Toast;
 
-import androidx.annotation.NonNull;
+import android.widget.FrameLayout;
+import android.widget.LinearLayout;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.Query;
-import com.google.firebase.firestore.QuerySnapshot;
-import com.squareup.picasso.Picasso;
+import java.util.ArrayList;
+
+
 
 public class BusDetailActivity extends AppCompatActivity {
     private String TAG = BusDetailActivity.class.getSimpleName();
-
+    private ArrayList<String> selectedSeats;
     private FrameLayout container;
     private LinearLayout linearLayout;
 
     private final FragmentBusDetail fragmentBusDetail = new FragmentBusDetail();
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bus_detail);
+
+        Intent intent = getIntent();
+        if (intent != null) {
+            selectedSeats = intent.getStringArrayListExtra(FragmentSeatChooserMenu.EXTRA_SELECTED_SEATS);
+        }
 
         initView();
 
@@ -54,4 +50,3 @@ public class BusDetailActivity extends AppCompatActivity {
         fragmentTransaction.commit();
     }
 }
-
