@@ -2,31 +2,23 @@ package com.example.busreservationapp;
 
 public class Trip {
 
-    String busId, busName, asal, tujuan, harga, waktu, departTerminal, arrivalTerminal, timeDeparture, timeArrival;
+    String busName, asal, tujuan, harga, waktu, departureTerminal, arrivalTerminal, timeDeparture, timeArrival;
 
     public Trip() {
 
     }
 
-    public Trip(String busName, String asal, String tujuan, String harga, String departTerminal, String arrivalTerminal, String timeDeparture, String timeArrival, String waktu) {
+    public Trip(String busName, String asal, String tujuan, String harga, String departureTerminal, String arrivalTerminal, String timeDeparture, String timeArrival, String waktu) {
         this.busName = busName;
         this.asal = asal;
         this.tujuan = tujuan;
         this.harga = harga;
-        this.departTerminal = departTerminal;
+        this.departureTerminal = departureTerminal;
         this.arrivalTerminal = arrivalTerminal;
         this.timeDeparture = timeDeparture;
         this.timeArrival = timeArrival;
         this.waktu = waktu;
 
-    }
-
-    public String getBusId() {
-        return busId;
-    }
-
-    public void setBusId(String busId) {
-        this.busId = busId;
     }
 
     public String getBusName() {
@@ -69,12 +61,12 @@ public class Trip {
         this.waktu = waktu;
     }
 
-    public String getDepartTerminal() {
-        return departTerminal;
+    public String getDepartureTerminal() {
+        return departureTerminal;
     }
 
-    public void setDepartTerminal(String departTerminal) {
-        this.departTerminal = departTerminal;
+    public void setDepartureTerminal(String departTerminal) {
+        this.departureTerminal = departTerminal;
     }
 
     public String getArrivalTerminal() {

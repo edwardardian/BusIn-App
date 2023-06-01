@@ -23,6 +23,9 @@ import com.squareup.picasso.Picasso;
 
 import org.w3c.dom.Text;
 
+import java.text.DecimalFormat;
+import java.util.HashMap;
+
 public class FragmentBusDetail extends Fragment {
     private String TAG = FragmentBusDetail.class.getSimpleName();
 
@@ -36,6 +39,7 @@ public class FragmentBusDetail extends Fragment {
     private TextView ticketPrice;
     private TextView trip_time_detail;
     private TextView passengers_detail;
+    private TextView date_detail;
     private ImageView busPhoto;
     private Button chooseSeats;
     private Button btnBookNow;
@@ -43,13 +47,14 @@ public class FragmentBusDetail extends Fragment {
 
     private DocumentSnapshot selectedBus;
 
-
+    private double ticketPriceValue;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater layoutInflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = layoutInflater.inflate(R.layout.fragment_bus_detail, container, false);
         initView(view);
+
         return view;
     }
 
@@ -67,6 +72,7 @@ public class FragmentBusDetail extends Fragment {
         busPhoto = view.findViewById(R.id.imgBus);
         chooseSeats = view.findViewById(R.id.btnSeatChooser);
         btnBookNow = view.findViewById(R.id.btnBookNow);
+        date_detail = view.findViewById(R.id.date_detail);
 
         db = FirebaseFirestore.getInstance();
 
@@ -78,8 +84,22 @@ public class FragmentBusDetail extends Fragment {
         String tvDepartureStation = intent.getStringExtra("departureTerminal");
         String tvArriveStation = intent.getStringExtra("arrivalTerminal");
         String tvBusName = intent.getStringExtra("busName");
-        String tvPrice = intent.getStringExtra("price");
+        String tvPrice = getActivity().getIntent().getStringExtra("price");
         String tvTripTime = intent.getStringExtra("time");
+        String tvPriceString = tvPrice.replaceAll("[^\\d.]", "");
+        String date = intent.getStringExtra("date");
+        String passengers = intent.getStringExtra("passengers");
+
+        try {
+            double price = Double.parseDouble(tvPriceString);
+            ticketPriceValue = price;
+            DecimalFormat decimalFormat = new DecimalFormat("###,###");
+            String formattedPrice = "Rp" + decimalFormat.format(ticketPriceValue);
+            ticketPrice.setText(formattedPrice);
+        } catch (NumberFormatException e) {
+            e.printStackTrace();
+            ticketPrice.setText("Invalid Price");
+        }
 
         departure_detail.setText(tvDepartureCity);
         arrival_detail.setText(tvArriveCity);
@@ -88,8 +108,9 @@ public class FragmentBusDetail extends Fragment {
         bus_station_detail_dep.setText(tvDepartureStation);
         bus_station_detail_arr.setText(tvArriveStation);
         nameBusDetail.setText(tvBusName);
-        ticketPrice.setText(tvPrice);
         trip_time_detail.setText(tvTripTime);
+        date_detail.setText(date);
+        passengers_detail.setText(passengers);
 
         getBusPhoto(tvBusName);
 
@@ -110,6 +131,33 @@ public class FragmentBusDetail extends Fragment {
             }
         });
 
+        btnBookNow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String departureCity = departure_detail.getText().toString();
+                String arrivalCity = arrival_detail.getText().toString();
+                String departureHour = departure_time_detail.getText().toString();
+                String arrivalHour = arrival_time_detail.getText().toString();
+                String departureTerminal = bus_station_detail_dep.getText().toString();
+                String arrivalTerminal = bus_station_detail_arr.getText().toString();
+                String busName = nameBusDetail.getText().toString();
+                String price = ticketPrice.getText().toString();
+                String tripTime = trip_time_detail.getText().toString();
+
+                HashMap<String, Object> tripData = new HashMap<>();
+                tripData.put("departureCity", departureCity);
+                tripData.put("arrivalCity", arrivalCity);
+                tripData.put("departureHour", departureHour);
+                tripData.put("arrivalHour", arrivalHour);
+                tripData.put("departureTerminal", departureTerminal);
+                tripData.put("arrivalTerminal", arrivalTerminal);
+                tripData.put("busName", busName);
+                tripData.put("price", price);
+                tripData.put("tripTime", tripTime);
+
+                saveDataToFirestore(departureCity, arrivalCity, departureHour, arrivalHour, departureTerminal, arrivalTerminal, busName, price, tripTime);
+            }
+        });
     }
 
     private void getBusPhoto(String busName) {
@@ -131,6 +179,24 @@ public class FragmentBusDetail extends Fragment {
                 }
             }
         });
+    }
+
+    private void saveDataToFirestore(String departureCity, String arrivalCity, String departureHour, String arrivalHour,
+                                     String departureTerminal, String arrivalTerminal, String busName, String price, String tripTime) {
+
+        Trip trip = new Trip(busName, departureCity, arrivalCity, price, departureTerminal, arrivalTerminal, departureHour, arrivalHour, tripTime);
+
+        CollectionReference tripCollection = db.collection("trip");
+
+        tripCollection.add(trip)
+                .addOnSuccessListener(documentReference -> {
+                    Intent intent = new Intent(getActivity(), PaymentDetailActivity.class);
+                    intent.putExtra("tripId", documentReference.getId());
+                    startActivity(intent);
+                })
+                .addOnFailureListener(e -> {
+                    Toast.makeText(getActivity(), "Failed to save trip data to Firestore", Toast.LENGTH_SHORT).show();
+                });
     }
 
 }

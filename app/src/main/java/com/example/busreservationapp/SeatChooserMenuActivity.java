@@ -13,6 +13,8 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import java.text.DecimalFormat;
+
 public class SeatChooserMenuActivity extends AppCompatActivity {
     private String TAG = SeatChooserMenuActivity.class.getSimpleName();
 
@@ -54,18 +56,29 @@ public class SeatChooserMenuActivity extends AppCompatActivity {
         FragmentSeatChooserMenu fragment = (FragmentSeatChooserMenu) getSupportFragmentManager().findFragmentById(R.id.container);
         if (fragment != null) {
             String[] selectedSeats = fragment.getSelectedSeats();
-            if (selectedSeats.length > 0) {
-                Intent intent = new Intent(SeatChooserMenuActivity.this, PaymentDetailActivity.class);
+            if (selectedSeats != null && selectedSeats.length > 0) {
+                int seatCount = selectedSeats.length;
+                String priceString = getIntent().getStringExtra("price");
+
+                String cleanPriceString = priceString.replaceAll("[^\\d.]", "");
+                double price = Double.parseDouble(cleanPriceString);
+
+                double totalPrice = price * seatCount;
+
+                DecimalFormat decimalFormat = new DecimalFormat("###,###.##");
+                String formattedTotalPrice = decimalFormat.format(totalPrice);
+
+                Intent intent = new Intent(SeatChooserMenuActivity.this, BusDetailActivity.class);
                 intent.putExtra("selectedSeats", selectedSeats);
                 intent.putExtra("busName", getIntent().getStringExtra("busName"));
                 intent.putExtra("departureHour", getIntent().getStringExtra("departureHour"));
-                intent.putExtra("departureCity",getIntent().getStringExtra("departureCity"));
+                intent.putExtra("departureCity", getIntent().getStringExtra("departureCity"));
                 intent.putExtra("arrivalCity", getIntent().getStringExtra("arrivalCity"));
                 intent.putExtra("arrivalHour", getIntent().getStringExtra("arrivalHour"));
-                intent.putExtra("departureTerminal",getIntent().getStringExtra("departureTerminal"));
-                intent.putExtra("arrivalTerminal",getIntent().getStringExtra("arrivalTerminal"));
-                intent.putExtra("price",getIntent().getStringExtra("price"));
-                intent.putExtra("time",getIntent().getStringExtra("time"));
+                intent.putExtra("departureTerminal", getIntent().getStringExtra("departureTerminal"));
+                intent.putExtra("arrivalTerminal", getIntent().getStringExtra("arrivalTerminal"));
+                intent.putExtra("price", formattedTotalPrice);
+                intent.putExtra("time", getIntent().getStringExtra("time"));
                 intent.putExtra(FragmentSeatChooserMenu.EXTRA_SELECTED_SEATS, selectedSeats);
                 startActivity(intent);
             } else {
@@ -73,4 +86,8 @@ public class SeatChooserMenuActivity extends AppCompatActivity {
             }
         }
     }
+
+
+
+
 }

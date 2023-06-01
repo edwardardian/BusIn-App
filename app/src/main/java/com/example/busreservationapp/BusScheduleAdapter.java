@@ -16,6 +16,7 @@ import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class BusScheduleAdapter extends RecyclerView.Adapter<BusScheduleAdapter.ViewHolder> {
     private ArrayList<Trip> listTrip;
@@ -42,26 +43,30 @@ public class BusScheduleAdapter extends RecyclerView.Adapter<BusScheduleAdapter.
         holder.tvBusName.setText(trip.getBusName());
         holder.tvTripTime.setText(trip.getWaktu());
         holder.tvDepartureHour.setText(trip.getTimeDeparture());
-        holder.tvDepartureStation.setText(trip.getDepartTerminal());
+        holder.tvDepartureStation.setText(trip.getDepartureTerminal());
         holder.tvDepartureCity.setText(trip.getAsal());
         holder.tvArriveHour.setText(trip.getTimeArrival());
         holder.tvArriveStation.setText(trip.getArrivalTerminal());
         holder.tvArriveCity.setText(trip.getTujuan());
-        holder.tvPrice.setText(trip.getHarga());
+        String harga = trip.getHarga();
+        double valueHarga = Double.parseDouble(harga);
+        String formatHarga = "Rp" + String.format(Locale.US, "%,.0f", valueHarga).replace(",", ".");
+        holder.tvPrice.setText(formatHarga);
         holder.btnBookNow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context, BusDetailActivity.class);
-                intent.putExtra("busId", trip.getBusId());
                 intent.putExtra("departureCity", trip.getAsal());
                 intent.putExtra("busName", trip.getBusName());
                 intent.putExtra("arrivalCity", trip.getTujuan());
-                intent.putExtra("departureTerminal", trip.getDepartTerminal());
+                intent.putExtra("departureTerminal", trip.getDepartureTerminal());
                 intent.putExtra("arrivalTerminal", trip.getArrivalTerminal());
                 intent.putExtra("departureHour", trip.getTimeDeparture());
                 intent.putExtra("arrivalHour", trip.getTimeArrival());
                 intent.putExtra("time", trip.getWaktu());
                 intent.putExtra("price", trip.getHarga());
+                intent.getStringExtra("date");
+                intent.getStringExtra("passengers");
 
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 context.startActivity(intent);

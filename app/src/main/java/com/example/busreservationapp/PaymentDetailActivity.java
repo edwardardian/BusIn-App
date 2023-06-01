@@ -53,6 +53,12 @@ public class PaymentDetailActivity extends AppCompatActivity {
         busId = getIntent().getStringExtra(EXTRA_BUS_ID);
         bookedSeat = getIntent().getStringExtra(EXTRA_BOOKED_SEAT);
 
+        if (tripId == null || busId == null || bookedSeat == null) {
+            Toast.makeText(this, "Failed to get data", Toast.LENGTH_SHORT).show();
+            finish();
+        } else {
+            getTrip(tripId);
+        }
         tvUserName = findViewById(R.id.tvUserName);
         tvUserPhoneNumber = findViewById(R.id.tvUserPhoneNumber);
         tvUserBusName = findViewById(R.id.tvUserBusName);
@@ -128,7 +134,7 @@ public class PaymentDetailActivity extends AppCompatActivity {
         tvDepartureDate.setText(dateTrip);
         tvArrivaltime.setText(trip.getTimeArrival());
         tvDepartureCity.setText(trip.getAsal());
-        tvDepartureTerminal.setText(trip.getDepartTerminal());
+        tvDepartureTerminal.setText(trip.getDepartureTerminal());
         tvArrivalCity.setText(trip.getTujuan());
         tvArrivalTerminal.setText(trip.getArrivalTerminal());
         tvUserEstimatedTime.setText(trip.getWaktu());

@@ -53,6 +53,7 @@ public class FragmentHomePage extends Fragment {
         btnSearchBus = view.findViewById(R.id.btnSearchBus);
         etPassengers = view.findViewById(R.id.etPassengers);
 
+
         DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker view, int year, int month, int day) {
@@ -80,6 +81,7 @@ public class FragmentHomePage extends Fragment {
                 String stringPassengers= etPassengers.getText().toString();
                 Integer passengers;
                 String date = datePicker.getText().toString();
+
 
                 if (selectedDeparture.equals("Select Departure")) {
                     Toast.makeText(getActivity(), "Depature is required!", Toast.LENGTH_SHORT).show();
