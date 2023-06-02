@@ -117,10 +117,7 @@ public class BusScheduleActivity extends AppCompatActivity {
                             String price = document.getString("price");
                             String time = document.getString("time");
 
-
-
                             Trip trip = new Trip(busName, departureCity, arrivalCity, price, departureTerminal, arrivalTerminal, departureHour, arrivalHour, time, date, passengers);
-
 
                             busSchedules.add(trip);
                             listTrip = new ArrayList<>();

@@ -2,9 +2,11 @@ package com.example.busreservationapp;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -136,20 +138,34 @@ public class FragmentBusDetail extends Fragment {
         btnBookNow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String departureCity = departure_detail.getText().toString();
-                String arrivalCity = arrival_detail.getText().toString();
-                String departureHour = departure_time_detail.getText().toString();
-                String arrivalHour = arrival_time_detail.getText().toString();
-                String departureTerminal = bus_station_detail_dep.getText().toString();
-                String arrivalTerminal = bus_station_detail_arr.getText().toString();
-                String busName = nameBusDetail.getText().toString();
-                String price = ticketPrice.getText().toString();
-                String tripTime = trip_time_detail.getText().toString();
-                String date = date_detail.getText().toString();
-                String passengers = passengers_detail.getText().toString();
+                AlertDialog.Builder alert = new AlertDialog.Builder(getActivity());
+                alert.setTitle("Confirmation");
+                alert.setMessage("Are you sure you want to book this?");
+                alert.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        String departureCity = departure_detail.getText().toString();
+                        String arrivalCity = arrival_detail.getText().toString();
+                        String departureHour = departure_time_detail.getText().toString();
+                        String arrivalHour = arrival_time_detail.getText().toString();
+                        String departureTerminal = bus_station_detail_dep.getText().toString();
+                        String arrivalTerminal = bus_station_detail_arr.getText().toString();
+                        String busName = nameBusDetail.getText().toString();
+                        String price = ticketPrice.getText().toString();
+                        String tripTime = trip_time_detail.getText().toString();
+                        String date = date_detail.getText().toString();
+                        String passengers = passengers_detail.getText().toString();
 
-
-                saveDataToFirestore(departureCity, arrivalCity, departureHour, arrivalHour, departureTerminal, arrivalTerminal, busName, price, tripTime, passengers, date);
+                        saveDataToFirestore(departureCity, arrivalCity, departureHour, arrivalHour, departureTerminal, arrivalTerminal, busName, price, tripTime, passengers, date);
+                    }
+                });
+                alert.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+                alert.show();
             }
         });
     }

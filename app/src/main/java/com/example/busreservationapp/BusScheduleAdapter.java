@@ -2,6 +2,7 @@ package com.example.busreservationapp;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +11,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
 
 import org.w3c.dom.Text;
@@ -35,7 +37,6 @@ public class BusScheduleAdapter extends RecyclerView.Adapter<BusScheduleAdapter.
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_ticket_layout, parent, false);
         return new ViewHolder(v);
     }
-
 
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
@@ -104,8 +105,6 @@ public class BusScheduleAdapter extends RecyclerView.Adapter<BusScheduleAdapter.
             tvPrice = itemView.findViewById(R.id.tvPrice);
             btnBookNow = itemView.findViewById(R.id.btnBookNow);
         }
-
-
     }
 }
 

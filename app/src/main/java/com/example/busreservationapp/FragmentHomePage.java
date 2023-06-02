@@ -83,6 +83,10 @@ public class FragmentHomePage extends Fragment {
                 String date = datePicker.getText().toString();
 
 
+                if (selectedDeparture.equals("Select Departure") && selectedArrival.equals("Select Arrival")) {
+                    Toast.makeText(getActivity(), "Depature and Arrival are required!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 if (selectedDeparture.equals("Select Departure")) {
                     Toast.makeText(getActivity(), "Depature is required!", Toast.LENGTH_SHORT).show();
                     return;
