@@ -54,6 +54,12 @@ public class BusScheduleActivity extends AppCompatActivity {
 
     private ProgressBar progressBar;
 
+    private String passengers;
+
+    private String date;
+
+    private Trip trip;
+
 
 
     @Override
@@ -75,8 +81,8 @@ public class BusScheduleActivity extends AppCompatActivity {
         Intent intent = getIntent();
         String departure = intent.getStringExtra("departure");
         String arrival = intent.getStringExtra("arrival");
-        String date = intent.getStringExtra("date");
-        String passengers = intent.getStringExtra("passengers");
+        date = intent.getStringExtra("date");
+        passengers = intent.getStringExtra("passengers");
 
         recyclerView.setLayoutManager(layoutManager);
 
@@ -111,7 +117,10 @@ public class BusScheduleActivity extends AppCompatActivity {
                             String price = document.getString("price");
                             String time = document.getString("time");
 
-                            Trip trip = new Trip(busName, departureCity, arrivalCity, price, departureTerminal, arrivalTerminal, departureHour, arrivalHour, time);
+
+
+                            Trip trip = new Trip(busName, departureCity, arrivalCity, price, departureTerminal, arrivalTerminal, departureHour, arrivalHour, time, date, passengers);
+
 
                             busSchedules.add(trip);
                             listTrip = new ArrayList<>();
@@ -149,7 +158,7 @@ public class BusScheduleActivity extends AppCompatActivity {
                             String price = document.getString("price");
                             String time = document.getString("time");
 
-                            Trip trip = new Trip(busName, departureCity, arrivalCity, price, departureTerminal, arrivalTerminal, departureHour, arrivalHour, time);
+                            Trip trip = new Trip(busName, departureCity, arrivalCity, price, departureTerminal, arrivalTerminal, departureHour, arrivalHour, time, date, passengers);
 
                             busSchedules.add(trip);
                             listTrip = new ArrayList<>();
@@ -186,8 +195,7 @@ public class BusScheduleActivity extends AppCompatActivity {
                             String busName = document.getString("busName");
                             String price = document.getString("price");
                             String time = document.getString("time");
-
-                            Trip trip = new Trip(busName, departureCity, arrivalCity, price, departureTerminal, arrivalTerminal, departureHour, arrivalHour, time);
+                            Trip trip = new Trip(busName, departureCity, arrivalCity, price, departureTerminal, arrivalTerminal, departureHour, arrivalHour, time, date, passengers);
 
                             busSchedules.add(trip);
                             listTrip = new ArrayList<>();
@@ -225,7 +233,7 @@ public class BusScheduleActivity extends AppCompatActivity {
                                 String price = document.getString("price");
                                 String time = document.getString("time");
 
-                                Trip trip = new Trip(busName, departureCity, arrivalCity, price, departureTerminal, arrivalTerminal, departureHour, arrivalHour, time);
+                                Trip trip = new Trip(busName, departureCity, arrivalCity, price, departureTerminal, arrivalTerminal, departureHour, arrivalHour, time, date, passengers);
 
                                 busSchedules.add(trip);
                                 listTrip = new ArrayList<>();
@@ -263,7 +271,7 @@ public class BusScheduleActivity extends AppCompatActivity {
                             String price = document.getString("price");
                             String time = document.getString("time");
 
-                            Trip trip = new Trip(busName, departureCity, arrivalCity, price, departureTerminal, arrivalTerminal, departureHour, arrivalHour, time);
+                            Trip trip = new Trip(busName, departureCity, arrivalCity, price, departureTerminal, arrivalTerminal, departureHour, arrivalHour, time, date, passengers);
 
                             busSchedules.add(trip);
                             listTrip = new ArrayList<>();
@@ -301,7 +309,7 @@ public class BusScheduleActivity extends AppCompatActivity {
                             String price = document.getString("price");
                             String time = document.getString("time");
 
-                            Trip trip = new Trip(busName, departureCity, arrivalCity, price, departureTerminal, arrivalTerminal, departureHour, arrivalHour, time);
+                            Trip trip = new Trip(busName, departureCity, arrivalCity, price, departureTerminal, arrivalTerminal, departureHour, arrivalHour, time, date, passengers);
 
                             busSchedules.add(trip);
                             listTrip = new ArrayList<>();
@@ -328,5 +336,4 @@ public class BusScheduleActivity extends AppCompatActivity {
             progressBar.setVisibility(View.GONE);
         }
     }
-
 }

@@ -2,13 +2,29 @@ package com.example.busreservationapp;
 
 public class Trip {
 
-    String busName, asal, tujuan, harga, waktu, departureTerminal, arrivalTerminal, timeDeparture, timeArrival;
+    String busName, asal, tujuan, harga, waktu, departureTerminal, arrivalTerminal, timeDeparture, timeArrival, passengers, date;
 
     public Trip() {
 
     }
 
-    public Trip(String busName, String asal, String tujuan, String harga, String departureTerminal, String arrivalTerminal, String timeDeparture, String timeArrival, String waktu) {
+    public String getPassengers() {
+        return passengers;
+    }
+
+    public void setPassengers(String passengers) {
+        this.passengers = passengers;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public Trip(String busName, String asal, String tujuan, String harga, String departureTerminal, String arrivalTerminal, String timeDeparture, String timeArrival, String waktu, String passengers, String date) {
         this.busName = busName;
         this.asal = asal;
         this.tujuan = tujuan;
@@ -18,7 +34,8 @@ public class Trip {
         this.timeDeparture = timeDeparture;
         this.timeArrival = timeArrival;
         this.waktu = waktu;
-
+        this.passengers = passengers;
+        this.date = date;
     }
 
     public String getBusName() {

@@ -244,24 +244,6 @@
                 android:layout_toRightOf="@id/tvSchedule"
                 android:text="24 Jul 2019" />
 
-            <TextView
-                android:id="@+id/tvBusId"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="140dp"
-                android:layout_marginTop="14dp"
-                android:layout_toRightOf="@id/tvBusName"
-                android:text="Bus ID" />
-
-            <TextView
-                android:id="@+id/tvUserBusId"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/tvBusId"
-                android:layout_marginStart="140dp"
-                android:layout_marginTop="6dp"
-                android:layout_toRightOf="@id/tvBusName"
-                android:text="P 9123 NN" />
 
             <TextView
                 android:id="@+id/tvEstimatedTime"
@@ -334,27 +316,6 @@
                     android:layout_alignParentRight="true"
                     android:layout_marginEnd="14dp"
                     android:text="2x Rp 166.000,00" />
-
-                <TextView
-                    android:id="@+id/tvCode"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/tvTicket"
-                    android:layout_marginStart="14dp"
-                    android:layout_marginTop="12dp"
-                    android:text="Unique Kode"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/code"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/tvUserTicket"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginTop="12dp"
-                    android:layout_marginEnd="14dp"
-                    android:text="01" />
-
 
             </RelativeLayout>
 

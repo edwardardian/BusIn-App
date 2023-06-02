@@ -34,7 +34,8 @@ public class FragmentSeatChooserMenu extends Fragment implements View.OnClickLis
     private String[] seatCodes = new String[40];
 
     private Button btnBookNow;
-    private String[] selectedSeats;
+    private List<String> selectedSeatsList = new ArrayList<>();
+
 
     public static final String EXTRA_SELECTED_SEATS = "extra_selected_seats";
 
@@ -112,12 +113,13 @@ public class FragmentSeatChooserMenu extends Fragment implements View.OnClickLis
                 seats[seatIndex].setBackgroundResource(R.drawable.seat_booked);
                 seatAvailability[seatIndex] = 1;
                 seatCodes[seatIndex] = generateSeatCode(seatIndex);
+                selectedSeatsList.add(seatCodes[seatIndex]);
             } else {
                 seats[seatIndex].setBackgroundResource(R.drawable.seat_available);
                 seatAvailability[seatIndex] = 0;
                 seatCodes[seatIndex] = "";
+                selectedSeatsList.remove(seatCodes[seatIndex]);
             }
-
             updateSeatChooserView();
         }
     }
@@ -140,7 +142,7 @@ public class FragmentSeatChooserMenu extends Fragment implements View.OnClickLis
             intent.putExtra(EXTRA_SELECTED_SEATS, selectedSeats);
             startActivity(intent);
         } else {
-            Toast.makeText(getActivity(), "Harap pilih kursi terlebih dahulu!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), "Please select a seat first!", Toast.LENGTH_SHORT).show();
         }
     }
     public String[] getSelectedSeats() {

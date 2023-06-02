@@ -127,6 +127,8 @@ public class FragmentBusDetail extends Fragment {
                 intent.putExtra("busName", nameBusDetail.getText().toString());
                 intent.putExtra("price", ticketPrice.getText().toString());
                 intent.putExtra("time", trip_time_detail.getText().toString());
+                intent.putExtra("date", date_detail.getText().toString());
+                intent.putExtra("passengers", passengers_detail.getText().toString());
                 startActivity(intent);
             }
         });
@@ -143,19 +145,11 @@ public class FragmentBusDetail extends Fragment {
                 String busName = nameBusDetail.getText().toString();
                 String price = ticketPrice.getText().toString();
                 String tripTime = trip_time_detail.getText().toString();
+                String date = date_detail.getText().toString();
+                String passengers = passengers_detail.getText().toString();
 
-                HashMap<String, Object> tripData = new HashMap<>();
-                tripData.put("departureCity", departureCity);
-                tripData.put("arrivalCity", arrivalCity);
-                tripData.put("departureHour", departureHour);
-                tripData.put("arrivalHour", arrivalHour);
-                tripData.put("departureTerminal", departureTerminal);
-                tripData.put("arrivalTerminal", arrivalTerminal);
-                tripData.put("busName", busName);
-                tripData.put("price", price);
-                tripData.put("tripTime", tripTime);
 
-                saveDataToFirestore(departureCity, arrivalCity, departureHour, arrivalHour, departureTerminal, arrivalTerminal, busName, price, tripTime);
+                saveDataToFirestore(departureCity, arrivalCity, departureHour, arrivalHour, departureTerminal, arrivalTerminal, busName, price, tripTime, passengers, date);
             }
         });
     }
@@ -182,21 +176,23 @@ public class FragmentBusDetail extends Fragment {
     }
 
     private void saveDataToFirestore(String departureCity, String arrivalCity, String departureHour, String arrivalHour,
-                                     String departureTerminal, String arrivalTerminal, String busName, String price, String tripTime) {
+                                     String departureTerminal, String arrivalTerminal, String busName, String price, String date, String tripTime, String passengers) {
 
-        Trip trip = new Trip(busName, departureCity, arrivalCity, price, departureTerminal, arrivalTerminal, departureHour, arrivalHour, tripTime);
+
+        Trip trip = new Trip(busName, departureCity, arrivalCity, price, departureTerminal, arrivalTerminal, departureHour, arrivalHour, passengers, date, tripTime);
+
 
         CollectionReference tripCollection = db.collection("trip");
 
         tripCollection.add(trip)
                 .addOnSuccessListener(documentReference -> {
+                    String tripId = documentReference.getId();
                     Intent intent = new Intent(getActivity(), PaymentDetailActivity.class);
-                    intent.putExtra("tripId", documentReference.getId());
+                    intent.putExtra("tripId", tripId);
                     startActivity(intent);
                 })
                 .addOnFailureListener(e -> {
                     Toast.makeText(getActivity(), "Failed to save trip data to Firestore", Toast.LENGTH_SHORT).show();
                 });
     }
-
 }

@@ -65,8 +65,8 @@ public class BusScheduleAdapter extends RecyclerView.Adapter<BusScheduleAdapter.
                 intent.putExtra("arrivalHour", trip.getTimeArrival());
                 intent.putExtra("time", trip.getWaktu());
                 intent.putExtra("price", trip.getHarga());
-                intent.getStringExtra("date");
-                intent.getStringExtra("passengers");
+                intent.putExtra("date", trip.getDate());
+                intent.putExtra("passengers", trip.getPassengers());
 
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 context.startActivity(intent);

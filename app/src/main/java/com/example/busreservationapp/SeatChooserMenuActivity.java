@@ -79,6 +79,8 @@ public class SeatChooserMenuActivity extends AppCompatActivity {
                 intent.putExtra("arrivalTerminal", getIntent().getStringExtra("arrivalTerminal"));
                 intent.putExtra("price", formattedTotalPrice);
                 intent.putExtra("time", getIntent().getStringExtra("time"));
+                intent.putExtra("date", getIntent().getStringExtra("date"));
+                intent.putExtra("passengers", getIntent().getStringExtra("passengers"));
                 intent.putExtra(FragmentSeatChooserMenu.EXTRA_SELECTED_SEATS, selectedSeats);
                 startActivity(intent);
             } else {
