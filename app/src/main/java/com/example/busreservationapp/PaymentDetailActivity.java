@@ -32,8 +32,6 @@ public class PaymentDetailActivity extends AppCompatActivity {
         db = FirebaseFirestore.getInstance();
         auth = FirebaseAuth.getInstance();
 
-        Intent intent = getIntent();
-        tripId = intent.getStringExtra("tripId");
         tvUserName = findViewById(R.id.tvUserName);
         tvUserPhoneNumber = findViewById(R.id.tvUserPhoneNumber);
         tvUserSeats = findViewById(R.id.tvUserSeats);
@@ -50,6 +48,9 @@ public class PaymentDetailActivity extends AppCompatActivity {
         tvArrivalDate = findViewById(R.id.tvArrivalDate);
         tvUserTicket = findViewById(R.id.tvUserTicket);
         tvUserPriceTotal = findViewById(R.id.tvUserPriceTotal);
+
+        Intent intent = getIntent();
+        tripId = intent.getStringExtra("tripId");
 
         selectedSeats = intent.getStringArrayExtra(FragmentSeatChooserMenu.EXTRA_SELECTED_SEATS);
         if (selectedSeats != null && selectedSeats.length > 0) {

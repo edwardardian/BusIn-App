@@ -19,20 +19,15 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize">
 
-            <ImageView
-                android:id="@+id/ivBackArrow"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="8dp"
-                android:background="?selectableItemBackgroundBorderless"
-                android:src="" />
-
             <TextView
                 style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="Complete Your Payment" />
+                android:textSize="25dp"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:text="Payment Method" />
         </androidx.appcompat.widget.Toolbar>
     </com.google.android.material.appbar.AppBarLayout>
 
@@ -57,19 +52,19 @@
                 android:layout_height="wrap_content">
 
                 <TextView
-                    android:id="@+id/text_total_payment"
+                    android:id="@+id/tvTotalPayment"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentStart="true"
                     android:layout_alignParentTop="true"
                     android:layout_marginStart="30dp"
                     android:layout_marginTop="30dp"
-                    android:text="Total Payment:"
-                    android:textSize="12sp"
+                    android:text="Total Payment"
+                    android:textSize="15dp"
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/totalPaymentDisplay"
+                    android:id="@+id/tvTotalPaymentDetail"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentStart="true"
@@ -78,7 +73,7 @@
                     android:layout_marginTop="50dp"
                     android:text="Rp.123.000"
                     android:textColor="@color/blue"
-                    android:textSize="30sp"
+                    android:textSize="30dp"
                     android:textStyle="bold" />
 
 
@@ -117,7 +112,7 @@
                 android:layout_height="wrap_content">
 
                 <TextView
-                    android:id="@+id/text_e_wallet"
+                    android:id="@+id/tvEWallet"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentStart="true"
@@ -129,7 +124,7 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/select_e_wallet"
+                    android:id="@+id/tvSelectEWallet"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentTop="true"
@@ -154,7 +149,7 @@
                     android:id="@+id/divider_e_wallet"
                     android:layout_width="match_parent"
                     android:layout_height="2dp"
-                    android:layout_below="@id/text_e_wallet"
+                    android:layout_below="@id/tvEWallet"
                     android:layout_marginTop="5dp"
                     android:background="?android:attr/listDivider"/>
 
@@ -197,19 +192,19 @@
                 android:layout_height="wrap_content">
 
                 <TextView
-                    android:id="@+id/text_virtual_account"
+                    android:id="@+id/tvTransferBankVirtualAccount"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentStart="true"
                     android:layout_alignParentTop="true"
                     android:layout_marginStart="30dp"
                     android:layout_marginTop="10dp"
-                    android:text="Virtual Account"
+                    android:text="Transfer Bank Virtual Account"
                     android:textSize="12sp"
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/select_bank_transfer"
+                    android:id="@+id/tvSelectTransferBankVirtualAccount"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentTop="true"
@@ -235,7 +230,7 @@
                     android:id="@+id/divider_virtual_account"
                     android:layout_width="match_parent"
                     android:layout_height="2dp"
-                    android:layout_below="@id/text_virtual_account"
+                    android:layout_below="@id/tvTransferBankVirtualAccount"
                     android:layout_marginTop="5dp"
                     android:background="?android:attr/listDivider" />
 
@@ -279,7 +274,7 @@
                 android:layout_height="wrap_content">
 
                 <TextView
-                    android:id="@+id/text_retail"
+                    android:id="@+id/tvRetailPayment"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentStart="true"
@@ -291,7 +286,7 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/select_retail"
+                    android:id="@+id/tvSelectRetailPayment"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentTop="true"
@@ -316,7 +311,7 @@
                     android:id="@+id/divider_retail"
                     android:layout_width="match_parent"
                     android:layout_height="2dp"
-                    android:layout_below="@id/text_retail"
+                    android:layout_below="@id/tvRetailPayment"
                     android:layout_marginTop="5dp"
                     android:background="?android:attr/listDivider" />
 
@@ -328,7 +323,7 @@
                     android:layout_marginStart="30dp"
                     android:layout_marginTop="13dp"
                     android:layout_marginBottom="13dp"
-                    android:src="@drawable/alfamidi_logo" />
+                    android:src="@drawable/alfamart_logo" />
 
                 <ImageView
                     android:layout_width="40dp"
