@@ -192,11 +192,10 @@ public class FragmentBusDetail extends Fragment {
     }
 
     private void saveDataToFirestore(String departureCity, String arrivalCity, String departureHour, String arrivalHour,
-                                     String departureTerminal, String arrivalTerminal, String busName, String price, String date, String tripTime, String passengers) {
+                                     String departureTerminal, String arrivalTerminal, String busName, String price, String passengers, String tripTime, String date) {
 
 
         Trip trip = new Trip(busName, departureCity, arrivalCity, price, departureTerminal, arrivalTerminal, departureHour, arrivalHour, passengers, date, tripTime);
-
 
         CollectionReference tripCollection = db.collection("trip");
 

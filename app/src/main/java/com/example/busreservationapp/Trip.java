@@ -8,22 +8,6 @@ public class Trip {
 
     }
 
-    public String getPassengers() {
-        return passengers;
-    }
-
-    public void setPassengers(String passengers) {
-        this.passengers = passengers;
-    }
-
-    public String getDate() {
-        return date;
-    }
-
-    public void setDate(String date) {
-        this.date = date;
-    }
-
     public Trip(String busName, String asal, String tujuan, String harga, String departureTerminal, String arrivalTerminal, String timeDeparture, String timeArrival, String waktu, String passengers, String date) {
         this.busName = busName;
         this.asal = asal;
@@ -108,5 +92,21 @@ public class Trip {
 
     public void setTimeArrival(String timeArrival) {
         this.timeArrival = timeArrival;
+    }
+
+    public String getPassengers() {
+        return passengers;
+    }
+
+    public void setPassengers(String passengers) {
+        this.passengers = passengers;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
     }
 }
