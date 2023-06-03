@@ -1,20 +1,15 @@
 package com.example.busreservationapp;
 
-        import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 
-        import android.content.Intent;
-        import android.os.Bundle;
-        import android.widget.TextView;
-        import android.widget.Toast;
+import android.content.Intent;
+import android.os.Bundle;
+import android.widget.TextView;
+import android.widget.Toast;
 
-        import com.google.firebase.auth.FirebaseAuth;
-        import com.google.firebase.auth.FirebaseUser;
-        import com.google.firebase.firestore.DocumentSnapshot;
-        import com.google.firebase.firestore.FirebaseFirestore;
-
-        import java.text.NumberFormat;
-        import java.util.Calendar;
-        import java.util.Locale;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 public class PaymentDetailActivity extends AppCompatActivity {
     private FirebaseFirestore db;
@@ -22,6 +17,8 @@ public class PaymentDetailActivity extends AppCompatActivity {
     private FirebaseAuth auth;
 
     private Trip trip;
+    private String[] selectedSeats;
+
     private String departureCity, arrivalCity, departureHour, arrivalHour, departureTerminal, arrivalTerminal, busName, price, tripTime, date, passengers, tripId;
 
     private TextView tvUserName, tvUserPhoneNumber, tvUserSeats, tvUserBusName, tvUserDepartureTime, tvDepartureCity, tvUserEstimatedTime, tvDepartureTerminal,
@@ -53,6 +50,16 @@ public class PaymentDetailActivity extends AppCompatActivity {
         tvArrivalDate = findViewById(R.id.tvArrivalDate);
         tvUserTicket = findViewById(R.id.tvUserTicket);
         tvUserPriceTotal = findViewById(R.id.tvUserPriceTotal);
+
+        selectedSeats = intent.getStringArrayExtra(FragmentSeatChooserMenu.EXTRA_SELECTED_SEATS);
+        if (selectedSeats != null && selectedSeats.length > 0) {
+            StringBuilder seatNumbers = new StringBuilder();
+            for (String seat : selectedSeats) {
+                seatNumbers.append(seat).append(", ");
+            }
+            seatNumbers.deleteCharAt(seatNumbers.length() - 2);
+            seatNo.setText(seatNumbers.toString());
+        }
 
         getUserData();
         getTripData();
@@ -108,15 +115,17 @@ public class PaymentDetailActivity extends AppCompatActivity {
                         tvDepartureDate.setText(date);
                         tvArrivalTime.setText(arrivalHour);
                         tvArrivalCity.setText(arrivalCity);
-                        seatNo.setText("A1");
                         tvArrivalTerminal.setText(arrivalTerminal);
                         tvArrivalDate.setText(date);
-                        tvUserTicket.setText("Single Trip");
                         tvUserPriceTotal.setText(price);
+
+                        String passengersCount = passengers;
+                        String ticketText = passengersCount;
+                        tvUserTicket.setText(ticketText);
                     }
                 })
                 .addOnFailureListener(e -> {
-                    Toast.makeText(PaymentDetailActivity.this, "Gagal mengambil data perjalanan", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(PaymentDetailActivity.this, "Failed to get trip data!", Toast.LENGTH_SHORT).show();
                 });
     }
 }
