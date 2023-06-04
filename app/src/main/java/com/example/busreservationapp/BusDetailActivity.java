@@ -3,6 +3,7 @@ package com.example.busreservationapp;
 import android.content.Intent;
 import android.os.Bundle;
 
+import android.util.Log;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 
@@ -12,7 +13,6 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import java.util.ArrayList;
-
 
 
 public class BusDetailActivity extends AppCompatActivity {
@@ -34,16 +34,33 @@ public class BusDetailActivity extends AppCompatActivity {
             selectedSeats = getIntent().getStringArrayExtra(FragmentSeatChooserMenu.EXTRA_SELECTED_SEATS);
         }
 
+        if (selectedSeats != null) {
+            for (String seat : selectedSeats) {
+                Log.d(TAG, "Selected Seat: " + seat);
+            }
+        }
+
         initView();
 
-        loadFragment(fragmentBusDetail);
+        loadFragment(fragmentBusDetail, selectedSeats);
+
     }
 
     private void initView(){
         container = findViewById(R.id.container);
     }
 
-    private void loadFragment(Fragment fragment){
+    private void loadFragment(Fragment fragment, String[] selectedSeats) {
+        if (fragment instanceof FragmentBusDetail) {
+            ArrayList<String> selectedSeatsList = new ArrayList<>();
+            if (selectedSeats != null) {
+                for (String seat : selectedSeats) {
+                    selectedSeatsList.add(seat);
+                }
+            }
+            ((FragmentBusDetail) fragment).setSelectedSeats(selectedSeatsList);
+        }
+
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.container, fragment);

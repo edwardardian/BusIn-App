@@ -9,7 +9,11 @@ import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class PaymentDetailActivity extends AppCompatActivity {
     private FirebaseFirestore db;
@@ -123,10 +127,26 @@ public class PaymentDetailActivity extends AppCompatActivity {
                         String passengersCount = passengers;
                         String ticketText = passengersCount;
                         tvUserTicket.setText(ticketText);
+
+                        getSelectedSeatsFromFirestore(documentSnapshot);
                     }
                 })
                 .addOnFailureListener(e -> {
                     Toast.makeText(PaymentDetailActivity.this, "Failed to get trip data!", Toast.LENGTH_SHORT).show();
                 });
+    }
+
+    private void getSelectedSeatsFromFirestore(DocumentSnapshot tripSnapshot) {
+        if (tripSnapshot.contains("selectedSeats")) {
+            List<String> selectedSeatsList = (List<String>) tripSnapshot.get("selectedSeats");
+            if (selectedSeatsList != null && !selectedSeatsList.isEmpty()) {
+                StringBuilder seatNumbers = new StringBuilder();
+                for (String seat : selectedSeatsList) {
+                    seatNumbers.append(seat).append(", ");
+                }
+                seatNumbers.deleteCharAt(seatNumbers.length() - 2);
+                seatNo.setText(seatNumbers.toString());
+            }
+        }
     }
 }

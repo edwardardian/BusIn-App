@@ -26,6 +26,7 @@ import com.squareup.picasso.Picasso;
 import org.w3c.dom.Text;
 
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class FragmentBusDetail extends Fragment {
@@ -50,6 +51,10 @@ public class FragmentBusDetail extends Fragment {
     private DocumentSnapshot selectedBus;
 
     private double ticketPriceValue;
+
+    private ArrayList<String> selectedSeats;
+
+
 
     @Nullable
     @Override
@@ -156,7 +161,7 @@ public class FragmentBusDetail extends Fragment {
                         String date = date_detail.getText().toString();
                         String passengers = passengers_detail.getText().toString();
 
-                        saveDataToFirestore(departureCity, arrivalCity, departureHour, arrivalHour, departureTerminal, arrivalTerminal, busName, price, tripTime, passengers, date);
+                        saveDataToFirestore(departureCity, arrivalCity, departureHour, arrivalHour, departureTerminal, arrivalTerminal, busName, price, tripTime, passengers, date, selectedSeats);
                     }
                 });
                 alert.setNegativeButton("No", new DialogInterface.OnClickListener() {
@@ -192,10 +197,11 @@ public class FragmentBusDetail extends Fragment {
     }
 
     private void saveDataToFirestore(String departureCity, String arrivalCity, String departureHour, String arrivalHour,
-                                     String departureTerminal, String arrivalTerminal, String busName, String price, String passengers, String tripTime, String date) {
+                                     String departureTerminal, String arrivalTerminal, String busName, String price,
+                                     String passengers, String tripTime, String date, ArrayList<String> selectedSeats) {
 
+        Trip trip = new Trip(busName, departureCity, arrivalCity, price, departureTerminal, arrivalTerminal, departureHour, arrivalHour, passengers, date, tripTime, selectedSeats);
 
-        Trip trip = new Trip(busName, departureCity, arrivalCity, price, departureTerminal, arrivalTerminal, departureHour, arrivalHour, passengers, date, tripTime);
 
         CollectionReference tripCollection = db.collection("trip");
 
@@ -209,5 +215,10 @@ public class FragmentBusDetail extends Fragment {
                 .addOnFailureListener(e -> {
                     Toast.makeText(getActivity(), "Failed to save trip data to Firestore", Toast.LENGTH_SHORT).show();
                 });
+    }
+
+
+    public void setSelectedSeats(ArrayList<String> seats) {
+        selectedSeats = seats;
     }
 }

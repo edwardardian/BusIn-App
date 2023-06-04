@@ -37,7 +37,7 @@ public class FragmentSeatChooserMenu extends Fragment implements View.OnClickLis
     private List<String> selectedSeatsList = new ArrayList<>();
 
 
-    public static final String EXTRA_SELECTED_SEATS = "extra_selected_seats";
+    public static final String EXTRA_SELECTED_SEATS = "EXTRA_SELECTED_SEATS";
 
     @Nullable
     @Override
@@ -120,6 +120,7 @@ public class FragmentSeatChooserMenu extends Fragment implements View.OnClickLis
                 seatCodes[seatIndex] = "";
                 selectedSeatsList.remove(seatCodes[seatIndex]);
             }
+            Log.d(TAG, "Selected Seats: " + selectedSeatsList.toString());
             updateSeatChooserView();
         }
     }
@@ -133,10 +134,8 @@ public class FragmentSeatChooserMenu extends Fragment implements View.OnClickLis
             }
         }
         if (isSeatSelected) {
-            String[] selectedSeats = new String[seatCodes.length];
-            for (int i = 0; i < seatCodes.length; i++) {
-                selectedSeats[i] = seatCodes[i] != null ? seatCodes[i] : "";
-            }
+            String[] selectedSeats = new String[selectedSeatsList.size()];
+            selectedSeats = selectedSeatsList.toArray(selectedSeats);
 
             Intent intent = new Intent(getActivity(), BusDetailActivity.class);
             intent.putExtra(EXTRA_SELECTED_SEATS, selectedSeats);
@@ -145,6 +144,7 @@ public class FragmentSeatChooserMenu extends Fragment implements View.OnClickLis
             Toast.makeText(getActivity(), "Please select a seat first!", Toast.LENGTH_SHORT).show();
         }
     }
+
     public String[] getSelectedSeats() {
         List<String> selectedSeatsList = new ArrayList<>();
 
@@ -178,9 +178,18 @@ public class FragmentSeatChooserMenu extends Fragment implements View.OnClickLis
     }
 
     private String generateSeatCode(int seatIndex) {
-        int row = (seatIndex / 2) + 1;
+        int row;
         int column = (seatIndex % 2) + 1;
 
-        return "Row " + row + ", Seat " + column;
+        if (seatIndex < 20) {
+            row = (seatIndex / 2) + 1;
+        } else {
+            row = (seatIndex / 2) - 8;
+        }
+
+        String[] alphabet = {"A", "B", "C", "D"};
+        String seatCode = alphabet[column - 1] + row;
+
+        return seatCode;
     }
 }

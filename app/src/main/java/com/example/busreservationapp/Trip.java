@@ -1,14 +1,18 @@
 package com.example.busreservationapp;
 
+import java.util.ArrayList;
+
 public class Trip {
 
     String busName, asal, tujuan, harga, waktu, departureTerminal, arrivalTerminal, timeDeparture, timeArrival, passengers, date;
+
+    ArrayList<String> selectedSeats;
 
     public Trip() {
 
     }
 
-    public Trip(String busName, String asal, String tujuan, String harga, String departureTerminal, String arrivalTerminal, String timeDeparture, String timeArrival, String waktu, String passengers, String date) {
+    public Trip(String busName, String asal, String tujuan, String harga, String departureTerminal, String arrivalTerminal, String timeDeparture, String timeArrival, String waktu, String passengers, String date, ArrayList<String> selectedSeats) {
         this.busName = busName;
         this.asal = asal;
         this.tujuan = tujuan;
@@ -20,6 +24,7 @@ public class Trip {
         this.waktu = waktu;
         this.passengers = passengers;
         this.date = date;
+        this.selectedSeats = selectedSeats;
     }
 
     public String getBusName() {
@@ -108,5 +113,13 @@ public class Trip {
 
     public void setDate(String date) {
         this.date = date;
+    }
+
+    public ArrayList<String> getSelectedSeats() {
+        return selectedSeats;
+    }
+
+    public void setSelectedSeats(ArrayList<String> selectedSeats) {
+        this.selectedSeats = selectedSeats;
     }
 }
