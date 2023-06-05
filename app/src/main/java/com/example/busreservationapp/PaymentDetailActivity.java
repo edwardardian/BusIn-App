@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,12 +22,15 @@ public class PaymentDetailActivity extends AppCompatActivity {
     private FirebaseAuth auth;
 
     private Trip trip;
+
     private String[] selectedSeats;
 
     private String departureCity, arrivalCity, departureHour, arrivalHour, departureTerminal, arrivalTerminal, busName, price, tripTime, date, passengers, tripId;
 
     private TextView tvUserName, tvUserPhoneNumber, tvUserSeats, tvUserBusName, tvUserDepartureTime, tvDepartureCity, tvUserEstimatedTime, tvDepartureTerminal,
                      tvDepartureDate, tvArrivalTime, tvArrivalCity, seatNo, tvArrivalTerminal, tvArrivalDate, tvUserTicket, tvUserPriceTotal;
+
+    private Button btnPayment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +56,7 @@ public class PaymentDetailActivity extends AppCompatActivity {
         tvArrivalDate = findViewById(R.id.tvArrivalDate);
         tvUserTicket = findViewById(R.id.tvUserTicket);
         tvUserPriceTotal = findViewById(R.id.tvUserPriceTotal);
+        btnPayment = findViewById(R.id.btnPayment);
 
         Intent intent = getIntent();
         tripId = intent.getStringExtra("tripId");
@@ -65,7 +70,6 @@ public class PaymentDetailActivity extends AppCompatActivity {
             seatNumbers.deleteCharAt(seatNumbers.length() - 2);
             seatNo.setText(seatNumbers.toString());
         }
-
         getUserData();
         getTripData();
     }
@@ -123,6 +127,12 @@ public class PaymentDetailActivity extends AppCompatActivity {
                         tvArrivalTerminal.setText(arrivalTerminal);
                         tvArrivalDate.setText(date);
                         tvUserPriceTotal.setText(price);
+
+                        btnPayment.setOnClickListener(v -> {
+                            Intent intent = new Intent(PaymentDetailActivity.this, PaymentMethodActivity.class);
+                            intent.putExtra("price", price);
+                            startActivity(intent);
+                        });
 
                         String passengersCount = passengers;
                         String ticketText = passengersCount;

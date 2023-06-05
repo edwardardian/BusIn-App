@@ -179,12 +179,14 @@ public class FragmentSeatChooserMenu extends Fragment implements View.OnClickLis
 
     private String generateSeatCode(int seatIndex) {
         int row;
-        int column = (seatIndex % 2) + 1;
+        int column;
 
         if (seatIndex < 20) {
             row = (seatIndex / 2) + 1;
+            column = (seatIndex % 2) + 1;
         } else {
-            row = (seatIndex / 2) - 8;
+            row = (seatIndex - 20) / 2 + 1;
+            column = ((seatIndex - 20) % 2) + 3;
         }
 
         String[] alphabet = {"A", "B", "C", "D"};
@@ -192,4 +194,5 @@ public class FragmentSeatChooserMenu extends Fragment implements View.OnClickLis
 
         return seatCode;
     }
+
 }

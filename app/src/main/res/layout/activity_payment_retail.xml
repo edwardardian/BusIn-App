@@ -194,7 +194,7 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/select_alfamidi"
+                    android:id="@+id/select_alfamart"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentTop="true"
