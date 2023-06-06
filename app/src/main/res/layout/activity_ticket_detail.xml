@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F4F4F4"
+    android:background="@color/bright_gray"
     android:padding="20dp"
     tools:context=".TicketDetailActivity">
 
@@ -115,7 +115,7 @@
                 android:layout_marginStart="70dp"
                 android:layout_marginTop="10dp"
                 android:layout_toRightOf="@id/userInfo_phone"
-                android:text="Seats"
+                android:text="Seat/s"
                 android:textColor="@color/black"
                 android:textSize="12dp" />
 

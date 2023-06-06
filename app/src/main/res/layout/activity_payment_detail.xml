@@ -51,7 +51,6 @@
                 android:id="@+id/tvPersonalInformation"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
                 android:text="Personal Information"
                 android:textSize="16dp"
                 android:textStyle="bold" />
