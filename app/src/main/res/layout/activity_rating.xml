@@ -182,7 +182,7 @@
             android:layout_height="30dp"
             android:backgroundTint="@color/blue_secondary"
             android:background="@drawable/star" />
-9+
+
         <CheckedTextView
             android:id="@+id/ctvStar3"
             android:layout_below="@id/ratingStar"
