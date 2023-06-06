@@ -52,25 +52,25 @@
             android:textSize="12dp" />
 
         <TextView
-            android:id="@+id/rating_busName_display"
+            android:id="@+id/rating_passenger"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/ratingSubTitle"
             android:layout_marginStart="100dp"
             android:layout_marginTop="20dp"
             android:layout_toRightOf="@id/rating_busName"
-            android:text="Bus No"
+            android:text="Passenger(s)"
             android:textColor="@color/black"
             android:textAlignment="center"
             android:textSize="12dp" />
 
         <TextView
-            android:id="@+id/name"
+            android:id="@+id/rating_busName_display"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/rating_busName"
             android:layout_marginStart="10dp"
-            android:text="Sempati Star"
+            android:text="Primajasa"
             android:textAlignment="center"
             android:textSize="16sp"
             android:textStyle="bold"
@@ -78,14 +78,14 @@
             android:layout_marginTop="8dp"/>
 
         <TextView
-            android:id="@+id/rating_busNo"
+            android:id="@+id/rating_passenger_display"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/rating_busName"
             android:layout_marginStart="100dp"
             android:layout_marginTop="8dp"
             android:layout_toRightOf="@id/rating_busName"
-            android:text="B 2323 DDD"
+            android:text="2"
             android:textAlignment="center"
             android:textColor="@color/blue_secondary"
             android:textSize="16dp"
@@ -123,7 +123,7 @@
             android:layout_below="@id/rating_departureDate"
             android:layout_marginStart="10dp"
             android:layout_marginTop="8dp"
-            android:text="25 Jul 2022"
+            android:text="20/22/23"
             android:textAlignment="center"
             android:textSize="16dp"
             android:textColor="@color/blue_secondary"
@@ -210,9 +210,10 @@
             android:backgroundTint="@color/blue_secondary"
             android:background="@drawable/star" />
 
+
         <Button
             android:id="@+id/btnRate"
-            android:layout_below="@+id/ctvStar3"
+            android:layout_below="@+id/textRating"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
@@ -222,6 +223,20 @@
             android:textSize="16dp"
             android:textStyle="bold"
             android:text="SUBMIT" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textRating"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_below="@id/ctvStar5">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="12dp"
+                android:hint="Write your feedback ..." />
+        </com.google.android.material.textfield.TextInputLayout>
 
 
     </RelativeLayout>

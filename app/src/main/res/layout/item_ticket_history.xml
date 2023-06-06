@@ -17,7 +17,7 @@
         android:padding="8dp">
 
         <RelativeLayout
-            android:id="@+id/relativeLayout"
+            android:id="@+id/topLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             card_view:layout_constraintEnd_toEndOf="parent"
@@ -57,13 +57,13 @@
         </RelativeLayout>
 
         <RelativeLayout
-            android:id="@+id/relativeLayout2"
+            android:id="@+id/midLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             card_view:layout_constraintEnd_toEndOf="parent"
             card_view:layout_constraintStart_toStartOf="parent"
-            card_view:layout_constraintTop_toBottomOf="@+id/relativeLayout">
+            card_view:layout_constraintTop_toBottomOf="@+id/topLayout">
 
             <TextView
                 android:id="@+id/history_departure"
@@ -95,7 +95,7 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp"
                 android:layout_toEndOf="@+id/history_departure"
-                android:text="-"
+                android:text=">>>"
                 android:textColor="#858585"
                 android:textSize="16sp"
                 android:textStyle="bold" />
@@ -116,12 +116,13 @@
         </RelativeLayout>
 
         <RelativeLayout
+            android:id="@+id/bottomLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             card_view:layout_constraintEnd_toEndOf="parent"
             card_view:layout_constraintStart_toStartOf="parent"
-            card_view:layout_constraintTop_toBottomOf="@+id/relativeLayout2">
+            card_view:layout_constraintTop_toBottomOf="@+id/midLayout">
 
             <TextView
                 android:id="@+id/history_passenger_display"
@@ -130,6 +131,7 @@
                 android:layout_centerVertical="true"
                 android:layout_gravity="center"
                 android:layout_marginStart="16dp"
+
                 android:text="2"
                 android:textColor="@color/black"
                 android:textSize="14sp"
@@ -171,6 +173,22 @@
                 android:textColor="@color/black"
                 android:textSize="16sp"
                 android:textStyle="bold" />
+
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            card_view:layout_constraintEnd_toEndOf="parent"
+            card_view:layout_constraintStart_toStartOf="parent"
+            card_view:layout_constraintTop_toBottomOf="@+id/bottomLayout">
+
+            <Button
+                android:id="@+id/rating_button"
+                android:layout_width="158dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="205dp"
+                android:text="rate your trip"/>
 
         </RelativeLayout>
 
