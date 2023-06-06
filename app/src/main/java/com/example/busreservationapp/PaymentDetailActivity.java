@@ -13,7 +13,8 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-import java.util.ArrayList;
+import com.example.busreservationapp.User;
+
 import java.util.List;
 
 public class PaymentDetailActivity extends AppCompatActivity {
@@ -86,9 +87,20 @@ public class PaymentDetailActivity extends AppCompatActivity {
                         if (documentSnapshot.exists()) {
                             String userName = documentSnapshot.getString("name");
                             String userPhoneNumber = documentSnapshot.getString("phoneNumber");
+                            String userPhoto = documentSnapshot.getString("photo");
 
                             tvUserName.setText(userName);
                             tvUserPhoneNumber.setText(userPhoneNumber);
+
+                            db.collection("trip")
+                                    .document(tripId)
+                                    .update("user", new User(userName, user.getEmail(), userPhoneNumber, userPhoto))
+                                    .addOnSuccessListener(aVoid -> {
+
+                                    })
+                                    .addOnFailureListener(e -> {
+
+                                    });
                         }
                     })
                     .addOnFailureListener(e -> {

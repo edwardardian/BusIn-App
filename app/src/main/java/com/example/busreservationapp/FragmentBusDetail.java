@@ -200,20 +200,41 @@ public class FragmentBusDetail extends Fragment {
                                      String departureTerminal, String arrivalTerminal, String busName, String price,
                                      String passengers, String tripTime, String date, ArrayList<String> selectedSeats) {
 
-        Trip trip = new Trip(busName, departureCity, arrivalCity, price, departureTerminal, arrivalTerminal, departureHour, arrivalHour, passengers, date, tripTime, selectedSeats);
+
+        FirebaseFirestore.getInstance().collection("trip")
+                .orderBy("bookingNumber", Query.Direction.DESCENDING)
+                .limit(1)
+                .get()
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        int bookingNumber = 1;
+
+                        if (!task.getResult().isEmpty()) {
+
+                            DocumentSnapshot lastBooking = task.getResult().getDocuments().get(0);
+                            bookingNumber = lastBooking.getLong("bookingNumber").intValue() + 1;
+                        }
 
 
-        CollectionReference tripCollection = db.collection("trip");
+                        Trip trip = new Trip(busName, departureCity, arrivalCity, price, departureTerminal, arrivalTerminal, departureHour, arrivalHour, passengers, date, tripTime, selectedSeats);
+                        trip.setBookingNumber(bookingNumber);
 
-        tripCollection.add(trip)
-                .addOnSuccessListener(documentReference -> {
-                    String tripId = documentReference.getId();
-                    Intent intent = new Intent(getActivity(), PaymentDetailActivity.class);
-                    intent.putExtra("tripId", tripId);
-                    startActivity(intent);
-                })
-                .addOnFailureListener(e -> {
-                    Toast.makeText(getActivity(), "Failed to save trip data to Firestore", Toast.LENGTH_SHORT).show();
+
+                        CollectionReference tripCollection = FirebaseFirestore.getInstance().collection("trip");
+                        tripCollection.add(trip)
+                                .addOnSuccessListener(documentReference -> {
+                                    String tripId = documentReference.getId();
+                                    Intent intent = new Intent(getActivity(), PaymentDetailActivity.class);
+                                    intent.putExtra("tripId", tripId);
+                                    startActivity(intent);
+                                })
+                                .addOnFailureListener(e -> {
+                                    Toast.makeText(getActivity(), "Gagal menyimpan data perjalanan ke Firestore", Toast.LENGTH_SHORT).show();
+                                });
+
+                    } else {
+                        Toast.makeText(getActivity(), "Gagal mendapatkan nomor pesanan terakhir", Toast.LENGTH_SHORT).show();
+                    }
                 });
     }
 

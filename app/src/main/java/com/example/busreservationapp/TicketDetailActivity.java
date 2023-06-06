@@ -1,5 +1,6 @@
 package com.example.busreservationapp;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -20,8 +21,9 @@ public class TicketDetailActivity extends AppCompatActivity {
     private FirebaseAuth auth;
     private Trip trip;
     private TextView name, phoneNumber, seats, busName, seatsNumber, depatureTime, tripTime, depature, arrival,
-            depaturTerminal, arrivalTerminal, date, price;
+            depaturTerminal, arrivalTerminal, date, price, bookingNumber;
     private String n, pN, s, bN, sN, dTime, tT, dC, aC, dT, aT, d, p, tripId;
+    private int bookingNumberInt;
     private String[] selectedSeats;
 
     @Override
@@ -45,6 +47,7 @@ public class TicketDetailActivity extends AppCompatActivity {
         arrivalTerminal = findViewById(R.id.busTicket_arrivalTerminal);
         date = findViewById(R.id.busTicket_departureDate);
         price = findViewById(R.id.busTicket_totalPrice_display);
+        bookingNumber = findViewById(R.id.booking_number);
 
         Intent intent = getIntent();
         tripId = intent.getStringExtra("tripId");
@@ -67,7 +70,6 @@ public class TicketDetailActivity extends AppCompatActivity {
         FirebaseUser user = auth.getCurrentUser();
         if (user != null) {
             String userId = user.getUid();
-
             db.collection("users")
                     .document(userId)
                     .get()
@@ -87,39 +89,53 @@ public class TicketDetailActivity extends AppCompatActivity {
     }
 
     private void getTripData() {
-        db.collection("trip")
-                .document(tripId)
-                .get()
-                .addOnSuccessListener(documentSnapshot -> {
-                    if (documentSnapshot.exists()) {
-                        dC = documentSnapshot.getString("asal");
-                        aC = documentSnapshot.getString("tujuan");
-                        dTime = documentSnapshot.getString("timeDeparture");
-                        dT = documentSnapshot.getString("departureTerminal");
-                        aT = documentSnapshot.getString("arrivalTerminal");
-                        bN = documentSnapshot.getString("busName");
-                        p = documentSnapshot.getString("harga");
-                        tT = documentSnapshot.getString("waktu");
-                        d = documentSnapshot.getString("date");
-                        s = documentSnapshot.getString("passengers");
+        FirebaseUser user = auth.getCurrentUser();
+        if (user != null) {
+            String userId = user.getUid();
+            db.collection("trip")
+                    .whereEqualTo("user.email", user.getEmail())
+                    .orderBy("bookingNumber")
+                    .get()
+                    .addOnSuccessListener(queryDocumentSnapshots -> {
+                        if (!queryDocumentSnapshots.isEmpty()) {
+                            for (DocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
+                                Trip trip = documentSnapshot.toObject(Trip.class);
+                                if (trip != null) {
+                                    dC = trip.getAsal();
+                                    aC = trip.getTujuan();
+                                    dTime = trip.getTimeDeparture();
+                                    dT = trip.getDepartureTerminal();
+                                    aT = trip.getArrivalTerminal();
+                                    bN = trip.getBusName();
+                                    p = trip.getHarga();
+                                    tT = trip.getWaktu();
+                                    d = trip.getDate();
+                                    s = trip.getPassengers();
+                                    bookingNumberInt = trip.getBookingNumber();
 
-                        seats.setText(s);
-                        busName.setText(bN);
-                        depatureTime.setText(dTime);
-                        depature.setText(dC);
-                        tripTime.setText(tT);
-                        depaturTerminal.setText(dT);
-                        date.setText(d);
-                        arrival.setText(aC);
-                        arrivalTerminal.setText(aT);
-                        price.setText(p);
+                                    seats.setText(s);
+                                    busName.setText(bN);
+                                    depatureTime.setText(dTime);
+                                    depature.setText(dC);
+                                    tripTime.setText(tT);
+                                    depaturTerminal.setText(dT);
+                                    date.setText(d);
+                                    arrival.setText(aC);
+                                    arrivalTerminal.setText(aT);
+                                    price.setText(p);
+                                    bookingNumber.setText("Booking Number: " + Integer.toString(bookingNumberInt));
 
-                        getSelectedSeatsFromFirestore(documentSnapshot);
-                    }
-                })
-                .addOnFailureListener(e -> {
-                    Toast.makeText(TicketDetailActivity.this, "Failed to get trip data!", Toast.LENGTH_SHORT).show();
-                });
+                                    getSelectedSeatsFromFirestore(documentSnapshot);
+                                }
+                            }
+                        } else {
+                            Toast.makeText(TicketDetailActivity.this, "No trip data found for the current user", Toast.LENGTH_SHORT).show();
+                        }
+                    })
+                    .addOnFailureListener(e -> {
+                        Toast.makeText(TicketDetailActivity.this, "Failed to get trip data!", Toast.LENGTH_SHORT).show();
+                    });
+        }
     }
 
     private void getSelectedSeatsFromFirestore(DocumentSnapshot tripSnapshot) {

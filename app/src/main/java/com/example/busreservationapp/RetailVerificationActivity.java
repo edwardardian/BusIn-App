@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -68,8 +69,7 @@ public class RetailVerificationActivity extends AppCompatActivity {
         alert.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                startActivity(new Intent(RetailVerificationActivity.this, TicketDetailActivity.class));
-                finish();
+                Toast.makeText(RetailVerificationActivity.this, "Payment not verified. Please select another payment method!", Toast.LENGTH_SHORT).show();
             }
         });
         alert.setNegativeButton("No", new DialogInterface.OnClickListener() {

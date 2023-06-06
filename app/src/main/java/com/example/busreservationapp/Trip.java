@@ -5,6 +5,7 @@ import java.util.ArrayList;
 public class Trip {
 
     String busName, asal, tujuan, harga, waktu, departureTerminal, arrivalTerminal, timeDeparture, timeArrival, passengers, date;
+    int bookingNumber;
 
     ArrayList<String> selectedSeats;
 
@@ -121,5 +122,13 @@ public class Trip {
 
     public void setSelectedSeats(ArrayList<String> selectedSeats) {
         this.selectedSeats = selectedSeats;
+    }
+
+    public int getBookingNumber() {
+        return bookingNumber;
+    }
+
+    public void setBookingNumber(int bookingNumber) {
+        this.bookingNumber = bookingNumber;
     }
 }
