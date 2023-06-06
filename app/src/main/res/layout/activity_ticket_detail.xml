@@ -136,9 +136,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/userInfo_divider"
-                android:layout_marginStart="70dp"
                 android:layout_marginTop="10dp"
-                android:layout_toRightOf="@id/userInfo_seat"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="20dp"
                 android:text="Ticket Status"
                 android:textColor="@color/black"
                 android:textSize="12dp" />
@@ -160,7 +160,7 @@
                 android:layout_below="@id/userInfo_status"
                 android:layout_alignParentRight="true"
                 android:layout_marginTop="2dp"
-                android:layout_marginEnd="28dp"
+                android:layout_marginEnd="20dp"
                 android:text="Verified"
                 android:textColor="@color/blue_secondary"
                 android:textSize="14dp"
@@ -226,7 +226,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/busTicket_schedule"
                 android:layout_marginStart="20dp"
-                android:layout_marginTop="2dp"
+                android:layout_marginTop="3dp"
                 android:text="17.00"
                 android:textColor="@color/blue_secondary"
                 android:textStyle="bold" />
@@ -265,9 +265,9 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="97dp"
-                android:layout_marginStart="70dp"
-                android:text=">>>>>>>>"
+                android:layout_marginTop="100dp"
+                android:layout_marginStart="100dp"
+                android:text=">>>>>>>"
                 android:textColor="@color/black"
                 android:layout_toRightOf="@id/busTicket_departure"
                 android:layout_below="@id/busTicket_seatNo_display"/>
@@ -275,11 +275,11 @@
 
             <TextView
                 android:id="@+id/busTicket_arrival"
-                android:layout_toRightOf="@id/busTicket_departure"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="199dp"
+                android:layout_alignParentEnd="true"
                 android:layout_marginTop="156dp"
+                android:layout_marginEnd="20dp"
                 android:text="Bandung"
                 android:textColor="@color/blue_secondary"
                 android:textStyle="bold" />
@@ -306,35 +306,13 @@
                 android:textColor="@color/blue_secondary" />
 
             <TextView
-                android:id="@+id/busTicket_noBus"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="182dp"
-                android:layout_marginTop="10dp"
-                android:layout_toRightOf="@id/busTicket_name"
-                android:text="Bus No."
-                android:textColor="@color/black" />
-
-            <TextView
-                android:id="@+id/busTicket_noBus_display"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/busTicket_noBus"
-                android:layout_marginStart="182dp"
-                android:layout_marginLeft="170dp"
-                android:layout_marginTop="6dp"
-                android:layout_toRightOf="@id/busTicket_name"
-                android:text="B 2020 ZXC"
-                android:textColor="@color/blue_secondary" />
-
-            <TextView
                 android:id="@+id/busTicket_estimateTime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/busTicket_noBus_display"
-                android:layout_marginStart="182dp"
+                android:layout_below="@+id/busTicket_name_display"
                 android:layout_marginTop="26dp"
-                android:layout_toRightOf="@id/busTicket_name"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="20dp"
                 android:text="Trip Time"
                 android:textColor="@color/black" />
 
@@ -343,10 +321,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/busTicket_schedule"
-                android:layout_marginStart="182dp"
-                android:layout_toRightOf="@id/busTicket_name"
-                android:layout_marginTop="2dp"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="3dp"
                 android:text="2h, 10m"
+                android:layout_marginEnd="20dp"
                 android:textColor="@color/black"
                 android:textStyle="bold" />
 
@@ -354,9 +332,9 @@
                 android:id="@+id/busTicket_seatNo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="70dp"
+                android:layout_alignParentEnd="true"
                 android:layout_marginTop="10dp"
-                android:layout_toRightOf="@id/busTicket_name"
+                android:layout_marginEnd="20dp"
                 android:text="Seat No"
                 android:textColor="@color/black" />
 
@@ -365,16 +343,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/busTicket_seatNo"
-                android:layout_marginStart="70dp"
                 android:layout_marginTop="10dp"
-                android:layout_toRightOf="@id/busTicket_name"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="20dp"
                 android:text="A10"
                 android:textColor="@color/blue_secondary"
                 android:textStyle="bold" />
 
-
         </RelativeLayout>
-
 
     </androidx.cardview.widget.CardView>
 
@@ -402,6 +378,7 @@
         android:textSize="16dp"
         android:textStyle="bold"
         android:text="Rp 123.000"/>
+
      <Button
          android:layout_below="@id/busTicket_totalPrice_display"
          android:layout_width="match_parent"
