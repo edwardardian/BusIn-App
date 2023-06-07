@@ -1,47 +1,34 @@
 package com.example.busreservationapp;
 
-import android.app.DatePickerDialog;
-import android.content.Intent;
-import android.os.Bundle;
-import android.telecom.Call;
-import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
-import android.widget.DatePicker;
-import android.widget.EditText;
-import android.widget.FrameLayout;
-import android.widget.Spinner;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.MenuItem;
+import android.widget.FrameLayout;
+
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Locale;
-
-public class HomePageActivity extends AppCompatActivity {
-    private String TAG = HomePageActivity.class.getSimpleName();
+public class HistoryActivity extends AppCompatActivity {
+    private String TAG = HistoryActivity.class.getSimpleName();
 
     private FrameLayout container;
     private BottomNavigationView nav;
 
-    private EditText etPassengers, date;
-
-    private final FragmentHomePage fragmentHomePage = new FragmentHomePage();
+    private final FragmentHistory fragmentHistory = new FragmentHistory();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home_page);
+        setContentView(R.layout.activity_history);
 
         initView();
 
-        loadFragment(fragmentHomePage);
+        loadFragment(fragmentHistory);
 
         nav.setOnNavigationItemSelectedListener(
                 new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -49,14 +36,13 @@ public class HomePageActivity extends AppCompatActivity {
                     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                         switch (item.getItemId()){
                             case R.id.ticket_navigation:
+                                startActivity(new Intent(HistoryActivity.this, HomePageActivity.class));
+                                finish();
                                 return true;
                             case R.id.history_navigation :
-                                startActivity(new Intent(HomePageActivity.this, HistoryActivity.class));
-                                finish();
                                 return true;
                             case R.id.profile_navigation :
-                                startActivity(new Intent(HomePageActivity.this, UserActivity.class));
-                                finish();
+                                startActivity(new Intent(HistoryActivity.this, UserActivity.class));
                                 return true;
                         }
                         return false;
@@ -76,5 +62,4 @@ public class HomePageActivity extends AppCompatActivity {
         fragmentTransaction.replace(R.id.container, fragment);
         fragmentTransaction.commit();
     }
-
 }

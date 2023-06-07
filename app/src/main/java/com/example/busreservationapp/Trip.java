@@ -4,7 +4,8 @@ import java.util.ArrayList;
 
 public class Trip {
 
-    String busName, asal, tujuan, harga, waktu, departureTerminal, arrivalTerminal, timeDeparture, timeArrival, passengers, date;
+    String busName, asal, tujuan, harga, waktu, departureTerminal, arrivalTerminal, timeDeparture, timeArrival, passengers, date, tripId;
+
     int bookingNumber;
 
     ArrayList<String> selectedSeats;

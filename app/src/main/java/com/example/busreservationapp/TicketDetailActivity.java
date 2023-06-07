@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,6 +27,7 @@ public class TicketDetailActivity extends AppCompatActivity {
     private String n, pN, s, bN, sN, dTime, tT, dC, aC, dT, aT, d, p, tripId;
     private int bookingNumberInt;
     private String[] selectedSeats;
+    private Button btnBack;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -48,6 +51,7 @@ public class TicketDetailActivity extends AppCompatActivity {
         date = findViewById(R.id.busTicket_departureDate);
         price = findViewById(R.id.busTicket_totalPrice_display);
         bookingNumber = findViewById(R.id.booking_number);
+        btnBack = findViewById(R.id.btnBack);
 
         Intent intent = getIntent();
         tripId = intent.getStringExtra("tripId");
@@ -64,6 +68,14 @@ public class TicketDetailActivity extends AppCompatActivity {
 
         getUserData();
         getTripData();
+
+        btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intentBack = new Intent(TicketDetailActivity.this, HomePageActivity.class);
+                startActivity(intentBack);
+            }
+        });
     }
 
     private void getUserData() {

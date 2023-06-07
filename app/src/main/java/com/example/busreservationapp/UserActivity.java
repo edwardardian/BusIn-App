@@ -39,10 +39,10 @@ public class UserActivity extends AppCompatActivity {
                                 startActivity(new Intent(UserActivity.this, HomePageActivity.class));
                                 finish();
                                 return true;
-                           /* case R.id.history_navigation :
-                                startActivity(new Intent(UserActivity.this, UserProfileActivity.class));
+                           case R.id.history_navigation :
+                                startActivity(new Intent(UserActivity.this, HistoryActivity.class));
                                 finish();
-                                return true;*/
+                                return true;
                             case R.id.profile_navigation :
                                 return true;
                         }

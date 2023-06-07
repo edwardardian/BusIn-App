@@ -380,11 +380,12 @@
         android:text="Rp 123.000"/>
 
     <Button
+        android:id="@+id/btnBack"
         android:layout_below="@id/busTicket_totalPrice_display"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:text="Rate Our Service"/>
+        android:text="Home"/>
 
 
 

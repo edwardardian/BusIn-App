@@ -46,6 +46,7 @@ public class BusScheduleActivity extends AppCompatActivity {
     private RecyclerView.LayoutManager layoutManager;
     private RecyclerView.Adapter adapter;
     private ArrayList<Trip> listTrip;
+
     private BusScheduleAdapter busScheduleAdapter;
 
     private FirebaseFirestore db;
