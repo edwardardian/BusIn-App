@@ -3,10 +3,13 @@ package com.example.busreservationapp;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
+import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -34,6 +37,8 @@ public class TicketDetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ticket_detail);
 
+        popUp();
+
         db = FirebaseFirestore.getInstance();
         auth = FirebaseAuth.getInstance();
 
@@ -51,7 +56,7 @@ public class TicketDetailActivity extends AppCompatActivity {
         date = findViewById(R.id.busTicket_departureDate);
         price = findViewById(R.id.busTicket_totalPrice_display);
         bookingNumber = findViewById(R.id.booking_number);
-        btnBack = findViewById(R.id.btnBack);
+//        btnBack = findViewById(R.id.btnBack);
 
         Intent intent = getIntent();
         tripId = intent.getStringExtra("tripId");
@@ -69,13 +74,7 @@ public class TicketDetailActivity extends AppCompatActivity {
         getUserData();
         getTripData();
 
-        btnBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intentBack = new Intent(TicketDetailActivity.this, HomePageActivity.class);
-                startActivity(intentBack);
-            }
-        });
+
     }
 
     private void getUserData() {
@@ -163,4 +162,48 @@ public class TicketDetailActivity extends AppCompatActivity {
             }
         }
     }
+
+
+    protected void popUp() {
+        setContentView(R.layout.activity_ticket_detail);
+
+        Button btnShowRating = findViewById(R.id.busTicket_rateBtn);
+        btnShowRating.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showRatingPopup();
+            }
+        });
+    }
+
+    private void showRatingPopup() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        View dialogView = LayoutInflater.from(this).inflate(R.layout.activity_rating, null);
+        builder.setView(dialogView);
+
+        RatingBar ratingBar = dialogView.findViewById(R.id.ratingBar);
+        Button btnSubmit = dialogView.findViewById(R.id.btnRate);
+
+        AlertDialog dialog = builder.create();
+
+        btnSubmit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                float rating = ratingBar.getRating();
+                // Lakukan sesuatu dengan rating yang diberikan
+
+                // Mengirim data ke RatingActivity
+                Intent intent = new Intent(TicketDetailActivity.this, RatingActivity.class);
+                intent.putExtra("busName", busName.getText().toString());
+                intent.putExtra("passengers", s);
+                intent.putExtra("date", d);
+                startActivity(intent);
+
+                dialog.dismiss();
+            }
+        });
+
+        dialog.show();
+    }
 }
+

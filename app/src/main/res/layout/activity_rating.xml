@@ -47,8 +47,8 @@
             android:layout_marginStart="10dp"
             android:layout_marginTop="20dp"
             android:text="Bus Name"
-            android:textColor="@color/black"
             android:textAlignment="center"
+            android:textColor="@color/black"
             android:textSize="12dp" />
 
         <TextView
@@ -153,7 +153,7 @@
             android:text="Issued" />
 
         <TextView
-            android:id="@+id/ratingStar"
+            android:id="@+id/ratingText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/rating_departureDate"
@@ -165,71 +165,34 @@
             android:textColor="@color/black"
             android:textSize="12dp" />
 
-        <CheckedTextView
-            android:id="@+id/ctvStar1"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_below="@id/ratingStar"
-            android:layout_toLeftOf="@id/ctvStar2"
-            android:background="@drawable/star"
-            android:backgroundTint="@color/blue_secondary" />
-
-        <CheckedTextView
-            android:id="@+id/ctvStar2"
-            android:layout_toLeftOf="@id/ctvStar3"
-            android:layout_below="@id/ratingStar"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:backgroundTint="@color/blue_secondary"
-            android:background="@drawable/star" />
-        9+
-        <CheckedTextView
-            android:id="@+id/ctvStar3"
-            android:layout_below="@id/ratingStar"
-            android:layout_centerHorizontal="true"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:backgroundTint="@color/blue_secondary"
-            android:background="@drawable/star" />
-
-        <CheckedTextView
-            android:id="@+id/ctvStar4"
-            android:layout_toRightOf="@id/ctvStar3"
-            android:layout_below="@id/ratingStar"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:backgroundTint="@color/blue_secondary"
-            android:background="@drawable/star" />
-
-        <CheckedTextView
-            android:id="@+id/ctvStar5"
-            android:layout_toRightOf="@id/ctvStar4"
-            android:layout_below="@id/ratingStar"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:backgroundTint="@color/blue_secondary"
-            android:background="@drawable/star" />
-
+        <RatingBar
+            android:id="@+id/ratingBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/ratingText"
+            android:layout_marginLeft="10dp"
+            android:numStars="5"
+            android:stepSize="1"
+            android:rating="0" />
 
         <Button
             android:id="@+id/btnRate"
-            android:layout_below="@+id/textRating"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="12dp"
+            android:layout_below="@+id/textRating"
+            android:layout_marginTop="15dp"
             android:padding="12dp"
+            android:text="SUBMIT"
             android:textColor="@color/white"
-            android:textSize="16dp"
-            android:textStyle="bold"
-            android:text="SUBMIT" />
+            android:textSize="12dp"
+            android:textStyle="bold" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/textRating"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:layout_below="@id/ctvStar5">
+            android:layout_below="@id/ratingBar">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
