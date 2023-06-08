@@ -45,7 +45,19 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.ViewHold
         holder.historyPriceDisplay.setText(trip.getHarga());
         holder.historyPassengersDisplay.setText(trip.getPassengers());
         holder.historyDate.setText(trip.getDate());
+
+        holder.btnRating.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, RatingActivity.class);
+                intent.putExtra("busName", trip.getBusName());
+                intent.putExtra("passengers", trip.getPassengers());
+                intent.putExtra("date", trip.getDate());
+                context.startActivity(intent);
+            }
+        });
     }
+
 
     @Override
     public int getItemCount() {
@@ -64,7 +76,7 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.ViewHold
             historyPassengersDisplay = itemView.findViewById(R.id.history_passenger_display);
             historyPriceDisplay = itemView.findViewById(R.id.history_price_display);
             historyDate = itemView.findViewById(R.id.history_date);
-            btnRating = itemView.findViewById(R.id.btnRate);
+            btnRating = itemView.findViewById(R.id.rating_button);
         }
     }
 }

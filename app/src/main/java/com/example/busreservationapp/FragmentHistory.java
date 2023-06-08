@@ -65,8 +65,6 @@ public class FragmentHistory extends Fragment {
                         String harga = document.getString("harga");
                         String passengers = document.getString("passengers");
 
-
-
                         Trip trip = new Trip();
                         trip.setBusName(busName);
                         trip.setAsal(asal);
@@ -102,7 +100,6 @@ public class FragmentHistory extends Fragment {
                         }
                         historyAdapter.notifyDataSetChanged();
                     }
-
                 });
     }
 }

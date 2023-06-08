@@ -10,6 +10,10 @@ public class Trip {
 
     ArrayList<String> selectedSeats;
 
+    private BusRating rating;
+
+    private boolean rated;
+
     public Trip() {
 
     }
@@ -27,6 +31,7 @@ public class Trip {
         this.passengers = passengers;
         this.date = date;
         this.selectedSeats = selectedSeats;
+        this.rated = false;
     }
 
     public String getBusName() {
@@ -131,5 +136,13 @@ public class Trip {
 
     public void setBookingNumber(int bookingNumber) {
         this.bookingNumber = bookingNumber;
+    }
+
+    public boolean isRated() {
+        return rated;
+    }
+
+    public void setRated(boolean rated) {
+        this.rated = rated;
     }
 }
