@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/bright_gray"
-    tools:context=".RatingHistoryAdapter">
+    android:background="@color/bright_gray">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appbar"
@@ -16,23 +15,21 @@
         android:layout_height="wrap_content">
 
         <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="@color/white">
+            android:layout_height="wrap_content"
+            android:id="@+id/toolbar"
+            android:background="@color/white"
+            android:minHeight="?attr/actionBarSize"
+            android:theme="@style/Widget.AppCompat.ActionBar">
 
-            <TextView
-                android:id="@+id/busName_rateHistory"
-                style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
+            <ImageView
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="Primajasa" />
+                android:layout_height="60dp"
+                android:src="@drawable/logo"/>
+
         </androidx.appcompat.widget.Toolbar>
 
     </com.google.android.material.appbar.AppBarLayout>
-
-
 
     <RelativeLayout
         android:layout_width="match_parent"

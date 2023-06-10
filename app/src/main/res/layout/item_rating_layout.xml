@@ -8,15 +8,10 @@
     android:layout_margin="8dp"
     card_view:cardCornerRadius="5dp">
 
-
-
-
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
-
-
 
     <TextView
         android:id="@+id/userName_rateHistory"
@@ -29,18 +24,18 @@
         android:layout_marginStart="25dp"
         android:layout_marginTop="15dp"
         android:layout_marginEnd="16dp" />
+
     <TextView
-        android:id="@+id/date_rateHistory"
+        android:id="@+id/busName_rateHistory"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/userName_rateHistory"
-        android:text="01/02/22"
+        android:text="Primajasa"
         android:textSize="17sp"
         android:textStyle="bold"
         android:textColor="@color/black"
         android:layout_marginStart="25dp"
-        android:layout_marginEnd="16dp"
-        />
+        android:layout_marginEnd="16dp" />
 
     <RatingBar
         android:id="@+id/ratingBar_rateHistory"
@@ -49,9 +44,9 @@
         android:numStars="5"
         android:stepSize="1"
         android:rating="3"
-        android:layout_toEndOf="@id/date_rateHistory"
+        android:layout_toEndOf="@id/busName_rateHistory"
         android:layout_alignParentStart="true"
-        android:layout_marginStart="30dp"
+        android:layout_marginStart="40dp"
         android:layout_marginTop="24dp"
         android:layout_marginBottom="8dp"
         android:scaleX="0.4"
@@ -67,8 +62,7 @@
         android:layout_below="@id/ratingBar_rateHistory"
         android:layout_marginStart="25dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginBottom="15dp"
-        />
+        android:layout_marginBottom="15dp" />
 
 </RelativeLayout>
 

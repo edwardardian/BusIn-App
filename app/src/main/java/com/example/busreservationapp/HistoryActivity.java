@@ -43,6 +43,7 @@ public class HistoryActivity extends AppCompatActivity {
                                 return true;
                             case R.id.profile_navigation :
                                 startActivity(new Intent(HistoryActivity.this, UserActivity.class));
+                                finish();
                                 return true;
                         }
                         return false;

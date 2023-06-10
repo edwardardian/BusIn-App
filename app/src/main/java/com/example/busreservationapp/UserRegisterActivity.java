@@ -1,5 +1,6 @@
 package com.example.busreservationapp;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.media.Image;
 import android.os.Bundle;
@@ -11,6 +12,7 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
@@ -53,44 +55,59 @@ public class UserRegisterActivity extends AppCompatActivity {
 
 
     private void register() {
-        GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(getApplicationContext());
-        String userName = account.getDisplayName();
-        String userEmail = account.getEmail();
-        String phoneNumber = etPhoneNumber.getText().toString().trim();
-        String photo = account.getPhotoUrl().toString();
+        AlertDialog.Builder alert = new AlertDialog.Builder(UserRegisterActivity.this);
+        alert.setTitle("Confirmation");
+        alert.setMessage("Are you sure you have entered the right phone number?");
+        alert.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(getApplicationContext());
+                String userName = account.getDisplayName();
+                String userEmail = account.getEmail();
+                String phoneNumber = etPhoneNumber.getText().toString().trim();
+                String photo = account.getPhotoUrl().toString();
 
-        if (phoneNumber.isEmpty() || phoneNumber.length() < 10) {
-            etPhoneNumber.setError("Please fill the Phone Number blank field with at least 10 digits!");
-            etPhoneNumber.requestFocus();
-            return;
-        }
+                if (phoneNumber.isEmpty() || phoneNumber.length() < 10) {
+                    etPhoneNumber.setError("Please fill the Phone Number blank field with at least 10 digits!");
+                    etPhoneNumber.requestFocus();
+                    return;
+                }
 
-        User user = new User(userName, userEmail, phoneNumber, photo);
+                User user = new User(userName, userEmail, phoneNumber, photo);
 
-        FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-        if (firebaseUser != null) {
-            String userId = firebaseUser.getUid();
+                FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+                if (firebaseUser != null) {
+                    String userId = firebaseUser.getUid();
 
-            db.collection("users")
-                    .document(userId)
-                    .set(user)
-                    .addOnSuccessListener(new OnSuccessListener<Void>() {
-                        @Override
-                        public void onSuccess(Void aVoid) {
-                            progressBarRegister.setVisibility(View.GONE);
-                            Toast.makeText(UserRegisterActivity.this, "Phone number added successfully!", Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(UserRegisterActivity.this, HomePageActivity.class));
-                            finish();
-                        }
-                    })
-                    .addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception e) {
-                            progressBarRegister.setVisibility(View.GONE);
-                            Toast.makeText(UserRegisterActivity.this, "Phone number failed to add!", Toast.LENGTH_SHORT).show();
-                        }
-                    });
-        }
+                    db.collection("users")
+                            .document(userId)
+                            .set(user)
+                            .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void aVoid) {
+                                    progressBarRegister.setVisibility(View.GONE);
+                                    Toast.makeText(UserRegisterActivity.this, "Phone number added successfully!", Toast.LENGTH_SHORT).show();
+                                    startActivity(new Intent(UserRegisterActivity.this, HomePageActivity.class));
+                                    finish();
+                                }
+                            })
+                            .addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    progressBarRegister.setVisibility(View.GONE);
+                                    Toast.makeText(UserRegisterActivity.this, "Phone number failed to add!", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                }
+            }
+        });
+        alert.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+        alert.show();
     }
 }
 

@@ -43,6 +43,7 @@ public class FragmentBusDetail extends Fragment {
     private TextView trip_time_detail;
     private TextView passengers_detail;
     private TextView date_detail;
+    private TextView rating;
     private ImageView busPhoto;
     private Button chooseSeats;
     private Button btnBookNow;
@@ -80,6 +81,7 @@ public class FragmentBusDetail extends Fragment {
         chooseSeats = view.findViewById(R.id.btnSeatChooser);
         btnBookNow = view.findViewById(R.id.btnBookNow);
         date_detail = view.findViewById(R.id.date_detail);
+        rating = view.findViewById(R.id.rating);
 
         db = FirebaseFirestore.getInstance();
 
@@ -120,6 +122,15 @@ public class FragmentBusDetail extends Fragment {
         passengers_detail.setText(passengers);
 
         getBusPhoto(tvBusName);
+
+        rating.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), RatingHistoryActivity.class);
+                intent.putExtra("busName", nameBusDetail.getText().toString());
+                startActivity(intent);
+            }
+        });
 
         chooseSeats.setOnClickListener(new View.OnClickListener() {
             @Override
