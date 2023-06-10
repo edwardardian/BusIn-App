@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
@@ -21,8 +22,13 @@ import java.util.Locale;
 
 public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.ViewHolder> {
     private ArrayList<Trip> listTrip;
+
     private Context context;
+
     private FirebaseFirestore db;
+
+    private FirebaseAuth auth;
+
 
     public HistoryAdapter(ArrayList<Trip> listTrip, Context context) {
         this.listTrip = listTrip;
@@ -46,16 +52,6 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.ViewHold
         holder.historyPassengersDisplay.setText(trip.getPassengers());
         holder.historyDate.setText(trip.getDate());
 
-        holder.btnRating.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(context, RatingActivity.class);
-                intent.putExtra("busName", trip.getBusName());
-                intent.putExtra("passengers", trip.getPassengers());
-                intent.putExtra("date", trip.getDate());
-                context.startActivity(intent);
-            }
-        });
     }
 
 
@@ -66,7 +62,6 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.ViewHold
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView historyBusName, historyDeparture, historyArrival, historyPassengersDisplay, historyPriceDisplay, historyDate;
-        Button btnRating;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -76,7 +71,6 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.ViewHold
             historyPassengersDisplay = itemView.findViewById(R.id.history_passenger_display);
             historyPriceDisplay = itemView.findViewById(R.id.history_price_display);
             historyDate = itemView.findViewById(R.id.history_date);
-            btnRating = itemView.findViewById(R.id.rating_button);
         }
     }
 }

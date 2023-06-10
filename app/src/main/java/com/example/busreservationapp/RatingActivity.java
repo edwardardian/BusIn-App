@@ -45,8 +45,12 @@ public class RatingActivity extends AppCompatActivity {
         rating_passenger_display.setText(passengers);
         rating_date.setText(date);
 
-        btnSubmit.setOnClickListener(view ->
-                saveRating());
+        btnSubmit.setOnClickListener(view -> {
+            Intent intent2 = new Intent(RatingActivity.this, HistoryActivity.class);
+            startActivity(intent2);
+            saveRating();
+        });
+
     }
 
     private void saveRating() {

@@ -1,5 +1,6 @@
 package com.example.busreservationapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -43,7 +44,7 @@ public class FragmentHistory extends Fragment {
         progressBar = view.findViewById(R.id.progressBar);
         db = FirebaseFirestore.getInstance();
 
-        listTrip = new ArrayList<>(); // Inisialisasi listTrip
+        listTrip = new ArrayList<>();
 
         historyAdapter = new HistoryAdapter(listTrip, requireContext());
 
@@ -75,9 +76,7 @@ public class FragmentHistory extends Fragment {
 
                         listTrip.add(trip);
                     }
-
                     historyAdapter.notifyDataSetChanged();
-
                     progressBar.setVisibility(View.GONE);
                 })
                 .addOnFailureListener(e -> {
@@ -87,19 +86,4 @@ public class FragmentHistory extends Fragment {
     }
 
 
-    private void getTicketData() {
-        db.collection("trip")
-                .addSnapshotListener((value, error) -> {
-                    if (error != null) {
-                        Log.e("Firestore Error", error.getMessage());
-                        return;
-                    }
-                    for (DocumentChange dc : value.getDocumentChanges()) {
-                        if (dc.getType() == DocumentChange.Type.ADDED) {
-                            listTrip.add(dc.getDocument().toObject(Trip.class));
-                        }
-                        historyAdapter.notifyDataSetChanged();
-                    }
-                });
-    }
 }

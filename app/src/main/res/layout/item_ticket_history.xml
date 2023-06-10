@@ -169,13 +169,6 @@
             card_view:layout_constraintStart_toStartOf="parent"
             card_view:layout_constraintTop_toBottomOf="@+id/bottomLayout">
 
-            <Button
-                android:id="@+id/rating_button"
-                android:layout_width="158dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="205dp"
-                android:text="rate your trip" />
-
         </RelativeLayout>
 
 

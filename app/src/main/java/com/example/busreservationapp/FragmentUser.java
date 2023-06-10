@@ -65,12 +65,12 @@ public class FragmentUser extends Fragment {
         userId = firebaseUser.getUid();
 
         firebaseAuth = FirebaseAuth.getInstance();
-        firebaseUser = firebaseAuth.getCurrentUser();
         firebaseFirestore = FirebaseFirestore.getInstance();
 
+        firebaseUser = firebaseAuth.getCurrentUser();
         if (firebaseUser == null) {
             startActivity(new Intent(getActivity(), UserLoginActivity.class));
-            getActivity().finish();
+            return;
         } else {
             userId = firebaseUser.getUid();
 

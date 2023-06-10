@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -74,16 +75,6 @@ public class TicketDetailActivity extends AppCompatActivity {
 
         getUserData();
         getTripData();
-
-        btnBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(TicketDetailActivity.this, HomePageActivity.class);
-                startActivity(intent);
-                finish();
-            }
-        });
-
     }
 
     private void getUserData() {
@@ -132,6 +123,8 @@ public class TicketDetailActivity extends AppCompatActivity {
                                     d = trip.getDate();
                                     s = trip.getPassengers();
                                     bookingNumberInt = trip.getBookingNumber();
+                                    Log.d("TicketDetailActivity", "Bus Name: " + trip.getBusName());
+                                    Log.d("TicketDetailActivity", "Passengers: " + trip.getPassengers());
 
                                     seats.setText(s);
                                     busName.setText(bN);
@@ -146,6 +139,18 @@ public class TicketDetailActivity extends AppCompatActivity {
                                     bookingNumber.setText("Booking Number: " + Integer.toString(bookingNumberInt));
 
                                     getSelectedSeatsFromFirestore(documentSnapshot);
+
+                                    btnBack.setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View v) {
+                                            Intent intent = new Intent(TicketDetailActivity.this, RatingActivity.class);
+                                            intent.putExtra("busName", trip.getBusName());
+                                            intent.putExtra("passengers", trip.getPassengers());
+                                            intent.putExtra("date", trip.getDate());
+                                            startActivity(intent);
+                                            finish();
+                                        }
+                                    });
                                 }
                             }
                         } else {
