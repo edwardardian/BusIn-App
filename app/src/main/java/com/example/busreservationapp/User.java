@@ -1,13 +1,14 @@
 package com.example.busreservationapp;
 
 public class User {
-    public String name, email, phoneNumber, photo;
+    public String name, email, phoneNumber, photo, userId;
 
     public User() {
     }
 
-    public User(String name, String email, String phoneNumber, String photo) {
+    public User(String name, String userId, String email, String phoneNumber, String photo) {
         this.name = name;
+        this.userId = userId;
         this.email = email;
         this.phoneNumber = phoneNumber;
         this.photo = photo;
@@ -19,6 +20,14 @@ public class User {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
     public String getEmail() {

@@ -73,11 +73,11 @@ public class UserRegisterActivity extends AppCompatActivity {
                     return;
                 }
 
-                User user = new User(userName, userEmail, phoneNumber, photo);
-
                 FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
                 if (firebaseUser != null) {
                     String userId = firebaseUser.getUid();
+
+                    User user = new User(userName, userId, userEmail, phoneNumber, photo);
 
                     db.collection("users")
                             .document(userId)

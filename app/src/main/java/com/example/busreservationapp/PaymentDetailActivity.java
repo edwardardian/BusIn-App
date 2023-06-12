@@ -94,7 +94,7 @@ public class PaymentDetailActivity extends AppCompatActivity {
 
                             db.collection("trip")
                                     .document(tripId)
-                                    .update("user", new User(userName, user.getEmail(), userPhoneNumber, userPhoto))
+                                    .update("user", new User(userName, userId, user.getEmail(), userPhoneNumber, userPhoto))
                                     .addOnSuccessListener(aVoid -> {
 
                                     })

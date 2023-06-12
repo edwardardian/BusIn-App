@@ -1,21 +1,37 @@
 package com.example.busreservationapp;
 
 public class BusRating {
-    private String busName;
-    private String ratingText;
+    private String busName, ratingText, userName, userId, passengers, date;
     private float ratingStars;
-    private String userName;
-
     private boolean hasRated;
 
     public BusRating() {
     }
 
-    public BusRating(String busName, String ratingText, float ratingStars, String userName) {
+    public BusRating(String busName, String ratingText, float ratingStars, String userName, String userId, String passengers, String date) {
         this.busName = busName;
         this.ratingText = ratingText;
         this.ratingStars = ratingStars;
         this.userName = userName;
+        this.userId = userId;
+        this.passengers = passengers;
+        this.date = date;
+    }
+
+    public String getPassengers() {
+        return passengers;
+    }
+
+    public void setPassengers(String passengers) {
+        this.passengers = passengers;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
     }
 
     public String getUserName() {
@@ -24,6 +40,14 @@ public class BusRating {
 
     public void setUserName(String userName) {
         this.userName = userName;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
     public String getBusName() {

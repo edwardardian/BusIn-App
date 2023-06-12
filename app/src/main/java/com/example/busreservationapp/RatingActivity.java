@@ -48,13 +48,12 @@ public class RatingActivity extends AppCompatActivity {
         btnSubmit.setOnClickListener(view -> {
             Intent intent2 = new Intent(RatingActivity.this, HistoryActivity.class);
             startActivity(intent2);
-            saveRating();
+            saveRating(busName, passengers, date);
         });
 
     }
 
-    private void saveRating() {
-        String busName = rating_busName_display.getText().toString();
+    private void saveRating(String busName, String passengers, String date) {
         String ratingText = textRating.getEditText().getText().toString();
         float ratingStars = ratingBar.getRating();
 
@@ -65,31 +64,24 @@ public class RatingActivity extends AppCompatActivity {
 
         FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
         String userName = currentUser.getDisplayName();
+        String userId = currentUser.getUid();
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
-        db.collection("ratings")
-                .whereEqualTo("busName", busName)
-                .whereEqualTo("userName", userName)
-                .get()
-                .addOnCompleteListener(task -> {
-                    if (task.isSuccessful() && task.getResult() != null && !task.getResult().isEmpty()) {
-                        Log.d("RatingActivity", "You have already rated this bus!");
-                        Toast.makeText(RatingActivity.this, "You have already rated this bus!", Toast.LENGTH_SHORT).show();
-                    } else {
-                        BusRating rating = new BusRating(busName, ratingText, ratingStars, userName);
+        BusRating rating = new BusRating(busName, ratingText, ratingStars, userName, userId, passengers, date);
 
-                        db.collection("ratings")
-                                .add(rating)
-                                .addOnSuccessListener(documentReference -> {
-                                    Log.d("RatingActivity", "Rating saved successfully!");
-                                    Toast.makeText(RatingActivity.this, "Rating saved successfully!", Toast.LENGTH_SHORT).show();
-                                })
-                                .addOnFailureListener(e -> {
-                                    Log.e("RatingActivity", "Rating failed to save!", e);
-                                    Toast.makeText(RatingActivity.this, "Rating failed to save!", Toast.LENGTH_SHORT).show();
-                                });
-                    }
+        db.collection("ratings")
+                .add(rating)
+                .addOnSuccessListener(documentReference -> {
+                    Log.d("RatingActivity", "Rating saved successfully!");
+                    Toast.makeText(RatingActivity.this, "Rating saved successfully!", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(RatingActivity.this, HistoryActivity.class);
+                    startActivity(intent);
+                    finish();
+                })
+                .addOnFailureListener(e -> {
+                    Log.e("RatingActivity", "Rating failed to save!", e);
+                    Toast.makeText(RatingActivity.this, "Rating failed to save!", Toast.LENGTH_SHORT).show();
                 });
     }
 }

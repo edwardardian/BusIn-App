@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentChange;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -45,45 +46,27 @@ public class FragmentHistory extends Fragment {
         db = FirebaseFirestore.getInstance();
 
         listTrip = new ArrayList<>();
-
         historyAdapter = new HistoryAdapter(listTrip, requireContext());
 
         recyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
         recyclerView.setAdapter(historyAdapter);
 
-        db.collection("trip")
-                .get()
-                .addOnSuccessListener(queryDocumentSnapshots -> {
-                    listTrip.clear();
-
-                    List<DocumentSnapshot> documents = queryDocumentSnapshots.getDocuments();
-
-                    for (DocumentSnapshot document : documents) {
-                        String busName = document.getString("busName");
-                        String asal = document.getString("asal");
-                        String tujuan = document.getString("tujuan");
-                        String date = document.getString("date");
-                        String harga = document.getString("harga");
-                        String passengers = document.getString("passengers");
-
-                        Trip trip = new Trip();
-                        trip.setBusName(busName);
-                        trip.setAsal(asal);
-                        trip.setTujuan(tujuan);
-                        trip.setDate(date);
-                        trip.setHarga(harga);
-                        trip.setPassengers(passengers);
-
-                        listTrip.add(trip);
-                    }
-                    historyAdapter.notifyDataSetChanged();
-                    progressBar.setVisibility(View.GONE);
-                })
-                .addOnFailureListener(e -> {
-
-                    progressBar.setVisibility(View.GONE);
-                });
+        fetchUserTrips();
     }
 
+    private void fetchUserTrips() {
+        String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
+        db.collection("trip")
+                .whereEqualTo("userId", userId)
+                .addSnapshotListener((queryDocumentSnapshots, e) -> {
+                    if (e != null) {
+                        Log.w(TAG, "Listen failed.", e);
+                        return;
+                    }
+
+                    historyAdapter.getTripData(userId);
+                });
+    }
 }
+
