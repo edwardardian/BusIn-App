@@ -40,10 +40,10 @@ public class SplashScreen extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
+                editor.putBoolean("isLoggedIn", false);
+                editor.apply();
                 FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
                 if (firebaseUser != null) {
-                    editor.putBoolean("isLoggedIn", true);
-                    editor.apply();
                     String userId = firebaseUser.getUid();
                     firebaseFirestore.collection("users").document(userId)
                             .get()

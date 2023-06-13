@@ -56,7 +56,7 @@ public class UserRegisterActivity extends AppCompatActivity {
 
     private void register() {
         AlertDialog.Builder alert = new AlertDialog.Builder(UserRegisterActivity.this);
-        alert.setTitle("Confirmation");
+        alert.setTitle(R.string.app_name);
         alert.setMessage("Are you sure you have entered the right phone number?");
         alert.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
             @Override

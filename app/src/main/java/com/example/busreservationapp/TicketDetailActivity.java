@@ -1,16 +1,14 @@
 package com.example.busreservationapp;
 
-import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
-import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -19,7 +17,6 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class TicketDetailActivity extends AppCompatActivity {
@@ -33,7 +30,7 @@ public class TicketDetailActivity extends AppCompatActivity {
     private int bookingNumberInt;
     private String[] selectedSeats;
 
-    private Button btnBack;
+    private Button btnSubmit;
 
 
     @Override
@@ -58,7 +55,7 @@ public class TicketDetailActivity extends AppCompatActivity {
         date = findViewById(R.id.busTicket_departureDate);
         price = findViewById(R.id.busTicket_totalPrice_display);
         bookingNumber = findViewById(R.id.booking_number);
-        btnBack = findViewById(R.id.btnBack);
+        btnSubmit = findViewById(R.id.btnSubmit);
 
         Intent intent = getIntent();
         tripId = intent.getStringExtra("tripId");
@@ -140,15 +137,30 @@ public class TicketDetailActivity extends AppCompatActivity {
 
                                     getSelectedSeatsFromFirestore(documentSnapshot);
 
-                                    btnBack.setOnClickListener(new View.OnClickListener() {
+                                    btnSubmit.setOnClickListener(new View.OnClickListener() {
                                         @Override
                                         public void onClick(View v) {
-                                            Intent intent = new Intent(TicketDetailActivity.this, RatingActivity.class);
-                                            intent.putExtra("busName", trip.getBusName());
-                                            intent.putExtra("passengers", trip.getPassengers());
-                                            intent.putExtra("date", trip.getDate());
-                                            startActivity(intent);
-                                            finish();
+                                            AlertDialog.Builder alert = new AlertDialog.Builder(TicketDetailActivity.this);
+                                            alert.setTitle(R.string.app_name);
+                                            alert.setMessage("Are you sure you want to complete this trip?");
+                                            alert.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                                                @Override
+                                                public void onClick(DialogInterface dialog, int which) {
+                                                    Intent intent = new Intent(TicketDetailActivity.this, RatingActivity.class);
+                                                    intent.putExtra("busName", trip.getBusName());
+                                                    intent.putExtra("passengers", trip.getPassengers());
+                                                    intent.putExtra("date", trip.getDate());
+                                                    startActivity(intent);
+                                                    finish();
+                                                }
+                                            });
+                                            alert.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                                                @Override
+                                                public void onClick(DialogInterface dialog, int which) {
+                                                    dialog.dismiss();
+                                                }
+                                            });
+                                            alert.show();
                                         }
                                     });
                                 }

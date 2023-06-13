@@ -64,7 +64,7 @@ public class EWalletVerificationActivity extends AppCompatActivity {
 
     public void verifyNow(){
         AlertDialog.Builder alert = new AlertDialog.Builder(EWalletVerificationActivity.this);
-        alert.setTitle("Confirmation");
+        alert.setTitle(R.string.app_name);
         alert.setMessage("Are you sure you want to pay this?");
         alert.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
             @Override

@@ -115,7 +115,7 @@ public class BusScheduleAdapter extends RecyclerView.Adapter<BusScheduleAdapter.
             }
         });
 
-        holder.btnRating.setOnClickListener(new View.OnClickListener() {
+        holder.tvRating.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context, RatingHistoryActivity.class);
@@ -156,7 +156,6 @@ public class BusScheduleAdapter extends RecyclerView.Adapter<BusScheduleAdapter.
             tvArriveCity = itemView.findViewById(R.id.tvArriveCity);
             tvPrice = itemView.findViewById(R.id.tvPrice);
             btnBookNow = itemView.findViewById(R.id.btnBookNow);
-            btnRating = itemView.findViewById(R.id.btnRating);
             tvRating = itemView.findViewById(R.id.tvRating);
         }
     }

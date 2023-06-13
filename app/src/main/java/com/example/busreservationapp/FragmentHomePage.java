@@ -121,13 +121,17 @@ public class FragmentHomePage extends Fragment {
                     Toast.makeText(getActivity(), "Maximum 40 passengers/bus!", Toast.LENGTH_SHORT).show();
                     return;
                 }
+                if (passengers.intValue() <= 0 ) {
+                    Toast.makeText(getActivity(), "Minimum 1 passenger/bus!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 if (date.isEmpty()) {
                     Toast.makeText(getActivity(), "Date is required!", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
                 AlertDialog.Builder alert = new AlertDialog.Builder(getActivity());
-                alert.setTitle("Confirmation");
+                alert.setTitle(R.string.app_name);
                 alert.setMessage("Are you sure you have entered the correct data?");
                 alert.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override

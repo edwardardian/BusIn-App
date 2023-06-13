@@ -145,7 +145,7 @@ public class FragmentBusDetail extends Fragment {
             @Override
             public void onClick(View v) {
                 AlertDialog.Builder alert = new AlertDialog.Builder(getActivity());
-                alert.setTitle("Confirmation");
+                alert.setTitle(R.string.app_name);
                 alert.setMessage("Are you sure you want to book this?");
                 alert.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
