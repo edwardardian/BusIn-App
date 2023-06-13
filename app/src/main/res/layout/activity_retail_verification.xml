@@ -28,6 +28,8 @@
                 android:text="Payment Verification " />
 
         </androidx.appcompat.widget.Toolbar>
+
+
     </com.google.android.material.appbar.AppBarLayout>
 
     <RelativeLayout
@@ -119,18 +121,6 @@
                             android:src="@drawable/qr" />
 
                         <TextView
-                            android:id="@+id/SecondStepDisplay"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:lineSpacingExtra="5dp"
-                            android:padding="20dp"
-                            android:text="4. Make sure the total amount is the same"
-                            android:textColor="@color/black"
-                            android:textSize="12sp"
-                            android:textStyle="bold" />
-
-                        <TextView
                             android:id="@+id/totalPaymentDisplay"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -141,6 +131,18 @@
                             android:textColor="@color/blue_secondary"
                             android:textStyle="bold"
                             tools:text="Rp332.333,00" />
+
+                        <TextView
+                            android:id="@+id/SecondStepDisplay"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:lineSpacingExtra="5dp"
+                            android:padding="20dp"
+                            android:text="4. Make sure the total amount is the same"
+                            android:textColor="@color/black"
+                            android:textSize="12sp"
+                            android:textStyle="bold" />
 
                         <TextView
                             android:id="@+id/ThirdStepDisplay"

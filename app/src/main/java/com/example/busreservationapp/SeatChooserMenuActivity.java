@@ -56,7 +56,7 @@ public class SeatChooserMenuActivity extends AppCompatActivity {
 
     private void bookNow() {
         AlertDialog.Builder alert = new AlertDialog.Builder(SeatChooserMenuActivity.this);
-        alert.setTitle("Confirmation");
+        alert.setTitle(R.string.app_name);
         alert.setMessage("Are you sure you want to book this seat/s?");
         alert.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
             @Override

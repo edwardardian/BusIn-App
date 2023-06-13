@@ -8,385 +8,400 @@
     android:padding="20dp"
     tools:context=".TicketDetailActivity">
 
-    <TextView
-        android:id="@+id/title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:text="Your Ticket"
-        android:textColor="@color/black"
-        android:textSize="19sp" />
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/userInfo"
-        android:layout_below="@id/title"
+    <RelativeLayout
         android:layout_width="match_parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/title"
-        android:layout_marginTop="10dp"
-        android:layout_height="190dp"
-        app:cardCornerRadius="12dp">
+        android:layout_height="wrap_content">
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
 
             <RelativeLayout
-                android:id="@+id/userTicket"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:background="@color/blue">
-
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
 
                 <TextView
-                    android:id="@+id/booking_number"
+                    android:id="@+id/title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
+                    android:layout_centerHorizontal="true"
+                    android:text="Your Ticket"
+                    android:textColor="@color/black"
+                    android:textSize="19sp" />
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/userInfo"
+                    android:layout_below="@id/title"
+                    android:layout_width="match_parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/title"
+                    android:layout_marginTop="10dp"
+                    android:layout_height="190dp"
+                    app:cardCornerRadius="12dp">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <RelativeLayout
+                            android:id="@+id/userTicket"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:background="@color/blue">
+
+
+                            <TextView
+                                android:id="@+id/booking_number"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:layout_marginStart="20dp"
+                                android:text="Booking Number: 12"
+                                android:textColor="@color/white"
+                                android:textStyle="bold" />
+
+
+
+                        </RelativeLayout>
+
+                        <TextView
+                            android:id="@+id/userInfo_name"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/userTicket"
+                            android:layout_marginStart="20dp"
+                            android:layout_marginTop="10dp"
+                            android:text="Name"
+                            android:textColor="@color/black" />
+
+                        <TextView
+                            android:id="@+id/userInfo_name_display"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/userInfo_name"
+                            android:layout_marginStart="20dp"
+                            android:layout_marginTop="6dp"
+                            android:text="Ahmad"
+                            android:textColor="@color/blue_secondary"
+                            android:textSize="16dp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/userInfo_divider"
+                            android:layout_width="match_parent"
+                            android:layout_height="2dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_below="@+id/userInfo_name_display"
+                            android:background="?android:attr/listDivider"  />
+
+
+                        <TextView
+                            android:id="@+id/userInfo_phone"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/userInfo_divider"
+                            android:layout_marginStart="20dp"
+                            android:layout_marginTop="10dp"
+                            android:text="Phone Number"
+                            android:textColor="@color/black"
+                            android:textSize="12dp" />
+
+                        <TextView
+                            android:id="@+id/userInfo_phone_display"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/userInfo_phone"
+                            android:layout_marginStart="20dp"
+                            android:layout_marginTop="2dp"
+                            android:text="08515701339"
+                            android:textColor="@color/black"
+                            android:textStyle="bold" />
+
+
+                        <TextView
+                            android:id="@+id/userInfo_seat"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/userInfo_divider"
+                            android:layout_marginStart="70dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_toRightOf="@id/userInfo_phone"
+                            android:text="Seat/s"
+                            android:textColor="@color/black"
+                            android:textSize="12dp" />
+
+                        <TextView
+                            android:id="@+id/userInfo_seat_display"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/userInfo_seat"
+                            android:layout_marginStart="70dp"
+                            android:layout_marginTop="2dp"
+                            android:layout_toRightOf="@id/userInfo_phone"
+                            android:text="1"
+                            android:textColor="@color/black"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/userInfo_status"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/userInfo_divider"
+                            android:layout_marginTop="10dp"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginEnd="20dp"
+                            android:text="Ticket Status"
+                            android:textColor="@color/black"
+                            android:textSize="12dp" />
+
+
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_below="@id/userInfo_status"
+                            android:layout_marginTop="2dp"
+                            android:layout_marginEnd="8dp"
+                            android:layout_toLeftOf="@id/userInfo_status_display"
+                            android:src="@drawable/baseline_check_box" />
+
+                        <TextView
+                            android:id="@+id/userInfo_status_display"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/userInfo_status"
+                            android:layout_alignParentRight="true"
+                            android:layout_marginTop="2dp"
+                            android:layout_marginEnd="20dp"
+                            android:text="Verified"
+                            android:textColor="@color/blue_secondary"
+                            android:textSize="14dp"
+                            android:textStyle="bold" />
+
+
+                    </RelativeLayout>
+
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/busTicket_detail"
+                    android:layout_below="@id/userInfo"
+                    android:layout_width="match_parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/title"
+                    android:layout_marginTop="10dp"
+                    android:layout_height="280dp"
+                    app:cardCornerRadius="12dp">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+
+                        <TextView
+                            android:id="@+id/busTicket_name"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="20dp"
+                            android:layout_marginTop="10dp"
+                            android:text="Bus Name"
+                            android:textColor="@color/black" />
+
+
+                        <TextView
+                            android:id="@+id/busTicket_name_display"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/busTicket_name"
+                            android:layout_marginStart="20dp"
+                            android:layout_marginTop="6dp"
+                            android:text="Primajasa"
+                            android:textColor="@color/blue_secondary"
+                            android:textSize="16dp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/busTicket_schedule"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/busTicket_name_display"
+                            android:layout_marginStart="20dp"
+                            android:layout_marginTop="20dp"
+                            android:text="Departure Time"
+                            android:textColor="@color/black" />
+
+                        <TextView
+                            android:id="@+id/busTicket_departTime"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/busTicket_schedule"
+                            android:layout_marginStart="20dp"
+                            android:layout_marginTop="3dp"
+                            android:text="17.00"
+                            android:textColor="@color/blue_secondary"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/busTicket_departure"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/busTicket_schedule"
+                            android:layout_marginStart="20dp"
+                            android:layout_marginTop="60dp"
+                            android:text="Jakarta"
+                            android:textColor="@color/blue_secondary"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/busTicket_departTerminal"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/busTicket_departure"
+                            android:layout_marginStart="20dp"
+                            android:layout_marginTop="4dp"
+                            android:text="Terminal Terpadu Pulo gebang gebang gebang"
+                            android:textColor="@color/black" />
+
+                        <TextView
+                            android:id="@+id/busTicket_departureDate"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/busTicket_departTerminal"
+                            android:layout_marginStart="20dp"
+                            android:layout_marginTop="10dp"
+                            android:text="23/3/23"
+                            android:textColor="@color/blue_secondary" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/busTicket_seatNo_display"
+                            android:layout_centerInParent="true"
+                            android:layout_marginTop="100dp"
+                            android:text=">>>>>>>"
+                            android:textColor="@color/black" />
+
+
+                        <TextView
+                            android:id="@+id/busTicket_arrival"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginTop="156dp"
+                            android:layout_marginEnd="20dp"
+                            android:text="Bandung"
+                            android:textColor="@color/blue_secondary"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/busTicket_arrivalTerminal"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/busTicket_arrival"
+                            android:layout_marginTop="4dp"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginEnd="20dp"
+                            android:text="Leuwi Panjang banget banget banget"
+                            android:textColor="@color/black" />
+
+                        <TextView
+                            android:id="@+id/toTgl"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/busTicket_arrivalTerminal"
+                            android:layout_marginStart="24dp"
+                            android:layout_marginTop="4dp"
+                            android:layout_toRightOf="@id/busTicket_schedule"
+                            android:textColor="@color/blue_secondary" />
+
+                        <TextView
+                            android:id="@+id/busTicket_estimateTime"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/busTicket_name_display"
+                            android:layout_marginTop="26dp"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginEnd="20dp"
+                            android:text="Trip Time"
+                            android:textColor="@color/black" />
+
+                        <TextView
+                            android:id="@+id/busTicket_estimateTime_display"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/busTicket_schedule"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginTop="3dp"
+                            android:text="2h, 10m"
+                            android:layout_marginEnd="20dp"
+                            android:textColor="@color/black"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/busTicket_seatNo"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginEnd="20dp"
+                            android:text="Seat No"
+                            android:textColor="@color/black" />
+
+                        <TextView
+                            android:id="@+id/busTicket_seatNo_display"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/busTicket_seatNo"
+                            android:layout_marginTop="10dp"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginEnd="20dp"
+                            android:text="A10"
+                            android:textColor="@color/blue_secondary"
+                            android:textStyle="bold" />
+
+                    </RelativeLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <TextView
+                    android:id="@+id/busTicket_totalPrice"
+                    android:layout_below="@id/busTicket_detail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
-                    android:text="Booking Number: 12"
-                    android:textColor="@color/white"
-                    android:textStyle="bold" />
+                    android:layout_marginTop="10dp"
+                    android:textColor="@color/black"
+                    android:textSize="16dp"
+                    android:textStyle="bold"
+                    android:text="Total"/>
 
+                <TextView
+                    android:id="@+id/busTicket_totalPrice_display"
+                    android:layout_below="@id/busTicket_detail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginTop="10dp"
+                    android:textColor="@color/black"
+                    android:textSize="16dp"
+                    android:textStyle="bold"
+                    android:text="Rp 123.000"/>
 
+                <Button
+                    android:id="@+id/btnSubmit"
+                    android:layout_below="@id/busTicket_totalPrice_display"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="Trip Completed"/>
 
             </RelativeLayout>
 
-            <TextView
-                android:id="@+id/userInfo_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/userTicket"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="10dp"
-                android:text="Name"
-                android:textColor="@color/black" />
+        </androidx.core.widget.NestedScrollView>
 
-            <TextView
-                android:id="@+id/userInfo_name_display"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/userInfo_name"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="6dp"
-                android:text="Ahmad"
-                android:textColor="@color/blue_secondary"
-                android:textSize="16dp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/userInfo_divider"
-                android:layout_width="match_parent"
-                android:layout_height="2dp"
-                android:layout_marginTop="10dp"
-                android:layout_below="@+id/userInfo_name_display"
-                android:background="?android:attr/listDivider"  />
-
-
-            <TextView
-                android:id="@+id/userInfo_phone"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/userInfo_divider"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="10dp"
-                android:text="Phone Number"
-                android:textColor="@color/black"
-                android:textSize="12dp" />
-
-            <TextView
-                android:id="@+id/userInfo_phone_display"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/userInfo_phone"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="2dp"
-                android:text="08515701339"
-                android:textColor="@color/black"
-                android:textStyle="bold" />
-
-
-            <TextView
-                android:id="@+id/userInfo_seat"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/userInfo_divider"
-                android:layout_marginStart="70dp"
-                android:layout_marginTop="10dp"
-                android:layout_toRightOf="@id/userInfo_phone"
-                android:text="Seat/s"
-                android:textColor="@color/black"
-                android:textSize="12dp" />
-
-            <TextView
-                android:id="@+id/userInfo_seat_display"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/userInfo_seat"
-                android:layout_marginStart="70dp"
-                android:layout_marginTop="2dp"
-                android:layout_toRightOf="@id/userInfo_phone"
-                android:text="1"
-                android:textColor="@color/black"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/userInfo_status"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/userInfo_divider"
-                android:layout_marginTop="10dp"
-                android:layout_alignParentEnd="true"
-                android:layout_marginEnd="20dp"
-                android:text="Ticket Status"
-                android:textColor="@color/black"
-                android:textSize="12dp" />
-
-
-            <ImageView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:layout_below="@id/userInfo_status"
-                android:layout_marginTop="2dp"
-                android:layout_marginEnd="8dp"
-                android:layout_toLeftOf="@id/userInfo_status_display"
-                android:src="@drawable/baseline_check_box" />
-
-            <TextView
-                android:id="@+id/userInfo_status_display"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/userInfo_status"
-                android:layout_alignParentRight="true"
-                android:layout_marginTop="2dp"
-                android:layout_marginEnd="20dp"
-                android:text="Verified"
-                android:textColor="@color/blue_secondary"
-                android:textSize="14dp"
-                android:textStyle="bold" />
-
-
-        </RelativeLayout>
-
-
-    </androidx.cardview.widget.CardView>
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/busTicket_detail"
-        android:layout_below="@id/userInfo"
-        android:layout_width="match_parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/title"
-        android:layout_marginTop="10dp"
-        android:layout_height="280dp"
-        app:cardCornerRadius="12dp">
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-
-            <TextView
-                android:id="@+id/busTicket_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="10dp"
-                android:text="Bus Name"
-                android:textColor="@color/black" />
-
-
-            <TextView
-                android:id="@+id/busTicket_name_display"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/busTicket_name"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="6dp"
-                android:text="Primajasa"
-                android:textColor="@color/blue_secondary"
-                android:textSize="16dp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/busTicket_schedule"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/busTicket_name_display"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="20dp"
-                android:text="Departure Time"
-                android:textColor="@color/black" />
-
-            <TextView
-                android:id="@+id/busTicket_departTime"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/busTicket_schedule"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="3dp"
-                android:text="17.00"
-                android:textColor="@color/blue_secondary"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/busTicket_departure"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/busTicket_schedule"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="60dp"
-                android:text="Jakarta"
-                android:textColor="@color/blue_secondary"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/busTicket_departTerminal"
-                android:layout_width="118dp"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/busTicket_departure"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="4dp"
-                android:text="Terminal Terpadu Pulo gebang gebang gebang"
-                android:textColor="@color/black" />
-
-            <TextView
-                android:id="@+id/busTicket_departureDate"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/busTicket_departTerminal"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="10dp"
-                android:text="23/3/23"
-                android:textColor="@color/blue_secondary" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="100dp"
-                android:layout_marginStart="100dp"
-                android:text=">>>>>>>"
-                android:textColor="@color/black"
-                android:layout_toRightOf="@id/busTicket_departure"
-                android:layout_below="@id/busTicket_seatNo_display"/>
-
-
-            <TextView
-                android:id="@+id/busTicket_arrival"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_marginTop="156dp"
-                android:layout_marginEnd="20dp"
-                android:text="Bandung"
-                android:textColor="@color/blue_secondary"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/busTicket_arrivalTerminal"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/busTicket_arrival"
-                android:layout_marginStart="175dp"
-                android:layout_marginTop="4dp"
-                android:layout_toRightOf="@id/busTicket_schedule"
-                android:text="Leuwi Panjang banget banget banget"
-                android:textColor="@color/black" />
-
-            <TextView
-                android:id="@+id/toTgl"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/busTicket_arrivalTerminal"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="4dp"
-                android:layout_toRightOf="@id/busTicket_schedule"
-                android:textColor="@color/blue_secondary" />
-
-            <TextView
-                android:id="@+id/busTicket_estimateTime"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/busTicket_name_display"
-                android:layout_marginTop="26dp"
-                android:layout_alignParentEnd="true"
-                android:layout_marginEnd="20dp"
-                android:text="Trip Time"
-                android:textColor="@color/black" />
-
-            <TextView
-                android:id="@+id/busTicket_estimateTime_display"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/busTicket_schedule"
-                android:layout_alignParentEnd="true"
-                android:layout_marginTop="3dp"
-                android:text="2h, 10m"
-                android:layout_marginEnd="20dp"
-                android:textColor="@color/black"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/busTicket_seatNo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="20dp"
-                android:text="Seat No"
-                android:textColor="@color/black" />
-
-            <TextView
-                android:id="@+id/busTicket_seatNo_display"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/busTicket_seatNo"
-                android:layout_marginTop="10dp"
-                android:layout_alignParentEnd="true"
-                android:layout_marginEnd="20dp"
-                android:text="A10"
-                android:textColor="@color/blue_secondary"
-                android:textStyle="bold" />
-
-        </RelativeLayout>
-
-    </androidx.cardview.widget.CardView>
-
-    <TextView
-        android:id="@+id/busTicket_totalPrice"
-        android:layout_below="@id/busTicket_detail"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="10dp"
-        android:textColor="@color/black"
-        android:textSize="16dp"
-        android:textStyle="bold"
-        android:text="Total"/>
-
-    <TextView
-        android:id="@+id/busTicket_totalPrice_display"
-        android:layout_below="@id/busTicket_detail"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_marginEnd="20dp"
-        android:layout_marginTop="10dp"
-        android:textColor="@color/black"
-        android:textSize="16dp"
-        android:textStyle="bold"
-        android:text="Rp 123.000"/>
-
-    <Button
-        android:id="@+id/btnBack"
-        android:layout_below="@id/busTicket_totalPrice_display"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="Trip Completed"/>
-
-
+    </RelativeLayout>
 
 </RelativeLayout>

@@ -111,7 +111,7 @@ public class FragmentUser extends Fragment {
 
     public void onLogout(View view){
         AlertDialog.Builder alert = new AlertDialog.Builder(getActivity());
-        alert.setTitle("Logout");
+        alert.setTitle(R.string.app_name);
         alert.setMessage("Are you sure you want to logout?");
         alert.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
             @Override

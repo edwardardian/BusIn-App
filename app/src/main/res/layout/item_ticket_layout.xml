@@ -152,19 +152,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/tvPrice" />
 
-        <Button
-            android:id="@+id/btnRating"
-            android:layout_width="90dp"
-            android:layout_height="60dp"
-            android:layout_marginTop="16dp"
-            android:background="@color/blue"
-            android:text="See All Ratings"
-            android:textColor="@color/white"
-            android:textSize="11sp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/layoutRating" />
-
 
         <androidx.cardview.widget.CardView
             android:id="@+id/layoutRating"
@@ -181,8 +168,8 @@
 
                 <TextView
                     android:id="@+id/tvRating"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:gravity="center"
                     android:maxWidth="44dp"
                     android:text="4/5"
