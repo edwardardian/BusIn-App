@@ -163,7 +163,7 @@ public class FragmentSeatChooserMenu extends Fragment implements View.OnClickLis
             if (seatAvailability[i] == 0) {
                 seats[i].setBackgroundResource(R.drawable.seat_chooser);
             } else {
-                seats[i].setBackgroundResource(R.drawable.seat_booked);
+                seats[i].setBackgroundResource(R.drawable.seat_your_seat);
             }
         }
     }
