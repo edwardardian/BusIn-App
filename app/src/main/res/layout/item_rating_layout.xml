@@ -9,7 +9,6 @@
     card_view:cardCornerRadius="5dp">
 
 <RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
@@ -37,20 +36,18 @@
         android:layout_marginStart="25dp"
         android:layout_marginEnd="16dp" />
 
-    <RatingBar
+    <androidx.appcompat.widget.AppCompatRatingBar
         android:id="@+id/ratingBar_rateHistory"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:numStars="5"
-        android:stepSize="1"
-        android:rating="3"
-        android:layout_toEndOf="@id/busName_rateHistory"
+        android:layout_height="63dp"
         android:layout_alignParentStart="true"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginBottom="8dp"
-        android:scaleX="0.4"
-        android:scaleY="0.4"/>
+        android:layout_marginStart="166dp"
+        android:layout_toEndOf="@id/userName_rateHistory"
+        android:numStars="5"
+        android:rating="3"
+        android:scaleX="0.5"
+        android:scaleY="0.5"
+        android:stepSize="1" />
 
     <TextView
         android:id="@+id/comment_rateHistory"
@@ -59,7 +56,7 @@
         android:text="Komentar nya disini lorem lorem ipsum ipsum lloremn ipsum"
         android:textSize="17sp"
         android:textColor="@color/black"
-        android:layout_below="@id/ratingBar_rateHistory"
+        android:layout_below="@id/busName_rateHistory"
         android:layout_marginStart="25dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="15dp" />

@@ -14,8 +14,17 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QuerySnapshot;
+
 import org.w3c.dom.Text;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -53,6 +62,38 @@ public class BusScheduleAdapter extends RecyclerView.Adapter<BusScheduleAdapter.
         double valueHarga = Double.parseDouble(harga);
         String formatHarga = "Rp" + String.format(Locale.US, "%,.0f", valueHarga).replace(",", ".");
         holder.tvPrice.setText(formatHarga);
+
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        CollectionReference ratingsRef = db.collection("ratings");
+        Query query = ratingsRef.whereEqualTo("busName", trip.getBusName());
+        query.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+            @Override
+            public void onSuccess(QuerySnapshot querySnapshot) {
+                double totalRating = 0;
+                int ratingCount = 0;
+
+                for (DocumentSnapshot documentSnapshot : querySnapshot) {
+                    BusRating busRating = documentSnapshot.toObject(BusRating.class);
+                    double rating = busRating.getRatingStars();
+                    totalRating += rating;
+                    ratingCount++;
+                }
+
+                if (ratingCount > 0) {
+                    double averageRating = totalRating / ratingCount;
+
+                    averageRating = Math.round(averageRating * 10) / 10.0;
+
+                    DecimalFormat decimalFormat = new DecimalFormat("#.00");
+                    String formattedRating = decimalFormat.format(averageRating);
+
+                    holder.tvRating.setText(formattedRating);
+                } else {
+                    holder.tvRating.setText("0");
+                }
+            }
+        });
+
         holder.btnBookNow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -73,6 +114,16 @@ public class BusScheduleAdapter extends RecyclerView.Adapter<BusScheduleAdapter.
                 context.startActivity(intent);
             }
         });
+
+        holder.btnRating.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context, RatingHistoryActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.putExtra("busName", trip.getBusName());
+                context.startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -90,7 +141,8 @@ public class BusScheduleAdapter extends RecyclerView.Adapter<BusScheduleAdapter.
         private TextView tvArriveStation;
         private TextView tvArriveCity;
         private TextView tvPrice;
-        private Button btnBookNow;
+        private TextView tvRating;
+        private Button btnBookNow, btnRating;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -104,8 +156,8 @@ public class BusScheduleAdapter extends RecyclerView.Adapter<BusScheduleAdapter.
             tvArriveCity = itemView.findViewById(R.id.tvArriveCity);
             tvPrice = itemView.findViewById(R.id.tvPrice);
             btnBookNow = itemView.findViewById(R.id.btnBookNow);
+            btnRating = itemView.findViewById(R.id.btnRating);
+            tvRating = itemView.findViewById(R.id.tvRating);
         }
     }
 }
-
-

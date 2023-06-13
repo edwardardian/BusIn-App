@@ -1,17 +1,17 @@
 package com.example.busreservationapp;
 
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.widget.AppCompatRatingBar;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
 
 import java.util.ArrayList;
 
@@ -19,11 +19,35 @@ public class RatingHistoryAdapter extends RecyclerView.Adapter<RatingHistoryAdap
     private ArrayList<BusRating> listRating;
     private Context context;
     private FirebaseFirestore db;
+    private String busName;
 
-    public RatingHistoryAdapter(ArrayList<BusRating> listRating, Context context) {
-        this.listRating = listRating;
+    public RatingHistoryAdapter(Context context, String busName) {
         this.context = context;
+        db = FirebaseFirestore.getInstance();
+        listRating = new ArrayList<>();
+        this.busName = busName;
+        fetchRatingsFromFirestore();
     }
+
+    private void fetchRatingsFromFirestore() {
+        db.collection("ratings")
+                .whereEqualTo("busName", busName)
+                .get()
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        listRating.clear();
+
+                        for (QueryDocumentSnapshot document : task.getResult()) {
+                            BusRating busRating = document.toObject(BusRating.class);
+                            listRating.add(busRating);
+                        }
+
+                        notifyDataSetChanged();
+                    } else {
+                    }
+                });
+    }
+
 
     @NonNull
     @Override
@@ -37,6 +61,10 @@ public class RatingHistoryAdapter extends RecyclerView.Adapter<RatingHistoryAdap
         BusRating busRating = listRating.get(position);
         holder.userName.setText(busRating.getUserName());
         holder.comment.setText(busRating.getRatingText());
+        holder.busName.setText(busRating.getBusName());
+
+        int rating = Math.round(busRating.getRatingStars());
+        holder.rating.setRating(rating);
     }
 
 
@@ -48,9 +76,8 @@ public class RatingHistoryAdapter extends RecyclerView.Adapter<RatingHistoryAdap
     public class ViewHolder extends RecyclerView.ViewHolder {
         private TextView userName;
         private TextView busName;
-        private TextView rating;
+        private AppCompatRatingBar rating;
         private TextView comment;
-
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -60,5 +87,4 @@ public class RatingHistoryAdapter extends RecyclerView.Adapter<RatingHistoryAdap
             comment = itemView.findViewById(R.id.comment_rateHistory);
         }
     }
-
 }
