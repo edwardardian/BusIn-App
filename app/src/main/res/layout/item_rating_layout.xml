@@ -5,7 +5,7 @@
     android:id="@+id/cardView"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="8dp"
+    android:layout_margin="6dp"
     card_view:cardCornerRadius="5dp">
 
 <RelativeLayout
@@ -17,48 +17,46 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Ahmad Mukafi Andrian"
+        android:layout_toLeftOf="@+id/ratingBar_rateHistory"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="10dp"
         android:textSize="15sp"
         android:textStyle="bold"
         android:textColor="@color/blue"
-        android:layout_marginStart="25dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginEnd="16dp" />
+        android:layout_marginTop="15dp" />
 
-    <TextView
-        android:id="@+id/busName_rateHistory"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/userName_rateHistory"
-        android:text="Primajasa"
-        android:textSize="17sp"
-        android:textStyle="bold"
-        android:textColor="@color/black"
-        android:layout_marginStart="25dp"
-        android:layout_marginEnd="16dp" />
-
-    <androidx.appcompat.widget.AppCompatRatingBar
+    <RatingBar
         android:id="@+id/ratingBar_rateHistory"
         android:layout_width="wrap_content"
-        android:layout_height="63dp"
-        android:layout_alignParentStart="true"
-        android:layout_marginStart="162dp"
-        android:layout_toEndOf="@id/userName_rateHistory"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:isIndicator="true"
         android:numStars="5"
         android:rating="3"
-        android:scaleX="0.5"
-        android:scaleY="0.5"
+        android:scaleX="0.4"
+        android:scaleY="0.4"
         android:stepSize="1" />
 
     <TextView
+        android:id="@+id/busName_rateHistory"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ratingBar_rateHistory"
+        android:text="Primajasa"
+        android:layout_marginStart="10dp"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        android:textColor="@color/black" />
+
+    <TextView
         android:id="@+id/comment_rateHistory"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Komentar nya disini lorem lorem ipsum ipsum lloremn ipsum"
-        android:textSize="17sp"
+        android:textSize="15sp"
+        android:layout_marginStart="10dp"
         android:textColor="@color/black"
         android:layout_below="@id/busName_rateHistory"
-        android:layout_marginStart="25dp"
-        android:layout_marginEnd="16dp"
         android:layout_marginBottom="15dp" />
 
 </RelativeLayout>
