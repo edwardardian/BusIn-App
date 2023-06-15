@@ -81,11 +81,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/rating_busName"
-            android:layout_marginStart="100dp"
+            android:layout_marginStart="126dp"
             android:layout_marginTop="8dp"
             android:layout_toRightOf="@id/rating_busName"
             android:text="2"
-            android:textAlignment="center"
             android:textColor="@color/blue_secondary"
             android:textSize="16dp"
             android:textStyle="bold" />
