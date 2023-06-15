@@ -13,156 +13,80 @@
         tools:targetApi="31">
         <activity
             android:name=".RatingActivity"
-            android:screenOrientation="portrait"
             android:exported="true">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
         </activity>
         <activity
             android:name=".HistoryActivity"
-            android:screenOrientation="portrait"
             android:exported="true">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
-            android:name=".HistoryAdapter"
-            android:exported="true">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
         </activity>
         <activity
             android:name=".RetailVerificationActivity"
-            android:screenOrientation="portrait"
             android:exported="true">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
         </activity>
         <activity
             android:name=".PaymentRetailActivity"
-            android:screenOrientation="portrait"
             android:exported="true">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
         </activity>
         <activity
             android:name=".PaymentVirtualAccountActivity"
-            android:screenOrientation="portrait"
             android:exported="true">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
         </activity>
         <activity
             android:name=".VirtualAccountVerificationActivity"
-            android:screenOrientation="portrait"
             android:exported="true">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
         </activity>
         <activity
             android:name=".EWalletVerificationActivity"
-            android:screenOrientation="portrait"
             android:exported="true">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
         </activity>
         <activity
             android:name=".PaymentEWalletActivity"
-            android:screenOrientation="portrait"
             android:exported="true">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
         </activity>
         <activity
             android:name=".PaymentMethodActivity"
-            android:screenOrientation="portrait"
             android:exported="true">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
-            android:name=".FragmentBusDetail"
-            android:exported="true">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
-            android:name=".FragmentSeatChooserMenu"
-            android:exported="true">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
         </activity>
         <activity
             android:name=".BusDetailActivity"
-            android:screenOrientation="portrait"
             android:exported="true" />
         <activity
             android:name=".PaymentDetailActivity"
-            android:screenOrientation="portrait"
             android:exported="true" />
         <activity
             android:name=".SeatChooserMenuActivity"
-            android:screenOrientation="portrait"
             android:exported="true">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
         </activity>
         <activity
             android:name=".BusScheduleActivity"
-            android:screenOrientation="portrait"
             android:exported="true">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
         </activity>
         <activity
             android:name=".UserActivity"
-            android:screenOrientation="portrait"
             android:exported="true">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
         </activity>
         <activity
             android:name=".UserLoginActivity"
-            android:screenOrientation="portrait"
             android:exported="true">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
         </activity>
         <activity
             android:name=".HomePageActivity"
-            android:screenOrientation="portrait"
             android:exported="true">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
         </activity>
         <activity
             android:name=".UserRegisterActivity"
-            android:screenOrientation="portrait"
             android:exported="true">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
+        </activity>
+        <activity
+            android:name=".TicketDetailActivity"
+            android:exported="true">
+        </activity>
+        <activity
+            android:name=".RatingHistoryActivity"
+            android:exported="true">
         </activity>
         <activity
             android:name=".SplashScreen"
-            android:screenOrientation="portrait"
             android:exported="true">
             <meta-data
                 android:name="android.app.lib_name"
@@ -173,22 +97,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".TicketDetailActivity"
-            android:screenOrientation="portrait"
-            android:exported="true">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
-            android:name=".RatingHistoryActivity"
-            android:screenOrientation="portrait"
-            android:exported="true">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-    </application>
 
+    </application>
 </manifest>
