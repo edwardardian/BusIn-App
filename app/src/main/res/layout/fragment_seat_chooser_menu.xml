@@ -390,8 +390,8 @@
 
                         <CheckedTextView
                             android:id="@+id/ivSeatA5"
-                            android:layout_width="32dp"
-                            android:layout_height="match_parent"
+                            android:layout_width="36dp"
+                            android:layout_height="36dp"
                             android:layout_marginEnd="4dp"
                             android:background="@drawable/seat_chooser"
                             android:checked="false" />
