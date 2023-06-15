@@ -69,9 +69,7 @@ public class RetailVerificationActivity extends AppCompatActivity {
         alert.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                Intent intent = new Intent(RetailVerificationActivity.this, TicketDetailActivity.class);
-                Toast.makeText(RetailVerificationActivity.this, "Payment Verified!", Toast.LENGTH_SHORT).show();
-                startActivity(intent);
+                Toast.makeText(RetailVerificationActivity.this, "Payment not verified, please select another payment method!", Toast.LENGTH_SHORT).show();
             }
         });
         alert.setNegativeButton("No", new DialogInterface.OnClickListener() {
