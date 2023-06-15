@@ -59,17 +59,22 @@ Verifikasi pembayaran
 
 ![Desain tanpa judul (11)](https://github.com/edwardardian/Hacktiv8-Final-Project-4/assets/96390389/6f95e0cb-261c-4d01-9cfb-3b78ae11183d)
 
-<h3> 12. Rating Input </h3>
-User dapat memberikan bintang sebagai rating serta komentar dan dapat dilihat oleh user lain
+<h3> 12. Ticket Detail</h3>
+Setelah pembayaran berhasil, akan muncul ticket detail untuk di gunakan.
+
+![Desain tanpa judul (12)](https://github.com/edwardardian/Hacktiv8-Final-Project-4/assets/96390389/544e0279-caf2-4da7-b89e-d30062bda2ae)
+
+<h3> 13. Rating Input </h3>
+User dapat memberikan bintang sebagai rating serta komentar dan dapat dilihat oleh user lain setelah menyelesaikan trip
 
 ![Desain tanpa judul (13)](https://github.com/edwardardian/Hacktiv8-Final-Project-4/assets/96390389/c88068ea-16d0-4450-80b2-986a19dc3557)
 
-<h3> 13. Trip History</h3>
+<h3> 14. Trip History</h3>
 Setelah memberikan rating, user akan diarahkan ke Trip History yang telah di pesan
 
 ![Desain tanpa judul (14)](https://github.com/edwardardian/Hacktiv8-Final-Project-4/assets/96390389/cd2a1dc2-d4c8-4228-960f-664de199f2db)
 
-<h3> 14. Profie </h3>
+<h3> 15. Profie </h3>
 Menampilkan detail user dan user dapat logout disini
 
 ![Desain tanpa judul (16)](https://github.com/edwardardian/Hacktiv8-Final-Project-4/assets/96390389/9e3790db-a3fb-41a9-9193-5eabdf8857be)
