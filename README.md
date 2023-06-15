@@ -1,10 +1,10 @@
 <h1> BusIn Application </h1>
-BusIn adalah aplikasi pemesanan tiket bus secara online guna mempermudah pengguna. Aplikasi ini dibuat dengan Java dan Google Firebase.
+BusIn adalah aplikasi pemesanan tiket bus secara online guna mempermudah pengguna. Aplikasi ini dibuat dengan Java dan Google Firebase. <br />
 
-Anggota Kelompok 7:
-1. Edward Ardian Tayu
-2. Azis Nurjaman
-3. Ahmad Mukafi Andrian
+<h3> Anggota Kelompok 7: </h3>
+<li>Edward Ardian Tayu</li>
+<li>Azis Nurjaman</li>
+<li>Ahmad Mukafi Andrian</li>
 
 <h1>Alur Program Aplikasi</h1>
 
